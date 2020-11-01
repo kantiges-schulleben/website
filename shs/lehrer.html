@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Immanuel-Kant-Gymnasium, Schüler helfen Schülern, Schulclub, Schülerrat am Kant, Provokant, Schülerzeitung,
+    Nachhilfe, Leipzig, Schulband">
+    <meta name="description" content="Die Schülerwebseite vom Immanuel-Kant-Gymnasium von Schülern für Schülern">
+    <title>Weiterleitung Lehrer</title>
+    <div id='header'></div>
+    <link rel="stylesheet" href="lehrer.css">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">"
+    <link rel="stylesheet" href="https:///fonts.googleapis.com/css?family=Roboto:300,400">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="lehrer.js"></script>
+    <script src="schueler.js"></script>
+    <script src="jquery-4.3.1.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav id="normal">
+            <ul>
+                <li><a href="../index.html" class="active">Startseite</a></li>
+                <li><a href="../schuelerrat.html">Schülerrat</a></li>
+                <li><a href="index.php">Schüler helfen Schülern</a></li>
+                <li><a href="../schulclub.html">Schulclub</a></li>
+                <li><a href="../schuelerband.html">Schülerband</a></li>
+                <li><a href="../schuelerzeitung.html">Schülerzeitung</a></li>
+            </ul>
+        </nav>
+
+        </li>
+
+        <nav id="mobile">
+            <div id="menu">Menü</div>
+            <ul>
+                <li><a href="../index.html" class="active">Startseite</a></li>
+                <li><a href="../schuelerrat.html">Schülerrat</a></li>
+                <li><a href="index.php">Schüler helfen Schülern</a></li>
+                <li><a href="../schulclub.html">Schulclub</a></li>
+                <li><a href="../schuelerband.html">Schülerband</a></li>
+                <li><a href="../schuelerzeitung.html">Schülerzeitung</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="erstelle">
+        <div>
+            <article>
+                <h1>Erstelle deine virtuelle Nachhilfe</h1>
+                <p>
+                    <h2>Wie erstelle ich jetzt die Nachhilfe?</h2>
+                    Du als Nachhilfelehrer erstellst eine "Session" bedeutet eine Unterrichtseinheit bis zu 60 Minuten.
+                    Du musst der Unterrichtseinheit ein Titel geben. Zum Beispiel <strong>Nachhilfe mit Selena
+                        Gomez</strong>
+                    weil wir benötigen diesen Titel um die Nachhilfe zu erstellen.
+                    Wenn du fertig bist mit den Felder, kontroliere deine Angaben und gehe danach auf <strong>Los
+                        geht`s.</strong>
+                    Wenn du auf Los geht´s drückst wird die "session" Unterrichtseinheit erstellt und du kommst auf eine
+                    neue Seite.
+                    Diese neue Seite befindet sich <strong>nicht</strong> auf unseren Schulserver, sondern auf einen
+                    externer Server.
+                    Bedeutet du verlässt unsere coole Plattform und wirst zu Liveboard weitergeleitet.
+                    Dein Nachhilfeschüler meldet sich wie du an und kriegt dann einen Link wo er zur gleichen
+                    Unterrichtseinheit weitergeleitet wird.
+                    Im Besten Fall trefft ihr Euch dann bei LiveBoard und könnt produktiv arbeiten.
+                    Wir wünschen Euch eine gute Unterrichtseinheit und hoffen das alles geklappt hat.
+                </p>
+            </article>
+        </div>
+    </div>
+    <section>
+        <div class="alles">
+            <div>
+                <input class="session" name="name" type="text" size="80" maxlength="40"
+                    placeholder="Gib bitte einen sinnvollen Titel ein." id="titel" required>
+                <input type="button" onclick="sendToBackend()" value="Los geht`s"
+                    class="center-input gruen">
+                <input type="button" onclick="reset()" value="Abbrechen" class="center-input rot">
+                <div class="centerl" id="space">
+                    <div class="ring"></div>
+                    <span class="loading">loading.....</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="main-content">
+            <div class="left box">
+                <a class="heute" href="../datenschutz.html">
+                    <h2>Datenschutz</h2>
+                </a>
+                <div class="content">
+                    <p>Hey, uns ist es sehr wichtig, dass ihr wisst welche Daten wir verwenden oder auch nicht. Klickt
+                        auf Datenschutz und ihr werdet alles erfahren.
+                    </p>
+                    <div class="social">
+                        <a href="https://www.instagram.com/schuelerrat_kantgym/?igshid=1t27mbn5r03ir"><span
+                                class="fab fa-instagram"></span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="center box">
+                <a href="../impressum.html">
+                    <h2>Impressum</h2>
+                </a>
+                <div class="content">
+                    <div class="place">
+                        <span class="fas fa-map-marker-alt"></span>
+                        <span class="text">Leipzig, Deutschland</span>
+                    </div>
+                    <div class="phone">
+                        <span class="fas fa-phone-alt"></span>
+                        <span class="text">0341 303480</span>
+                    </div>
+                    <div class="email">
+                        <span class="fas fa-envelope"></span>
+                        <span class="text">shs@kantgym-leipzig.de</span>
+                    </div>
+                </div>
+            </div>
+            <div class="right box">
+                <a href="#">
+                    <h2>Kontaktiere uns</h2>
+                </a>
+            </div>
+        </div>
+        </div>
+        <div class="bottom">
+            <center>
+                <span class="credit">Created by Kilian Schneider, Benjamin Kohl, Dennis Deciano, Cornelius Brauns, Peter
+                    Laser, Tom Spiegel, Jette Garbade und Kristian Lehmann</span>
+                <span class="far fa-copyright"></span><span>2020 All rights reserved.</span>
+            </center>
+        </div>
+
+    </footer>
+</body>
+
+</html>
