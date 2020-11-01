@@ -3,12 +3,6 @@ Eine wundervolle Seite für Schüler:Innen des Kantgymnasiums
 
 [zur Website](https://www.kantiges-schulleben.de)
 
-<style>
-table {
-    width:100%;
-}
-</style>
-
 ## API-Dokumentation v0.1
 
 BaseUrl :  [https://kantiges-schulleben.de](https://www.kantiges-schulleben.de)/api/v0.1/
