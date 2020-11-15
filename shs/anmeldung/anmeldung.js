@@ -23,10 +23,10 @@ nachhilfe = document.getElementsByName("antwort")[0];
 Anzahl = document.getElementsByName("auswahl")[0];
 bemerkungen = document.getElementsByName("notiz")[0];
 
-//püft ob man beim Nachhilfe geben mindestens in der 9.ten Klasse ist
+//püft ob man beim Nachhilfe geben mindestens in der 8.ten Klasse ist
 klasse = document.getElementsByName('klassenstufe')[0];
 function NachhilfeG() {
-   if (klasse.value[0]>8) {
+   if (klasse.value[0] >= 8) {
       warnung1 = [];
       document.querySelector(".msg.nachhilfe").innerHTML = warnung1;
    }
