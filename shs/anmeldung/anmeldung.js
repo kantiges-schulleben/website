@@ -16,6 +16,7 @@ let warnung2 = []
 let warnung3 = []
 let warnung4 = []
 let warnung5 = []
+let warnung6 = []
 
 
 nachhilfe = document.getElementsByName("antwort")[0];
@@ -25,7 +26,7 @@ bemerkungen = document.getElementsByName("notiz")[0];
 //püft ob man beim Nachhilfe geben mindestens in der 8.ten Klasse ist
 klasse = document.getElementsByName('klassenstufe')[0];
 function NachhilfeG() {
-   if (klasse.value[0]>8) {
+   if (klasse.value[0] >= 8) {
       warnung1 = [];
       document.querySelector(".msg.nachhilfe").innerHTML = warnung1;
    }
@@ -39,6 +40,11 @@ function NachhilfeG() {
    }
 }
 
+function NachhilfeN() {
+   warnung1 = [];
+   document.querySelector(".msg.nachhilfe").innerHTML = warnung1;
+}
+
 const result = [];
 const options = document.querySelector("#fächer") && document.querySelector("#fächer").options;
 let opt;
@@ -49,7 +55,7 @@ for (let i=0, iLen=options.length; i<iLen; i++) {
       result.push(opt.text);
    }
 }
-console.log(result);
+//console.log(result);
 }
 
 //definiert welche Zeichen im Namen der Mail und der Telefonnummer vorkommen dürfen
@@ -82,6 +88,7 @@ vorname.onblur = function () {
    }
 }
 
+//prüft ob Name nur aus Buchstaben besteht
 nachname = document.getElementsByName('nachname')[0];
 nachname.onfocus = function () {
    this.setAttribute('style','background: white');
@@ -102,6 +109,7 @@ nachname.onblur = function () {
    }
 }
 
+//prüft ob mail richtiges Format hat
 mail = document.getElementsByName('mail')[0];
 mail.onfocus = function () {
    this.setAttribute('style','background: white');
@@ -122,6 +130,7 @@ mail.onblur = function () {
    }
 }
 
+//prüft ob handynummer aus Zahlen besteht
 handy = document.getElementsByName('handy')[0];
 handy.onfocus = function () {
     this.setAttribute('style','background: white');
@@ -143,7 +152,29 @@ handy.onblur = function () {
 }
 
 
-document.querySelector('#Test').onclick = function () {
+
+
+
+//Abschicken der Daten
+var  myform = document.getElementById('save');
+myform.addEventListener('submit', (e) => {
+   warnung1.toString()
+   warnung2.toString()
+   warnung3.toString()
+   warnung4.toString()
+   warnung5.toString()
+   warnungen = warnung1 + warnung2 + warnung3 + warnung4 + warnung5
+
+   /*if(zahlen.length>berechnung.length){
+      warnung6.splice(0, 1,'Bitte wählen sie mindestens so viele Zeiten aus wie sie Fächer ausgewählt haben!');
+      document.querySelector('.msg.zeiten').innerHTML = warnung6;
+   }
+   else {
+      warnung6 = [];
+      document.querySelector('.msg.zeiten').innerHTML = warnung6;
+   }*/
+   
+   //deklaration der daten, speichern der daten in "data"
    if(document.getElementById('nachhilfe geben').checked) {
       nachhilfe = "1";
    }
@@ -164,14 +195,6 @@ document.querySelector('#Test').onclick = function () {
    
    Zeiten = checkitem.substr(0,checkitem.length-1);
 
-   /*if(zahlen.length>berechnung.length){
-      document.querySelector(".msg.Zeiten").innerHTML = 'Bitte wählen sie mindestens so viele Zeiten aus wie sie Fächer ausgewählt haben!';
-   }
-   else {
-      document.querySelector(".msg.Zeiten").innerHTML = '';
-   }*/
-   
-
    if(document.getElementById('gruppennachhilfe').checked) {
       Anzahl = "1";
    }
@@ -181,18 +204,15 @@ document.querySelector('#Test').onclick = function () {
    vorname.toString()
    nachname.toString()
    klasse.toString()
-   console.log(vorname.value + " " + nachname.value + ":" + klasse.value + ":" + mail.value + ":" + handy.value + ":" + nachhilfe + ":" + fächer + ":" + Zeiten + ":" + Anzahl + ":" + bemerkungen.value);
-   }
-
-   var  myform = document.getElementById('save');
-   myform.addEventListener('submit', (e) => {
-      warnung1.toString()
-      warnung2.toString()
-      warnung3.toString()
-      warnung4.toString()
-      warnung5.toString()
-      warnungen = warnung1 + warnung2 + warnung3 + warnung4 + warnung5
-      if(warnungen.length > 0){
+   data=vorname.value + " " + nachname.value + ":" + klasse.value + ":" + mail.value + ":" + handy.value + ":" + nachhilfe + ":" + fächer + ":" + Zeiten + ":" + Anzahl + ":" + bemerkungen.value;
+   console.log(data);
+      
+   if(warnungen.length > 0){ //wenn es warnungen gibt wird das dokument nicht abgeschickt
       e.preventDefault();
-      }
+   }
+   else{
+      $.post('lehrer.php', {
+         data: data
+      });
+   } 
    })
