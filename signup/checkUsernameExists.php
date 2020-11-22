@@ -1,7 +1,7 @@
 <?php
     require_once("../include/functions.inc.php");
     if (isset($_POST['username'])) {
-        $result = SQL("SELECT COUNT(username) FROM benutzer WHERE username LIKE ?", [$_POST['username']]);
+        $result = SQL("SELECT COUNT(username) FROM benutzer WHERE benutzername LIKE ?", [$_POST['username']]);
         $count = sqlResult($result, 0, "count");
         if ($count > 0) {
             echo json_encode(array(
