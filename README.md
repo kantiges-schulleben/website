@@ -8,10 +8,12 @@
         * [search.php](#search.php)
     * [/my](#/my)
         * [changePassword.php](#changePassword.php)
+        * [getDashboardData.php](#getDashboardData.php)
     * [/shs/anmeldung](#/shs/anmeldung)
         * [save.php](#save.php)
     * [/signup](#/signup)
         * [signup.php](#signup.php)
+        * [checkUsernameExists.php](#checkUsernameExists.php)
 
 ### Beschreibung
 Eine wundervolle Seite für Schüler:Innen des Kantgymnasiums.
@@ -78,6 +80,18 @@ Eine wundervolle Seite für Schüler:Innen des Kantgymnasiums.
     * newPassword
 * Rückgabe (json/eindimensional)
     * success (true wenn erfolgreich; false bei fehler)
+##### getDashboardData.php
+* Parameter
+    * *keine*
+* Rückgabe (json/eindimensional)
+    * bei Erfolg
+        * success (true)
+        * fach
+        * klasse
+        * me (eigener Name)
+        * partner (Name des Partners)
+    * bei Fehler
+        * success (false)
 
 #### /shs/anmeldung
 ##### save.php
@@ -100,8 +114,14 @@ Eine wundervolle Seite für Schüler:Innen des Kantgymnasiums.
 ##### signup.php
 * Parameter
     * name
+    * username
     * password
     * mail (optional)
 * Rückgabe (json/eindimensional)
     * success (true wenn erfolgreich; false bei fehler)
     * message (wenn false fehlertext)
+##### checkUsernameExists.php
+* Parameter
+    * username
+* Rückgabe (json/eindimensional)
+    * exists (true, wenn bereits existent; false, wenn noch verfügbar)

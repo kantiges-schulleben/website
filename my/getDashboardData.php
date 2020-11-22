@@ -1,5 +1,5 @@
 <?php
-    require_once "../include/functions.inc.php";
+    require_once("../include/functions.inc.php");
     
     if (isset($_SESSION["user"])) {
         $result = SQL("SELECT * FROM handschlag WHERE name LIKE ?", [$_SESSION["user"]]);

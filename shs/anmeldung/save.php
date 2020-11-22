@@ -1,5 +1,5 @@
 <?php
-    include_once("/include/functions.inc.php");
+    require_once("../../include/functions.inc.php");
     /*
     * Name
     * Klasse
@@ -50,9 +50,9 @@
         $bemerkung = htmlspecialchars($_POST['bemerkung'], ENT_QUOTES);
     }
 
-    $ziel = "";
+    $ziel = 0;
     if (isset($_POST['ziel'])) {
-        $ziel = htmlspecialchars($_POST['ziel'], ENT_QUOTES);
+        $ziel = intval(htmlspecialchars($_POST['ziel'], ENT_QUOTES));
     }
 
     if (explode("@", $mail)[0] == $mail) {

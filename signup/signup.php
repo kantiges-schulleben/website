@@ -1,5 +1,5 @@
 <?php
-    include_once("/include/functions.inc.php");
+    require_once("../include/functions.inc.php");
 
     $message = [];
 
@@ -9,7 +9,7 @@
         header("Location: ../");
     }
 
-    if (isset($_POST['name']) === false or isset($_POST['password']) === false) {
+    if (isset($_POST['name']) === false or isset($_POST['password']) === false or isset($_POST['username']) === false) {
         $message = array(
             'success' => 'false',
             'message' => ''
@@ -18,6 +18,7 @@
     }
 
     $name = $_POST['name'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
 
     $mail = "";
@@ -35,19 +36,13 @@
         die(json_encode($message));
     }
 
-    $response = SQL("INSERT INTO handschlag (name, password, mail) VALUES (?, ?, ?)", [$name, $password, $mail]);
+    $response = SQL("INSERT INTO handschlag (name, password, benutzername, mail) VALUES (?, ?, ?, ?)", [$name, $password, $username, $mail]);
 
     if ($response === false) {
         $message = array(
             'success' => 'false'
         );
-        die(json_encode($message));$count = SQL("SELECT * FROM apikeys WHERE api_key LIKE ?", [$key])->num_rows;
-        if ($count !== 0) {
-            $message = array(
-                'success' => 'false',
-                'message' => 'Es existiert bereits ein Artikel mit diesem Namen.'
-            );
-        }
+        die(json_encode($message));
     } else {
         $message = array(
             'success' => 'true'
