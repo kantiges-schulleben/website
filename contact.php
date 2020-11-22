@@ -1,7 +1,7 @@
 <?php
-    require_once "./include/PHPMailer.php";
-    require_once "./include/SMTP.php";
-    require_once "./include/Exception.php";
+    require_once("./include/PHPMailer.php");
+    require_once("./include/SMTP.php");
+    require_once("./include/Exception.php");
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;

@@ -1,6 +1,6 @@
 <?php
 
-    include_once("/include/functions.inc.php");
+    require_once("../include/functions.inc.php");
 
     session_start();
 
