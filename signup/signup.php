@@ -36,7 +36,7 @@
         die(json_encode($message));
     }
 
-    $response = SQL("INSERT INTO handschlag (name, password, benutzername, mail) VALUES (?, ?, ?)", [$name, $password, $username, $mail]);
+    $response = SQL("INSERT INTO handschlag (name, password, benutzername, mail) VALUES (?, ?, ?, ?)", [$name, $password, $username, $mail]);
 
     if ($response === false) {
         $message = array(
