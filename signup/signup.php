@@ -5,10 +5,12 @@
 
     session_start();
 
+    // prüfen, ob der Benutzer schon angemeldet ist
     if (isset($_SESSION['user']) === true && isset($_SESSION['typ']) === true) {
         header("Location: ../");
     }
 
+    // prüfen, ob alle kritischen Parameter übergeben wurden, sonst abbrechen und false zurückgeben
     if (isset($_POST['name']) === false or isset($_POST['password']) === false or isset($_POST['username']) === false) {
         $message = array(
             'success' => 'false',
@@ -27,7 +29,8 @@
         $mail = $_POST['mail'];
     }
 
-    $count = SQL("SELECT * FROM handschlag WHERE name LIKE ?", [$name])->num_rows;
+    // prüfen, ob bereits ein Benutzer mit diesem Benutzernamen existiert.
+    $count = SQL("SELECT * FROM handschlag WHERE benutzername LIKE ?", [$name])->num_rows;
     if ($count !== 0) {
         $message = array(
             'success' => 'false',
@@ -36,6 +39,7 @@
         die(json_encode($message));
     }
 
+    //Daten speichern
     $response = SQL("INSERT INTO handschlag (name, password, benutzername, mail) VALUES (?, ?, ?, ?)", [$name, $password, $username, $mail]);
 
     if ($response === false) {
