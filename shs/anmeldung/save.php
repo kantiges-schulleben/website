@@ -13,7 +13,7 @@
     */
 
     $message = [];
-
+    // prüfen, ob alle kritischen Parameter übergeben wurden
     if (isset($_POST['name']) === false
         or
         isset($_POST['klasse']) === false
@@ -45,6 +45,7 @@
     $zeit = htmlspecialchars($_POST['zeit'], ENT_QUOTES);
     $einzelnachhilfe = htmlspecialchars($_POST['einzelnachhilfe'], ENT_QUOTES);
 
+    // optionale Parameter überprüfen und zuweisen
     $bemerkung = "";
     if (isset($_POST['bemerkung'])) {
         $bemerkung = htmlspecialchars($_POST['bemerkung'], ENT_QUOTES);
@@ -66,6 +67,7 @@
 
     $bemerkung = htmlspecialchars($bemerkung, ENT_QUOTES);
 
+    // Daten eintragen, bei Erfolg
     $result = SQL("INSERT INTO shsAnmeldung (name, klasse, mail, telefon, nachhilfe, fach, zeit, einzelnachhilfe, bemerkung, zielKlasse) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [$name, $klasse, $mail, $telefon, $nachhilfe, $fach, $zeit, $einzelnachhilfe, $bemerkung, $ziel]);
     if ($result === false) {
         $message = array(

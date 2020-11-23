@@ -15,12 +15,14 @@
 
     $output = "0";
 
+    // prüfen ob angemeldet
     if (isset($_SESSION['user']) === false || isset($_SESSION['typ']) === false) {
         $output .= "login";
         echo $output;
         exit();
     }
 
+    // id von Lehrer und Schülern aus der Datenbank holen
     $teacher = $_SESSION['user'];
     $tid = sqlReturn(SQL("SELECT id FROM handschlag WHERE name LIKE ?", [$teacher]), 0, "id");
 
@@ -58,6 +60,7 @@
     // check===============================================================================
     $boolActive = [];
 
+    // prüfen, ob einer der Schüler bereits eine Aktive Session hat.
     foreach ($students as $value) {
         $result = sqlReturn(SQL("SELECT terminlink FROM handschlag WHERE name LIKE ?", [$value]), 0, "terminlink");
         $boolStudentActive = false;

@@ -1,7 +1,8 @@
 <?php
+    // gibt die Anzahl von Einträgen -> Schülern, die sich für shs angemeldet haben
     session_start();
 
-    if (isset($_SESSION['user'])) {
+    if (isset($_SESSION['userADMIN'])) {
     } else {
         header("Location: login");
     }

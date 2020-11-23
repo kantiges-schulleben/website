@@ -1,4 +1,5 @@
 <?php
+    // SQL-Abfrage mit Prep-Statment
     function SQL($prepareStatement, $parameter) {
         $servername = "localhost";
         $username = "USERNAME";

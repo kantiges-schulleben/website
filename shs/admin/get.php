@@ -1,7 +1,8 @@
 <?php
+    // gibt alle Werte einer Person zurück, die sich bei shs angemeldet hat
     session_start();
 
-    if (isset($_SESSION['user'])) {
+    if (isset($_SESSION['userADMIN'])) {
     } else {
         header("Location: login");
     }
