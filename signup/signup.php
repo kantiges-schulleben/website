@@ -19,14 +19,14 @@
         die(json_encode($message));
     }
 
-    $name = $_POST['name'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
+    $username = htmlspecialchars($_POST['username'], ENT_QUOTES);
+    $password = htmlspecialchars($_POST['password'], ENT_QUOTES);
 
     $mail = "";
 
     if (isset($_POST['mail'])) {
-        $mail = $_POST['mail'];
+        $mail = htmlspecialchars($_POST['mail'], ENT_QUOTES);
     }
 
     // prüfen, ob bereits ein Benutzer mit diesem Benutzernamen existiert.
@@ -40,7 +40,7 @@
     }
 
     //Daten speichern
-    $response = SQL("INSERT INTO handschlag (name, password, benutzername, mail) VALUES (?, ?, ?, ?)", [$name, $password, $username, $mail]);
+    $response = SQL("INSERT INTO handschlag (name, password, benutzername, mail) VALUES (?, ?, ?, ?)", [$name, password_hash($password, PASSWORD_DEFAULT), $username, $mail]);
 
     if ($response === false) {
         $message = array(

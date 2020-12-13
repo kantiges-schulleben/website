@@ -4,14 +4,14 @@
     // prüfen ob der benuter angemeldet ist
     if (isset($_SESSION['user']) === true) {
         $user = htmlspecialchars(strtolower($_SESSION['user']), ENT_QUOTES);
-        $pwd = $_POST['oldPassword'];
+        $pwd = htmlspecialchars($_POST['oldPassword'], ENT_QUOTES);
 
         $result = SQL("SELECT * FROM handschlag WHERE name LIKE ?", [$user]);
     
         if ($result->num_rows  === 1) {
             // prüfen, ob das alte Passwort mit dem realen überinstimmt
             if (password_verify($pwd, sqlReturn($result, 0, "password"))) {
-                $newPassword = $_POST['newPassword'];
+                $newPassword = htmlspecialchars($_POST['newPassword'], ENT_QUOTES);
                 // Passwort updaten
                 $success = SQL("UPDATE handschlag SET password=? WHERE name LIKE ?", [password_hash($newPassword, PASSWORD_DEFAULT), $user]);
 

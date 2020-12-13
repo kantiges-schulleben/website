@@ -3,7 +3,7 @@
     
     // prüfen, ob der Benutzer angemeldet ist und alle relevanten Daten für das Dashboard zurück geben
     if (isset($_SESSION["user"])) {
-        $result = SQL("SELECT * FROM handschlag WHERE name LIKE ?", [$_SESSION["user"]]);
+        $result = SQL("SELECT * FROM handschlag WHERE name LIKE ?", [htmlspecialchars($_SESSION["user"], ENT_QUOTES)]);
 
         $output = array(
             "success" => "true"
