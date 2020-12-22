@@ -1,7 +1,7 @@
 <?php
+    require_once("../include/functions.inc.php");
 
-    include_once("/include/functions.inc.php");
-
+    // prüfen, ob der Schüler momentan eine Session hat, wenn ja, Link zurückgeben
     session_start();
 
     if (isset($_SESSION['user']) === false || isset($_SESSION['typ']) === false) {

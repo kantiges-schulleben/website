@@ -1,4 +1,9 @@
 <?php
+    if (isset($_SESSION['userADMIN'])) {
+    } else {
+        header("Location: ./login");
+    }
+
     require_once("../../include/PHPMailer.php");
     require_once("../../include/SMTP.php");
     require_once("../../include/Exception.php");
@@ -9,6 +14,7 @@
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exceptions;
 
+    // ließt alle daten aus der Datenbank aus und bereitet sie auf die Übergabe zum Auswertungsscript vor
     $result = SQL("SELECT * FROM shsAnmeldung", ["empty"]);
 
     $output = [];
@@ -51,10 +57,11 @@
 
     $parameter = json_encode($output);
 
-    // $output = json_decode(exec("python3 script.py " - $parameter), true);
-    $output = json_decode(exec("python3 script.py --use-default"), true);
+    // Script starten (obviously)
+    $output = json_decode(exec("python3 script.py " - $parameter), true);
+    // $output = json_decode(exec("python3 script.py --use-default"), true);
 
-
+    // Mailer initialisieren
     $mail = new PHPMailer(true);
     // $mail -> SMTPDebug = SMTP::DEBUG_SERVER;
     $mail -> isSMTP();
@@ -72,8 +79,10 @@
 
     // print_r(createText($output[$firstOrderGroups[0]][0], 0));
 
+    // Datenbank löschen
     SQL("DELETE FROM handschlag", ["null"]);
 
+    // über alle Paare loopen und Emails mit den wichtigen Daten versenden, um die Schüler und Lehrer zu informieren
     for ($group = 0; $group < count($firstOrderGroups); $group++) {
         for ($i = 0; $i < count($output[$firstOrderGroups[$group]]); $i++) {
             $rawMailData = createText($output[$firstOrderGroups[$group]][$i], $group);

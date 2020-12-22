@@ -1,7 +1,8 @@
 <?php
+    // speichert alle Daten wieder in der Datenbank
     session_start();
 
-    if (isset($_SESSION['user'])) {
+    if (isset($_SESSION['userADMIN'])) {
     } else {
         header("Location: login");
     }

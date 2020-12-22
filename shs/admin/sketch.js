@@ -133,12 +133,15 @@ function count() {
 }
 // start script=============================================================================================================================================
 function startScript() {
-    $.get('start.php', function (data) {
-        if (data == "") {
-            alert("Es ist ein Fehler aufgetreten.");
-        } else {
-            document.getElementById('output').innerHTML = data;
-        }
-    });
+    if (confirm("Bist du dir sicher?")) {
+        $.get('start.php', function (data) {
+            if (data == "") {
+                alert("Es ist ein Fehler aufgetreten.");
+            } else {
+                document.getElementById('output').innerHTML = data;
+            }
+        });
+    } else {
+        alert("Auch ok.");
+    }
 }
-
