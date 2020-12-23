@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor</title>
+</head>
+
+<body onload="Editor();">
+    <header>
+        <button type="button" onclick="Editor();">
+            <h1> Editor</h1>
+        </button>
+        <button type="button" onclick="Vorschau();">
+            <h1> Vorschau</h1>
+        </button>
+    </header>
+
+    <form id="hochladen" action="vorschau.php" method="post" enctype="multipart/form-data-" accept-charset="ISO-8859-1"
+        autocomplete="off" novalidat>
+        <div id="editor">
+            <fieldset>
+                <p> Überschrift:</p>
+                <input name="überschrift" type="text" size="79" maxlength="100" placeholder="Bitte Überschrift eingeben"
+                    id="überschrift" required>
+            </fieldset>
+
+            <fieldset>
+                <p> Inhalt: </p>
+                <textarea name="inhalt" cols="71" rows="40" placeholder="Hier Bitte den Textinhalt angeben"
+                    id="inhalt"></textarea>
+            </fieldset>
+
+            <fieldset>
+                <p> Hier ein Bild hochladen</p>
+                <input type="file" name="bild" id="uploadedImage"><br>
+            </fieldset>
+        </div>
+
+        <div id="vorschau">
+
+            <h1 class="msg überschrift"> </h1>
+
+            <img src="" id="bild">
+
+            <p class="msg inhalt">
+            </p>
+        </div>
+
+        <input type="submit" id="speichern" value="Speichern">
+        <input type="reset" id="Abbrechen" value="Abbrechen">
+
+    </form>
+    <script type="text/javascript" src="jquery-4.3.1.min.js"></script>
+    <script type="text/javascript" src="editor.js"></script>
+</body>
+
+</html>
