@@ -9,13 +9,15 @@
 
     $mail = new PHPMailer(true);
 
-    if (!isset($_POST['from']) || !isset($_POST['msg'])) {
+    if (!isset($_POST['fromMail']) || !isset($_POST['msg']) || !isset($_POST['grund']) || !isset($_POST['fromName'])) {
         die(json_encode(array(
             "success" => false
         )));
     } else {
-        $sender = htmlspecialchars(strtolower($_POST['from']), ENT_QUOTES);
+        $senderMail = htmlspecialchars(strtolower($_POST['fromMail']), ENT_QUOTES);
+        $senderName = htmlspecialchars(strtolower($_POST['fromName']), ENT_QUOTES);
         $msg = htmlspecialchars(strtolower($_POST['msg']), ENT_QUOTES);
+        $grund = htmlspecialchars($_POST['grund'], ENT_QUOTES);
     
         try {
             // $mail -> SMTPDebug = SMTP::DEBUG_SERVER;
@@ -29,10 +31,10 @@
     
             $mail -> setFrom("kantiges-schulleben@gmx.de", "Kontaktformular");
             $mail -> addAddress("shs@kantgym-leipzig.de");
-            $mail -> addReplyTo($sender);
+            $mail -> addReplyTo($senderName, $senderMail);
     
             $mail -> isHTML(false);
-            $mail -> Subject = "Mitteilung über Kontaktformular";
+            $mail -> Subject = "Mitteilung über Kontaktformular - " + $grund;
             $mail -> Body = $msg;
     
             $mail -> send();
