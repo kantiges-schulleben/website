@@ -5,5 +5,5 @@
         header("Location: ../");
     }
     
-    echo file_get_contents("Login.html");
+    echo file_get_contents("main.html");
 ?>
