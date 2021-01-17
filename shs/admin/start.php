@@ -97,6 +97,7 @@
     }
 
     SQL("DELETE FROM shsAnmeldung", ["null"]);
+    echo "fertig";
 
 
     // TODO ausgabe schöner formatieren vielleicht HTML/CSS mail?

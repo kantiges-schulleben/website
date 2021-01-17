@@ -20,11 +20,12 @@ function count() {
 // start script=============================================================================================================================================
 function startScript() {
     if (confirm("Auswertung starten?")) {
+        document.getElementById("output").innerText = "auswertung gestartet...";
         $.get('start.php', function (data) {
             if (data == "") {
                 alert("Es ist ein Fehler aufgetreten.");
             } else {
-                document.getElementById('output').innerHTML = data;
+                document.getElementById('output').innerText = data;
             }
         });
     }
