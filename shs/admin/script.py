@@ -64,6 +64,42 @@ def toJsonString(inputList):
     jsonString = jsonString[:-1] + '}'
     return jsonString
 
+def updateTimesIfMultipleProblems(name, timeMask, give = False, group = False):
+    indexToNull = -1
+
+    for i in range(len(timeMask)):
+        if int(timeMask[i]) == 0:
+            indexToNull = i
+            break
+            pass
+        pass
+
+    targetList = []
+
+    if give:
+        if group:
+            targetList = []
+            pass
+        else:
+            targetList = []
+            pass
+        pass
+    else:
+        if group:
+            targetList = []
+            pass
+        else:
+            targetList = []
+            pass
+        pass
+
+    for person in range(len(targetList)):
+        if targetList[person][4] != exclude:
+            targetList[person][7][i] = "0"
+            pass
+        pass
+    pass
+
 # annahme: list1 = give, list2 = take
 def assignByTime(list1, list2, isGroup = False, maximum = 2):
     # prüfen, ob beide oder eine list leer ist
@@ -178,6 +214,7 @@ if len(sys.argv) > 1:
         orig_list = [
         # Name,          E-Mail,             give private tutoring        grade         subject  einzelnachhilfe
         ['Joyce Byers', 'Joyce@gmail.com', '0', '5a', 'Mathematik', '0', '0', '13'],
+        ['Joyce Byers', 'Joyce@gmail.com', '0', '5a', 'Deutsch', '0', '0', '13'],
         ['Jim Hopper', 'Jim@gmail.com', '0', '5a', 'Physik', '0', '0', '13'],
         ['Mike Wheeler', 'Mike@gmail.com', '0', '5a', 'Biologie', '0', '0', '13'],
         ['Will Byers', 'Will@gmail.com', '0', '5a', 'Mathematik', '0', '0', '13'],
@@ -211,7 +248,7 @@ if len(sys.argv) > 1:
         ['Barbara Holland', 'Barb@gmail.com', '1', '10a', 'Biologie', '5', '0', '13'],
         ['Ross Duffer', 'Ross@gmail.com', '1', '10a', 'Physik', '5', '0', '13'],
         ['Matt Duffer', 'Matt@gmail.com', '1', '10a', 'Physik', '5', '0', '13'],
-        ['eigth', 'eight@gmail.com', '1', '10a', 'Physik', '5', '0', '13'],
+        ['eight', 'eight@gmail.com', '1', '10a', 'Physik', '5', '0', '13'],
         ['Suzi', 'suzi@gmail.com', '1', '10a', 'Informatik', '8', '0', '13'],
         ['Murray Baumann', 'Murray@gmail.com', '1', '9a', 'Informatik', '7', '0', '13'],
         ['Becky Ives', 'becky@gmail.com', '1', '9a', 'Mathematik', '5', '0', '13'],
@@ -443,29 +480,6 @@ while grade < 12:
         give = ml_list_give_einzel[grade - 5][j]
         take = ml_list_take_einzel[grade - 5][j]
 
-        # length = len(give)
-
-        # if len(take) < length:
-        #     length = len(take)
-        #     pass
-
-        # for i in range(0, length):
-        #     # print(str(take[i]) + " => " + str(give[i]))
-        #     pass
-
-        # # durchläuft jedes element in take/give, wenn i größer als die Anzahl der mögliche Paare ist wird das element without hinzugefügt
-        # for i in range(len(take)):
-        #     if i >= length:
-        #         without.append(take[i])
-        #         pass
-        #     pass
-
-        # for i in range(len(give)):
-        #     if i >= length:
-        #         without.append(give[i])
-        #         pass
-        #     pass
-
         output = assignByTime(give, take) # 0 = paare, 1 = without
         paare.extend(output[0])
         without.extend(output[1])
@@ -473,12 +487,6 @@ while grade < 12:
         pass
     grade += 1
     pass
-
-for i in paare:
-    # print(i)
-    pass
-
-# print("========================================================================")
 
 # ==============================================================================================================================
 
@@ -495,7 +503,7 @@ students = []
 current = 0
 start = 0
 
-# grupppen
+# gruppen
 while grade < 12:
     for j in range(NumberOfSubjects):
         current = 0
@@ -505,50 +513,10 @@ while grade < 12:
         give = ml_list_give_gruppe[grade - 5][j]
         take = ml_list_take_gruppe[grade - 5][j]
 
-        # for tutor in give:
-        #     currentStudents = []
-        #     if len(take) - current > 0:
-        #         tutors.append(tutor)
-        #         pass
-        #     else:
-        #         without.append(tutor)
-        #         pass
-        #     for student in range(current, len(take)):
-        #         currentStudents.append(take[student])
-        #         current += 1
-        #         if len(currentStudents) == maximum:
-        #             break
-        #         pass
-        #     students.append(currentStudents)
-        #     pass
-
-        # for wo in range(current, len(take)):
-        #     without.append(take[wo])
-        #     pass
         output = assignByTime(give, take, True, maximum)
         paare_group.extend(output[0])
         without.extend(output[1])
     grade += 1
-    pass
-
-
-
-# for i in range(len(tutors)):
-#     # print(tutors[i])
-#     # print("''''''''''")
-#     # print(students[i])
-#     # print("===============================")
-#     pass
-
-for i in paare_group:
-    # print(i)
-    pass
-
-# print("=====================")
-# print("ohne:")
-
-for i in without:
-    # print(i)
     pass
 
 # ====================================================================================================================================
@@ -558,15 +526,5 @@ actualOutput.append(list(paare))
 actualOutput.append(list(paare_group))
 actualOutput.append(list(without))
 
-# print()
-# print()
-# print()
-
-# # print(actualOutput[0])
-# # print()
-# # print(actualOutput[1])
-# # print()
-# # print(actualOutput[2])
-
-
+# ====================================================================================================================================
 print(toJsonString(actualOutput))
