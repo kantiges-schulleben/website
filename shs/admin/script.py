@@ -68,16 +68,11 @@ def checkForMultipleAppearances(current_grade, exclude, personName, indexToChang
     for subject in range(len(referenceList[current_grade - 5])):
         if len(referenceList[current_grade - 5][subject]) > 0:
             if referenceList[current_grade - 5][subject][0][4] != exclude:
-                print(referenceList[current_grade - 5][subject][0][4])
-                print("***")
                 for person in range(len(referenceList[current_grade - 5][subject])):
-                    print(referenceList[current_grade - 5][subject][person][0])
-                    print(personName)
                     if referenceList[current_grade - 5][subject][person][0] == personName:
                         freeTime = list(referenceList[current_grade - 5][subject][person][7])
                         freeTime[indexToChange] = '0'
                         referenceList[current_grade - 5][subject][person][7] = "".join(freeTime)
-                        print("changed it")
                         # print(referenceList[current_grade][subject][person][0])
                         pass
                     pass
@@ -135,7 +130,7 @@ def assignByTime(list1, list2, isGroup = False, maximum = 2):
                             l_paare[len(l_paare) - 1][0][7] = "".join(tmp) # give
                             # ===================================================
                             checkForMultipleAppearances(int(list1[i][5]), str(list1[i][4]), str(list1[i][0]), int(time), ml_list_give_einzel)
-                            checkForMultipleAppearances(int(list2[i][5]), str(list2[i][4]), str(list2[i][0]), int(time), ml_list_take_einzel)
+                            checkForMultipleAppearances(int(list2[i][3][:-1]), str(list2[i][4]), str(list2[i][0]), int(time), ml_list_take_einzel)
                             break
                         pass
                     pass
@@ -180,22 +175,14 @@ def assignByTime(list1, list2, isGroup = False, maximum = 2):
                         
                         print(len(l_paare[-1]))
                         for j in range(len(l_paare[-1])):
-                            # FIXME
-                            # hier müsste das problem liegen
                             l_paare[len(l_paare) - 1][j][7] = "".join(tmp) # give
                             if j == 0:
                                 checkForMultipleAppearances(int(l_paare[len(l_paare) - 1][j][5]), str(l_paare[len(l_paare) - 1][j][4]), str(l_paare[len(l_paare) - 1][j][0]), int(time), ml_list_give_gruppe)
-                                print("geben")
                                 pass
                             else:
-                                checkForMultipleAppearances(int(l_paare[len(l_paare) - 1][j][5]) + 5, str(l_paare[len(l_paare) - 1][j][4]), str(l_paare[len(l_paare) - 1][j][0]), int(time), ml_list_take_gruppe)
-                                print("nehmen")
+                                checkForMultipleAppearances(int(l_paare[len(l_paare) - 1][j][3][:-1]), str(l_paare[len(l_paare) - 1][j][4]), str(l_paare[len(l_paare) - 1][j][0]), int(time), ml_list_take_gruppe)
                                 pass
                             pass
-                        print("***")
-                        # checkForMultipleAppearances(int(list1[i][5]), str(list1[i][4]), str(list1[i][0]), int(time), ml_list_give_gruppe)
-                        # checkForMultipleAppearances(int(temporary[0][5]), str(temporary[0][4]), str(temporary[0][0]), int(time), ml_list_take_gruppe)
-                        # checkForMultipleAppearances(int(temporary[1][5]), str(temporary[1][4]), str(temporary[1][0]), int(time), ml_list_take_gruppe)
                         pass
                     temporary = []
                     pass
@@ -545,8 +532,8 @@ actualOutput.append(list(paare_group))
 actualOutput.append(list(without))
 
 # ====================================================================================================================================
-# print(toJsonString(actualOutput))
+print(toJsonString(actualOutput))
 
-f = open("out.json", "w")
-f.write(toJsonString(actualOutput))
-f.close()
+# f = open("out.json", "w")
+# f.write(toJsonString(actualOutput))
+# f.close()
