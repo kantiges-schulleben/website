@@ -64,38 +64,24 @@ def toJsonString(inputList):
     jsonString = jsonString[:-1] + '}'
     return jsonString
 
-def updateTimesIfMultipleProblems(name, timeMask, give = False, group = False):
-    indexToNull = -1
-
-    for i in range(len(timeMask)):
-        if int(timeMask[i]) == 0:
-            indexToNull = i
-            break
-            pass
-        pass
-
-    targetList = []
-
-    if give:
-        if group:
-            targetList = []
-            pass
-        else:
-            targetList = []
-            pass
-        pass
-    else:
-        if group:
-            targetList = []
-            pass
-        else:
-            targetList = []
-            pass
-        pass
-
-    for person in range(len(targetList)):
-        if targetList[person][4] != exclude:
-            targetList[person][7][i] = "0"
+def checkForMultipleAppearances(current_grade, exclude, personName, indexToChange, referenceList):
+    for subject in range(len(referenceList[current_grade - 5])):
+        if len(referenceList[current_grade - 5][subject]) > 0:
+            if referenceList[current_grade - 5][subject][0][4] != exclude:
+                print(referenceList[current_grade - 5][subject][0][4])
+                print("***")
+                for person in range(len(referenceList[current_grade - 5][subject])):
+                    print(referenceList[current_grade - 5][subject][person][0])
+                    print(personName)
+                    if referenceList[current_grade - 5][subject][person][0] == personName:
+                        freeTime = list(referenceList[current_grade - 5][subject][person][7])
+                        freeTime[indexToChange] = '0'
+                        referenceList[current_grade - 5][subject][person][7] = "".join(freeTime)
+                        print("changed it")
+                        # print(referenceList[current_grade][subject][person][0])
+                        pass
+                    pass
+                pass
             pass
         pass
     pass
@@ -148,10 +134,8 @@ def assignByTime(list1, list2, isGroup = False, maximum = 2):
                             l_paare[len(l_paare) - 1][1][7] = "".join(tmp) # take
                             l_paare[len(l_paare) - 1][0][7] = "".join(tmp) # give
                             # ===================================================
-                            # print(str(list1[i]) + " => " + str(list2[j]))
-                            # print(l_paare[len(l_paare) - 1])
-                            # print()
-                            # ===================================================
+                            checkForMultipleAppearances(int(list1[i][5]), str(list1[i][4]), str(list1[i][0]), int(time), ml_list_give_einzel)
+                            checkForMultipleAppearances(int(list2[i][5]), str(list2[i][4]), str(list2[i][0]), int(time), ml_list_take_einzel)
                             break
                         pass
                     pass
@@ -170,16 +154,48 @@ def assignByTime(list1, list2, isGroup = False, maximum = 2):
                         pass
 
                     if temporary != []:
-                        # TODO zuteilung wird mit anzahl 2 durchgeführt, soll variabel sein -> mit schleife
-                        l_paare.append([list(list1[i]), list(temporary[0]), list(temporary[1])])
+                        tmp_l_paare = []
+                        # tmp_l_paare.append(list1[i])
+                        tmp_l_paare.append(list(list1[i]))
                         list1[i][7] = null
+
+                        for j in range(len(temporary)):
+                            # tmp_l_paare.append(list(temporary[j]))
+                            tmp_l_paare.append(list(temporary[j]))
+                            pass
+                        print(tmp_l_paare)
+                        l_paare.append(list(tmp_l_paare))
+
+                        # l_paare.append([list(list1[i]), list(temporary[0]), list(temporary[1])])
+                        # list1[i][7] = null
 
                         tmp = list(null)
                         tmp[time] = "1"
 
-                        l_paare[len(l_paare) - 1][2][7] = "".join(tmp) # take
-                        l_paare[len(l_paare) - 1][1][7] = "".join(tmp) # take
-                        l_paare[len(l_paare) - 1][0][7] = "".join(tmp) # give
+                        l_paare = list(l_paare)
+
+                        # l_paare[-1][2][7] = "".join(tmp) # take
+                        # l_paare[-1][1][7] = "".join(tmp) # take
+                        # l_paare[-1][0][7] = "".join(tmp) # give
+                        
+                        print(len(l_paare[-1]))
+                        for j in range(len(l_paare[-1])):
+                            # FIXME
+                            # hier müsste das problem liegen
+                            l_paare[len(l_paare) - 1][j][7] = "".join(tmp) # give
+                            if j == 0:
+                                checkForMultipleAppearances(int(l_paare[len(l_paare) - 1][j][5]), str(l_paare[len(l_paare) - 1][j][4]), str(l_paare[len(l_paare) - 1][j][0]), int(time), ml_list_give_gruppe)
+                                print("geben")
+                                pass
+                            else:
+                                checkForMultipleAppearances(int(l_paare[len(l_paare) - 1][j][5]) + 5, str(l_paare[len(l_paare) - 1][j][4]), str(l_paare[len(l_paare) - 1][j][0]), int(time), ml_list_take_gruppe)
+                                print("nehmen")
+                                pass
+                            pass
+                        print("***")
+                        # checkForMultipleAppearances(int(list1[i][5]), str(list1[i][4]), str(list1[i][0]), int(time), ml_list_give_gruppe)
+                        # checkForMultipleAppearances(int(temporary[0][5]), str(temporary[0][4]), str(temporary[0][0]), int(time), ml_list_take_gruppe)
+                        # checkForMultipleAppearances(int(temporary[1][5]), str(temporary[1][4]), str(temporary[1][0]), int(time), ml_list_take_gruppe)
                         pass
                     temporary = []
                     pass
@@ -235,6 +251,7 @@ if len(sys.argv) > 1:
         ['Niels Bohr', 'niels@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
         ['Nikola Tesla', 'nikola@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
         ['Thomas Edison', 'thomas@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
+        ['Thomas Edison', 'thomas@gmail.com', '0', '5a', 'Mathematik', '0', '1', '13'],
         ['Stephen Hawking', 'stephen@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
         ['Johannes Kepler', 'johannes@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
 
@@ -254,10 +271,11 @@ if len(sys.argv) > 1:
         ['Becky Ives', 'becky@gmail.com', '1', '9a', 'Mathematik', '5', '0', '13'],
         ['Ted Wheeler', 'ted@gmail.com', '1', '9a', 'Deutsch', '5', '0', '13'],
 
+        ['Nikolaus Kopernikus', 'nikolaus@gmail.com', '1', '9a', 'Physik', '5', '1', '13'],
         ['Isaac Newton', 'isaac@gmail.com', '1', '9a', 'Physik', '5', '1', '13'],
         ['Ernest Rutherford', 'ernest@gmail.com', '1', '9a', 'Physik', '5', '1', '13'],
         ['Galileo Galilei', 'galileo@gmail.com', '1', '9a', 'Physik', '5', '1', '13'],
-        ['Nikolaus Kopernikus', 'nikolaus@gmail.com', '1', '9a', 'Physik', '5', '1', '13']
+        ['Nikolaus Kopernikus', 'nikolaus@gmail.com', '1', '9a', 'Mathematik', '5', '1', '13']
         ]
         pass
     else:
@@ -527,4 +545,8 @@ actualOutput.append(list(paare_group))
 actualOutput.append(list(without))
 
 # ====================================================================================================================================
-print(toJsonString(actualOutput))
+# print(toJsonString(actualOutput))
+
+f = open("out.json", "w")
+f.write(toJsonString(actualOutput))
+f.close()
