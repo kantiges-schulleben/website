@@ -64,6 +64,23 @@ def toJsonString(inputList):
     jsonString = jsonString[:-1] + '}'
     return jsonString
 
+def checkForMultipleAppearances(current_grade, exclude, personName, indexToChange, referenceList):
+    for subject in range(len(referenceList[current_grade - 5])):
+        if len(referenceList[current_grade - 5][subject]) > 0:
+            if referenceList[current_grade - 5][subject][0][4] != exclude:
+                for person in range(len(referenceList[current_grade - 5][subject])):
+                    if referenceList[current_grade - 5][subject][person][0] == personName:
+                        freeTime = list(referenceList[current_grade - 5][subject][person][7])
+                        freeTime[indexToChange] = '0'
+                        referenceList[current_grade - 5][subject][person][7] = "".join(freeTime)
+                        # print(referenceList[current_grade][subject][person][0])
+                        pass
+                    pass
+                pass
+            pass
+        pass
+    pass
+
 # annahme: list1 = give, list2 = take
 def assignByTime(list1, list2, isGroup = False, maximum = 2):
     # prüfen, ob beide oder eine list leer ist
@@ -112,10 +129,8 @@ def assignByTime(list1, list2, isGroup = False, maximum = 2):
                             l_paare[len(l_paare) - 1][1][7] = "".join(tmp) # take
                             l_paare[len(l_paare) - 1][0][7] = "".join(tmp) # give
                             # ===================================================
-                            # print(str(list1[i]) + " => " + str(list2[j]))
-                            # print(l_paare[len(l_paare) - 1])
-                            # print()
-                            # ===================================================
+                            checkForMultipleAppearances(int(list1[i][5]), str(list1[i][4]), str(list1[i][0]), int(time), ml_list_give_einzel)
+                            checkForMultipleAppearances(int(list2[i][3][:-1]), str(list2[i][4]), str(list2[i][0]), int(time), ml_list_take_einzel)
                             break
                         pass
                     pass
@@ -134,16 +149,40 @@ def assignByTime(list1, list2, isGroup = False, maximum = 2):
                         pass
 
                     if temporary != []:
-                        # TODO zuteilung wird mit anzahl 2 durchgeführt, soll variabel sein -> mit schleife
-                        l_paare.append([list(list1[i]), list(temporary[0]), list(temporary[1])])
+                        tmp_l_paare = []
+                        # tmp_l_paare.append(list1[i])
+                        tmp_l_paare.append(list(list1[i]))
                         list1[i][7] = null
+
+                        for j in range(len(temporary)):
+                            # tmp_l_paare.append(list(temporary[j]))
+                            tmp_l_paare.append(list(temporary[j]))
+                            pass
+                        print(tmp_l_paare)
+                        l_paare.append(list(tmp_l_paare))
+
+                        # l_paare.append([list(list1[i]), list(temporary[0]), list(temporary[1])])
+                        # list1[i][7] = null
 
                         tmp = list(null)
                         tmp[time] = "1"
 
-                        l_paare[len(l_paare) - 1][2][7] = "".join(tmp) # take
-                        l_paare[len(l_paare) - 1][1][7] = "".join(tmp) # take
-                        l_paare[len(l_paare) - 1][0][7] = "".join(tmp) # give
+                        l_paare = list(l_paare)
+
+                        # l_paare[-1][2][7] = "".join(tmp) # take
+                        # l_paare[-1][1][7] = "".join(tmp) # take
+                        # l_paare[-1][0][7] = "".join(tmp) # give
+                        
+                        print(len(l_paare[-1]))
+                        for j in range(len(l_paare[-1])):
+                            l_paare[len(l_paare) - 1][j][7] = "".join(tmp) # give
+                            if j == 0:
+                                checkForMultipleAppearances(int(l_paare[len(l_paare) - 1][j][5]), str(l_paare[len(l_paare) - 1][j][4]), str(l_paare[len(l_paare) - 1][j][0]), int(time), ml_list_give_gruppe)
+                                pass
+                            else:
+                                checkForMultipleAppearances(int(l_paare[len(l_paare) - 1][j][3][:-1]), str(l_paare[len(l_paare) - 1][j][4]), str(l_paare[len(l_paare) - 1][j][0]), int(time), ml_list_take_gruppe)
+                                pass
+                            pass
                         pass
                     temporary = []
                     pass
@@ -178,6 +217,7 @@ if len(sys.argv) > 1:
         orig_list = [
         # Name,          E-Mail,             give private tutoring        grade         subject  einzelnachhilfe
         ['Joyce Byers', 'Joyce@gmail.com', '0', '5a', 'Mathematik', '0', '0', '13'],
+        ['Joyce Byers', 'Joyce@gmail.com', '0', '5a', 'Deutsch', '0', '0', '13'],
         ['Jim Hopper', 'Jim@gmail.com', '0', '5a', 'Physik', '0', '0', '13'],
         ['Mike Wheeler', 'Mike@gmail.com', '0', '5a', 'Biologie', '0', '0', '13'],
         ['Will Byers', 'Will@gmail.com', '0', '5a', 'Mathematik', '0', '0', '13'],
@@ -198,6 +238,7 @@ if len(sys.argv) > 1:
         ['Niels Bohr', 'niels@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
         ['Nikola Tesla', 'nikola@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
         ['Thomas Edison', 'thomas@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
+        ['Thomas Edison', 'thomas@gmail.com', '0', '5a', 'Mathematik', '0', '1', '13'],
         ['Stephen Hawking', 'stephen@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
         ['Johannes Kepler', 'johannes@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
 
@@ -211,16 +252,17 @@ if len(sys.argv) > 1:
         ['Barbara Holland', 'Barb@gmail.com', '1', '10a', 'Biologie', '5', '0', '13'],
         ['Ross Duffer', 'Ross@gmail.com', '1', '10a', 'Physik', '5', '0', '13'],
         ['Matt Duffer', 'Matt@gmail.com', '1', '10a', 'Physik', '5', '0', '13'],
-        ['eigth', 'eight@gmail.com', '1', '10a', 'Physik', '5', '0', '13'],
+        ['eight', 'eight@gmail.com', '1', '10a', 'Physik', '5', '0', '13'],
         ['Suzi', 'suzi@gmail.com', '1', '10a', 'Informatik', '8', '0', '13'],
         ['Murray Baumann', 'Murray@gmail.com', '1', '9a', 'Informatik', '7', '0', '13'],
         ['Becky Ives', 'becky@gmail.com', '1', '9a', 'Mathematik', '5', '0', '13'],
         ['Ted Wheeler', 'ted@gmail.com', '1', '9a', 'Deutsch', '5', '0', '13'],
 
+        ['Nikolaus Kopernikus', 'nikolaus@gmail.com', '1', '9a', 'Physik', '5', '1', '13'],
         ['Isaac Newton', 'isaac@gmail.com', '1', '9a', 'Physik', '5', '1', '13'],
         ['Ernest Rutherford', 'ernest@gmail.com', '1', '9a', 'Physik', '5', '1', '13'],
         ['Galileo Galilei', 'galileo@gmail.com', '1', '9a', 'Physik', '5', '1', '13'],
-        ['Nikolaus Kopernikus', 'nikolaus@gmail.com', '1', '9a', 'Physik', '5', '1', '13']
+        ['Nikolaus Kopernikus', 'nikolaus@gmail.com', '1', '9a', 'Mathematik', '5', '1', '13']
         ]
         pass
     else:
@@ -443,29 +485,6 @@ while grade < 12:
         give = ml_list_give_einzel[grade - 5][j]
         take = ml_list_take_einzel[grade - 5][j]
 
-        # length = len(give)
-
-        # if len(take) < length:
-        #     length = len(take)
-        #     pass
-
-        # for i in range(0, length):
-        #     # print(str(take[i]) + " => " + str(give[i]))
-        #     pass
-
-        # # durchläuft jedes element in take/give, wenn i größer als die Anzahl der mögliche Paare ist wird das element without hinzugefügt
-        # for i in range(len(take)):
-        #     if i >= length:
-        #         without.append(take[i])
-        #         pass
-        #     pass
-
-        # for i in range(len(give)):
-        #     if i >= length:
-        #         without.append(give[i])
-        #         pass
-        #     pass
-
         output = assignByTime(give, take) # 0 = paare, 1 = without
         paare.extend(output[0])
         without.extend(output[1])
@@ -473,12 +492,6 @@ while grade < 12:
         pass
     grade += 1
     pass
-
-for i in paare:
-    # print(i)
-    pass
-
-# print("========================================================================")
 
 # ==============================================================================================================================
 
@@ -495,7 +508,7 @@ students = []
 current = 0
 start = 0
 
-# grupppen
+# gruppen
 while grade < 12:
     for j in range(NumberOfSubjects):
         current = 0
@@ -505,50 +518,10 @@ while grade < 12:
         give = ml_list_give_gruppe[grade - 5][j]
         take = ml_list_take_gruppe[grade - 5][j]
 
-        # for tutor in give:
-        #     currentStudents = []
-        #     if len(take) - current > 0:
-        #         tutors.append(tutor)
-        #         pass
-        #     else:
-        #         without.append(tutor)
-        #         pass
-        #     for student in range(current, len(take)):
-        #         currentStudents.append(take[student])
-        #         current += 1
-        #         if len(currentStudents) == maximum:
-        #             break
-        #         pass
-        #     students.append(currentStudents)
-        #     pass
-
-        # for wo in range(current, len(take)):
-        #     without.append(take[wo])
-        #     pass
         output = assignByTime(give, take, True, maximum)
         paare_group.extend(output[0])
         without.extend(output[1])
     grade += 1
-    pass
-
-
-
-# for i in range(len(tutors)):
-#     # print(tutors[i])
-#     # print("''''''''''")
-#     # print(students[i])
-#     # print("===============================")
-#     pass
-
-for i in paare_group:
-    # print(i)
-    pass
-
-# print("=====================")
-# print("ohne:")
-
-for i in without:
-    # print(i)
     pass
 
 # ====================================================================================================================================
@@ -558,15 +531,9 @@ actualOutput.append(list(paare))
 actualOutput.append(list(paare_group))
 actualOutput.append(list(without))
 
-# print()
-# print()
-# print()
-
-# # print(actualOutput[0])
-# # print()
-# # print(actualOutput[1])
-# # print()
-# # print(actualOutput[2])
-
-
+# ====================================================================================================================================
 print(toJsonString(actualOutput))
+
+# f = open("out.json", "w")
+# f.write(toJsonString(actualOutput))
+# f.close()
