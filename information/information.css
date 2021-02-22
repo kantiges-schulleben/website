@@ -20,6 +20,12 @@ body {
 img {
   height: 100%;
   width: 100%;
+ 
+}
+.test{
+  height: 150px;
+  width: 150px;
+ 
 }
 
 .container {
@@ -55,7 +61,7 @@ a {
   min-height: 100vh;
   padding: 100px 0;
   display: block;
-  background-image: url(../images/bg-hero-mobile.svg);
+  /*background-image: url(../images/bg-hero-mobile.svg);*/
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
