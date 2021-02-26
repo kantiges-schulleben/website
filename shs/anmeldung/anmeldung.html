@@ -1,0 +1,560 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./anmeldung.css">
+    
+    <link rel="stylesheet" href="https:///fonts.googleapis.com/css?family=Roboto:300,400">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+        
+    <title>Anmeldung ShS</title>
+</head>
+<body> <nav>
+    <div class="menu-bar">
+        <div class="logo">
+            <h4>kantiges Schulleben</h4>
+        </div>
+        <ul class="nav-links"> 
+            <li class="active"><a href="../../home.html">Home</a>
+            </li>
+            <li>
+                <a href="../../shs/main.html">ShS</a>
+                <div class="sub-menu-1">
+                    <ul>
+                        <li><a href="../../information/information.html">Informationen</a></li>
+                        <li><a href="../../signup/main.html">Registrierung</a></li>
+                        <li><a href="../../login/main.html">Login</a></li>
+                        <li><a href="../../shs/team/main.html">Team</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="schuelerrat.html">Schülerrat</a><!--##-->
+              <div class="sub-menu-1">
+                  <ul>
+                      <li><a href="../../error/error.html">Aktuelles</a></li>
+                      <li><a href="../../error/error.html">Allgemein</a></li>
+                      <li><a href="../../error/error.html">Vorstand</a></li>
+                      <li><a href="../../error/error.html">Arbeitsgruppen</a></li>
+                      <li><a href="../../error/error.html">Kontakt</a></li>
+                  </ul>
+              </div>
+          </li>
+            <li>
+                <a href="../../error/error.html">Schülerzeitung</a>
+                <div class="sub-menu-1">
+                    <ul>
+                        <li><a href="../../error/error.html">Informationen</a></li>
+                        <li><a href="../../error/error.html">Vorstellung</a></li>
+                        <li class="hover-me"><a href="../../error/error.html">Blog</a><i class="fa-angel-right"></i>
+                        <div class="sub-menu-2">
+                            <ul>
+                                <li><a href="../../error/error.html">Schulleben</a></li>
+                                <li><a href="../../error/error.html">Tipps und Tricks</a></li>
+                            </ul>
+                        </div>
+                        
+                        </li>
+
+                        <li><a href="../../error/error.html">internes System</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+              <a href="../../error/error.html">Projekte</a>
+                        <div class="sub-menu-1">
+                            <ul>
+                                <li><a href="../../error/error.html">Schulband</a></li>
+                                <li><a href="../../error/error.html">Schulclub</a></li>
+                            </ul>
+                        </div>
+            </li>
+
+        </ul>
+    </div>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>       
+        </div>
+        <script src="../../include/navi.js"></script>
+    </nav>
+    
+    <div class="kontaktformular">
+        <div class="form-box">
+            <div class="button-box">
+                <div id="platt">
+                </div>
+                <button type="button" class="nachhilfe" onclick="login()">Lehrer</button>
+                <button type="button" class="nachhilfe" onclick="register()">Schüler</button>
+                </div>
+
+                <!--<div class="social-icons">
+                     <img src="./Bilder/fb.png">
+                     <img src="./Bilder/tw.png">
+                     <img src="./Bilder/gp.png">
+                </div>-->
+               <form id="lehrer" class="input-group">
+                    <input type="text" class="input-field" name="vorname" placeholder="Vorname" required>
+                    <input type="text" class="input-field" name="nachname" placeholder="Nachname" required>
+                   <!--- <input type="text" class="input-field" name="klassenstufe" placeholder="Klassenstufe" required>-->
+                   <div class="klassen"> <!--container-->
+                        
+                  
+                    <div class="select-box">
+                      <div class="options-container">
+                        <div class="option">
+                          <input
+                            type="radio"
+                            class="radio"
+                            value="5a"
+                            name="category"
+                          />
+                          <label for="5a">5a</label>
+                        </div>
+              
+                        <div class="option">
+                          <input type="radio" class="radio" value="5b" name="category" />
+                          <label for="5b">5b</label>
+                        </div>
+              
+                        <div class="option">
+                          <input type="radio" class="radio" value="5c" name="category" />
+                          <label for="5c">5c</label>
+                        </div>
+              
+                        <div class="option">
+                          <input type="radio" class="radio" value="6a" name="category" />
+                          <label for="6a">6a</label>
+                        </div>
+              
+                        <div class="option">
+                          <input type="radio" class="radio" value="6b" name="category" />
+                          <label for="6b">6b</label>
+                        </div>
+              
+                        <div class="option">
+                          <input type="radio" class="radio" value="6c" name="category" />
+                          <label for="6c">6c</label>
+                        </div>
+              
+                        <div class="option">
+                          <input type="radio" class="radio" value="6d" name="category" />
+                          <label for="6d">6d</label>
+                        </div>
+              
+                        <div class="option">
+                          <input type="radio" class="radio" value="7a" name="category" />
+                          <label for="7a">7a</label>
+                        </div>
+              
+                        <div class="option">
+                          <input type="radio" class="radio" value="7b" name="category" />
+                          <label for="7b">7b</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="7c" name="category" />
+                          <label for="7c">7c</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="7d" name="category" />
+                          <label for="7d">7d</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="7e"name="category" />
+                          <label for="7e">7e</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="8a" name="category" />
+                          <label for="8a">8a</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="8b" name="category" />
+                          <label for="8b">8b</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="8c" name="category" />
+                          <label for="8c">8c</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="8d" name="category" />
+                          <label for="8d">8d</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="9a" name="category" />
+                          <label for="9a">9a</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="9b" name="category" />
+                          <label for="9b">9b</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="9c" name="category" />
+                          <label for="9c">9c</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="9d" name="category" />
+                          <label for="9d">9d</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="10a" name="category" />
+                          <label for="10a">10a</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="10b" name="category" />
+                          <label for="10b">10b</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="10c" name="category" />
+                          <label for="10c">10c</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="10d" name="category" />
+                          <label for="10d">10d</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="11LkMa1" name="category" />
+                          <label for="11LkMa1">11LkMa1</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="11LkMa2" name="category" />
+                          <label for="11LkMa2">11LkMa2</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="11LkDe1" name="category" />
+                          <label for="11LkDe1">11LkDe1</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="11LkDe2" name="category" />
+                          <label for="11LkDe2">11LkDe2</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="11LkDe3" name="category" />
+                          <label for="11LkDe3">11LkDe3</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="12LkBio" name="category" />
+                          <label for="12LkBio">12LkBio</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="12LkEn1" name="category" />
+                          <label for="12LkEn1">12LkEn1</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="12En2" name="category" />
+                          <label for="12LkEn2">12LkEn2</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="12LkGe" name="category" />
+                          <label for="12LkGe">12LkGe</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="12LkKu" name="category" />
+                          <label for="12LkKu">12LkKu</label>
+                        </div>
+                        <div class="option">
+                          <input type="radio" class="radio" value="12LKPh" name="category" />
+                          <label for="12LkPh">12LkPh</label>
+                        </div>
+                      </div>
+                 
+              
+                      <div class="selected">
+                        Such deine Klasse aus
+                      </div>
+              
+                      <div class="search-box">
+                        <input type="text" placeholder="Gib deine Klasse ein..." />
+                      </div>
+                      
+                    <input type="mail" class="input-field" name="email" placeholder="E-Mailadresse" required>
+                    <input type="handy" class="input-field" name="handy" placeholder="Telefonnummer" >
+                  
+                    <!--<input type="text" class="input-field" name="klassenstufe" placeholder="Fächer" required>-->
+                    <input type="text" class="input-field" name="klassenstufe" placeholder="Klassenstufe" required>
+                    <input type="text" class="input-field" name="nachhilfe" placeholder="Form der Nachhilfe" >
+                    <input type="checkbox" class="box" ><span id="box">Einzelnachhilfe</span>
+                    <input type="checkbox" class="box" ><span id="box">Gruppennachhilfe</span>
+                   <!--<div class="container">
+                        
+                  
+                        <div class="select-box">
+                          <div class="options-container">
+                            <div class="option">
+                              <input
+                                type="radio"
+                                class="radio"
+                                id="5a"
+                                name="category"
+                              />
+                              <label for="5a">5a</label>
+                            </div>
+                  
+                            <div class="option">
+                              <input type="radio" class="radio" id="film" name="category" />
+                              <label for="5b">5b</label>
+                            </div>
+                  
+                            <div class="option">
+                              <input type="radio" class="radio" id="science" name="category" />
+                              <label for="5c">5c</label>
+                            </div>
+                  
+                            <div class="option">
+                              <input type="radio" class="radio" id="art" name="category" />
+                              <label for="6a">6a</label>
+                            </div>
+                  
+                            <div class="option">
+                              <input type="radio" class="radio" id="music" name="category" />
+                              <label for="6b">6b</label>
+                            </div>
+                  
+                            <div class="option">
+                              <input type="radio" class="radio" id="travel" name="category" />
+                              <label for="6c">6c</label>
+                            </div>
+                  
+                            <div class="option">
+                              <input type="radio" class="radio" id="sports" name="category" />
+                              <label for="6d">6d</label>
+                            </div>
+                  
+                            <div class="option">
+                              <input type="radio" class="radio" id="news" name="category" />
+                              <label for="7a">7a</label>
+                            </div>
+                  
+                            <div class="option">
+                              <input type="radio" class="radio" id="tutorials" name="category" />
+                              <label for="7b">7b</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="7c" name="category" />
+                              <label for="7c">7c</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="7d" name="category" />
+                              <label for="7d">7d</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="7e" name="category" />
+                              <label for="7e">7e</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="8a" name="category" />
+                              <label for="8a">8a</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="8b" name="category" />
+                              <label for="8b">8b</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="8c" name="category" />
+                              <label for="8c">8c</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="8d" name="category" />
+                              <label for="8d">8d</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="9a" name="category" />
+                              <label for="9a">9a</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="9b" name="category" />
+                              <label for="9b">9b</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="9c" name="category" />
+                              <label for="9c">9c</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="9d" name="category" />
+                              <label for="9d">9d</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="10a" name="category" />
+                              <label for="10a">10a</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="10b" name="category" />
+                              <label for="10b">10b</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="10c" name="category" />
+                              <label for="10c">10c</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="10d" name="category" />
+                              <label for="10d">10d</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="11LkMa1" name="category" />
+                              <label for="11LkMa1">11LkMa1</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="11LkMa2" name="category" />
+                              <label for="11LkMa2">11LkMa2</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="11LkDe1" name="category" />
+                              <label for="11LkDe1">11LkDe1</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="11LkDe2" name="category" />
+                              <label for="11LkDe2">11LkDe2</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="11LkDe3" name="category" />
+                              <label for="11LkDe3">11LkDe3</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="12LkBio" name="category" />
+                              <label for="12LkBio">12LkBio</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="12LkEn1" name="category" />
+                              <label for="12LkEn1">12LkEn1</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="12LkEn2" name="category" />
+                              <label for="12LkEn1">12LkEn1</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="12LkGe" name="category" />
+                              <label for="12LkGe">12LkGe</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="12LkKu" name="category" />
+                              <label for="12LkKu">12LkKu</label>
+                            </div>
+                            <div class="option">
+                              <input type="radio" class="radio" id="12LkPh" name="category" />
+                              <label for="12LkPh">12LkPh</label>
+                            </div>
+                          </div>
+                     
+                  
+                          <div class="selected">
+                            Such deine Klassenstufe aus
+                          </div>
+                  
+                          <div class="search-box">
+                            <input type="text" placeholder="Gib deine Klasse ein..." />
+                          </div>-->
+                        </div>
+                      </div>
+                  
+                      <script src="main.js"></script>
+                    <!--<input type="text" class="input-field" name="bemerkungen" placeholder="Bemerkungen">-->
+                    <input type="checkbox" class="chech-box"><span id="datenschutz">Ich stimme der Datenschutzverordnung zu </span>
+                    <button type="submit" class="anmeldungshs">Anmeldung als Nachhilfelehrer</button>
+                </form>
+                <form id="schueler" class="input-group">
+                    <input type="text" class="input-field" name="vorname" placeholder="Vorname" required>
+                    <input type="text" class="input-field" name="nachname" placeholder="Nachname" required>
+                    <input type="text" class="input-field" name="klassenstufe" placeholder="Klassenstufe" required>
+                    <input type="mail" class="input-field" name="email" placeholder="E-Mailadresse" required>
+                    <input type="handy" class="input-field" name="handy" placeholder="Telefonnummer" >
+                    <input type="text" class="input-field" name="klassenstufe" placeholder="Fächer" required>
+                    <input type="text" class="input-field" name="klassenstufe" placeholder="Klassenstufe" required>
+                    <input type="checkbox" class="box" ><span id="box">Einzelnachhilfe</span>
+                    <input type="checkbox" class="box" ><span id="box">Gruppennachhilfe</span>
+                    <!--<input type="text" class="input-field" name="bemerkungen" placeholder="Bemerkungen" >-->
+                    <input type="checkbox" class="chech-box"><span id="datenschutz">Ich stimme der Datenschutzverordnung zu </span>
+                    <button type="submit" class="anmeldungshs">Anmeldung als Nachhilfeschüler</button>
+                </form>
+                </div>
+    </div>
+
+    <script>
+        var x = document.getElementById("lehrer");
+        var y = document.getElementById("schueler");
+        var z = document.getElementById("platt");
+
+        function register(){
+            x.style.left = "-400px";
+            y.style.left = "50px";
+            z.style.left = "110px"
+        }
+        function login(){
+            x.style.left = "50px";
+            y.style.left = "450px";
+            z.style.left = "0"
+        }
+    </script>
+<!--<footer>
+    <div class="main-content">
+            <div class="left box">
+                <a class="heute" href="datenschutz.html">
+                    <h2>Datenschutz</h2>
+                </a>
+                <div class="content">
+                 <p>Wenn du auf Datenschutz klickst, kannst du unsere Datenschutzerklärung lesen.</p>
+                <div class="social">
+                <a href="https://www.instagram.com/schuelerrat_kantgym/?igshid=1t27mbn5r03ir"><span
+                class="fab fa-instagram"></span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="center box">
+                <a href="impressum.html">
+                    <h2>Impressum</h2>
+                </a>
+                <div class="content">
+                    <div class="place">
+                        <span class="fas fa-map-marker-alt"></span>
+                        <span class="text">Leipzig, Deutschland</span>
+                    </div>
+                    <div class="phone">
+                        <span class="fas fa-phone-alt"></span>
+                        <span class="text">0341 303480</span>
+                    </div>
+                    <div class="email">
+                        <span class="fas fa-envelope"></span>
+                        <span class="text">shs@kantgym-leipzig.de</span>
+                    </div>
+                </div>
+            </div>
+            <div class="right box">
+                <a href="#">
+                    <h2>Kontaktiere uns</h2>
+                </a>
+                <div class="content">
+                    <form action="#">
+                        <div class="email">
+                            <div class="text">Email *</div>
+                            <input type="email"
+                                placeholder="Dieses Feld funktioniert noch nicht. Schreib uns eine Email." required>
+                        </div>
+                        <div class="msg">
+                            <div class="text">Nachricht *</div>
+                            <textarea rows="2" cols="25"
+                                placeholder="Dieses Feld funktioniert noch nicht. Schreib uns eine Email."
+                                required></textarea>
+                        </div>
+                        <div class="fgh">
+                            <button type="submit">Abschicken</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <center>
+                <span class="credit">Created by Kilian Schneider, Benjamin Kohl, Pascal Schnabel, Peter
+                    Laser und Kristian Lehmann</span>
+                <span class="far fa-copyright"></span><span>2020 All rights reserved.</span>
+            </center>
+        </div>
+
+    </footer>-->
+
+    </body>
+</html>
+    
+</body>
+</html>
