@@ -246,6 +246,7 @@ textarea.input {
 .social-icons {
   display: flex;
   margin-top: 0.5rem;
+  font-size: 14px;
 }
 
 .social-icons a{
@@ -1213,4 +1214,18 @@ section{
 
 a {
     text-decoration: none;
+}
+
+.moodle{
+  width: 14px;
+  height: 14px;
+  filter: invert(100%);
+  text-align: center;
+}
+
+.ouImSoSpecialGetFucked {
+  color: #fff;
+}
+.ouImSoSpecialGetFucked:hover {
+  color: #fff;
 }

@@ -665,7 +665,8 @@ img {
 
 #erstelle {
   width: 70%;
-  margin: 1em auto;
+  /* margin: 1em auto; */
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
