@@ -126,20 +126,3 @@ Eine wundervolle Seite für Schüler:Innen des Kantgymnasiums.
     * username
 * Rückgabe (json/eindimensional)
     * exists (true, wenn bereits existent; false, wenn noch verfügbar)
-
-### Kristian
-| alter Name                | neuer Name           |
-|---------------------------|----------------------|
-| Bilder/                   | assets/              |
-| login_shs_1.html          | login/main.html      |
-| login.css                 | login/style.css      |
-| navi.js                   | include/navi.js      |
-| regis.js                  | signup/regis.js      |
-| registrierung_shs_1.css   | signup/style.css     |
-| registrierung_shs .1.html | signup/main.html     |
-| startseite_shs_1.css      | shs/style.css        |
-| startseite._shs_1.html    | shs/main.html        |
-| team_shs_1.html           | shs/team/main.html   |
-| teamtest.css              | shs/team/style.css   |
-| teamtest.js               | shs/team/teamtest.js |
-| testtest.js               | *gelöscht*           |

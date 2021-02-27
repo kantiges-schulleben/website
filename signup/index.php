@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    if (isset($_SESSION['user']) === true && isset($_SESSION['typ']) === true) {
+    if (isset($_SESSION['user']) === true) {
         header("Location: ../");
     }
     

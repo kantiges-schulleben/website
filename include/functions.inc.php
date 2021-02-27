@@ -1,10 +1,10 @@
 <?php
     // SQL-Abfrage mit Prep-Statment
-    function SQL($prepareStatement, $parameter) {
+    function SQL($prepareStatement, $parameter, $showAffectedRows = FALSE) {
         $servername = "localhost";
-        $username = "USERNAME";
-        $password = "PASSWORD";
-        $dbname = "DBNAME";
+        $username = "ksde";
+        $password = "website";
+        $dbname = "ksde";
 
         // =======================================================================================
 
@@ -25,11 +25,16 @@
         $sql->execute();
 
         $result = $sql->get_result();
+        $affected = $sql->affected_rows;
 
         $sql->close();
         $conn->close();
 
-        return $result;
+        if ($showAffectedRows == TRUE) {
+            return array($result, $affected);
+        } else {
+            return $result;
+        }
     }
 
 

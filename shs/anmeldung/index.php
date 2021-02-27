@@ -1,3 +1,3 @@
 <?php
-    echo file_get_contents("anmeldung.html");
+    echo file_get_contents("main.html");
 ?>

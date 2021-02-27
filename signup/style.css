@@ -556,6 +556,24 @@ a:hover {
     transition: .5s;
 }
 
+.btn_disable {
+    display: block;
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    background-image: linear-gradient(to right, #8f8f8f, #8f8f8f, #8f8f8f);
+    background-size: 200%;
+    font-size: 1.2rem;
+    color: cornsilk;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: .5s;
+}
+
 .btn:hover {
     background-position: right;
 }
