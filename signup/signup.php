@@ -11,7 +11,7 @@
     }
 
     // prüfen, ob alle kritischen Parameter übergeben wurden, sonst abbrechen und false zurückgeben
-    if (isset($_POST['name']) === false or isset($_POST['password']) === false or isset($_POST['username']) === false) {
+    if (isset($_POST['firstname']) === false or isset($_POST['lastname']) === false or isset($_POST['password']) === false or isset($_POST['username']) === false) {
         $message = array(
             'success' => 'false',
             'message' => ''
@@ -19,7 +19,8 @@
         die(json_encode($message));
     }
 
-    $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
+    $firstname = htmlspecialchars($_POST['firstname'], ENT_QUOTES);
+    $lastname = htmlspecialchars($_POST['lastname'], ENT_QUOTES);
     $username = htmlspecialchars($_POST['username'], ENT_QUOTES);
     $password = htmlspecialchars($_POST['password'], ENT_QUOTES);
 
@@ -30,7 +31,9 @@
     }
 
     // prüfen, ob bereits ein Benutzer mit diesem Benutzernamen existiert.
-    $count = SQL("SELECT * FROM handschlag WHERE benutzername LIKE ?", [$name])->num_rows;
+    $result = SQL("SELECT COUNT(*) from benutzer WHERE `benutzername` LIKE ?", [$username]);
+    $count = mysqli_fetch_assoc($result)['COUNT(*)'];
+
     if ($count !== 0) {
         $message = array(
             'success' => 'false',
@@ -40,9 +43,9 @@
     }
 
     //Daten speichern
-    $response = SQL("INSERT INTO handschlag (name, password, benutzername, mail) VALUES (?, ?, ?, ?)", [$name, password_hash($password, PASSWORD_DEFAULT), $username, $mail]);
+    $response = SQL("INSERT INTO benutzer (name, password, benutzername, mail) VALUES (?, ?, ?, ?)", [$firstname . " " . $lastname, password_hash($password, PASSWORD_DEFAULT), $username, $mail], TRUE);
 
-    if ($response === false) {
+    if ($response[1] !== 1) {
         $message = array(
             'success' => 'false'
         );

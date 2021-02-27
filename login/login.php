@@ -11,15 +11,14 @@
     $user = htmlspecialchars(strtolower($_POST['user']), ENT_QUOTES);
     $pwd = htmlspecialchars($_POST['pass'], ENT_QUOTES);
 
-    $result = SQL("SELECT * FROM handschlag WHERE name LIKE ?", [$user]);
+    $result = SQL("SELECT COUNT(*) FROM benutzer WHERE benutzername LIKE ?", [$user]);
+    $count = mysqli_fetch_assoc($result)['COUNT(*)'];
     
     //check ob das reale Passwort mit dem übergebenen übereinstimmt
-    if ($result->num_rows  === 1) {
+    if ($count  === 1) {
+        $result = SQL("SELECT * FROM benutzer WHERE benutzername LIKE ?", [$user]);
         if (password_verify($pwd, sqlReturn($result, 0, "password"))) {
-            $result = SQL("SELECT * FROM handschlag WHERE name LIKE ?", [$user]);
-            $typ = sqlReturn($result, 0, "typ");
             $_SESSION['user'] = $user;
-            $_SESSION['typ'] = $typ;
 
             header("Location: ../");
         } else {
