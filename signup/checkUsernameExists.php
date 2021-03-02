@@ -2,20 +2,20 @@
     // check, ob ein Benutzername schon existiert
     require_once("../include/functions.inc.php");
     if (isset($_POST['username'])) {
-        $result = SQL("SELECT COUNT(username) FROM benutzer WHERE benutzername LIKE ?", [htmlspecialchars($_POST['username'], ENT_QUOTES)]);
-        $count = sqlResult($result, 0, "count");
+        $result = SQL("SELECT COUNT(*) FROM benutzer WHERE benutzername LIKE ?", [htmlspecialchars($_POST['username'], ENT_QUOTES)]);
+        $count = sqlReturn($result, 0, "COUNT(*)");
         if ($count > 0) {
             echo json_encode(array(
-                "exists" => "true"
+                "exists" => true
             ));
         } else {
             echo json_encode(array(
-                "exists" => "false"
+                "exists" => false
             ));
         }
     } else {
         echo json_encode(array(
-            "exists" => "true"
+            "exists" => true
         ));
     }
 ?>
