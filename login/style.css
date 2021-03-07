@@ -83,12 +83,12 @@ nav {
     color: #fff;
 }
 
-.active,
 .menu-bar ul li:hover {
-    background: red;
-    border-radius: 30px;
+    background:#38d39f;/*red*/
+    /*border-radius: 30px;*/
+    padding: 10px 45px;
+    border-radius: 50px;
     width: auto;
-
 }
 
 .sub-menu-1 {
@@ -127,7 +127,7 @@ nav {
 }
 
 .menu-bar ul li:hover .sub-menu-1 ul li a:hover {
-    color: #b2ff00;
+    color: #38d39f;
 
 }
 
@@ -465,7 +465,7 @@ form {
     bottom: -2px;
     width: 0%;
     height: 2px;
-    background-color: red;
+    background-color:#38d39f;
     transition: .4s;
 }
 
@@ -522,7 +522,7 @@ form {
 
 
 a:hover {
-    color: red;
+    color: #38d39f;
 }
 
 .btn {
@@ -532,7 +532,8 @@ a:hover {
     border-radius: 25px;
     outline: none;
     border: none;
-    background-image: linear-gradient(to right, red, red, red);
+    /*background-image: linear-gradient(to right, red, red, red);*/
+    background-image: linear-gradient(to right, #38d39f,  #38d39f,  #38d39f);
     background-size: 200%;
     font-size: 1.2rem;
     color: cornsilk;
@@ -631,7 +632,7 @@ footer {
     content: '';
     height: 2px;
     width: 15%;
-    background: red;
+    background: #38d39f;
     top: -10px;
     ;
 }
@@ -656,7 +657,7 @@ footer {
 }
 
 .left .content .social a span:hover {
-    background: red;
+    background:  #38d39f;
 }
 
 .center .content .fas {
@@ -672,7 +673,7 @@ footer {
 }
 
 .center .content .fas:hover {
-    background: red;
+    background:  #38d39f;
 }
 
 .center .content .text {
@@ -725,7 +726,7 @@ footer {
     width: 100%;
     border: none;
     outline: none;
-    background: red;
+    background:  #38d39f;
     font-size: 1.0625rem;
     font-weight: 500;
     cursor: pointer;
@@ -743,7 +744,7 @@ footer {
 }
 
 .bottom center a {
-    color: red;
+    color:  #38d39f;
     text-decoration: none;
 }
 
@@ -775,6 +776,9 @@ footer {
     bottom: 0px;
     width: 100%;
     background: black;
+    margin: 0;
+    padding: 0;
+    color:#fff;
 }
 
 .main-content {
@@ -790,11 +794,17 @@ footer {
     font-size: 1.125rem;
     font-weight: 600;
     text-transform: uppercase;
+    color: #fff;
+}
+
+.box h2:hover{
+  color:#38d39f ;
 }
 
 .box .content {
     margin: 20px 0 0 0;
     position: relative;
+    
 }
 
 .box .content:before {
@@ -811,7 +821,7 @@ footer {
     content: '';
     height: 2px;
     width: 15%;
-    background: red;
+    background: #38d39f;/*red*/
     top: -10px;
     ;
 }
@@ -833,10 +843,11 @@ footer {
     font-size: 18px;
     border-radius: 5px;
     transition: 0.3s;
+    color: #fff;
 }
 
 .left .content .social a span:hover {
-    background: red;
+    background: #38d39f; /*red*/
 }
 
 .center .content .fas {
@@ -852,13 +863,14 @@ footer {
 }
 
 .center .content .fas:hover {
-    background: red;
+    background: #38d39f;/*red*/
 }
 
 .center .content .text {
     font-size: 1.0626rem;
     font-weight: 500;
     padding-left: 10px;
+    color: #fff;
 }
 
 .center .content .phone {
@@ -868,7 +880,7 @@ footer {
 .right form .text {
     font-size: 1.0625rem;
     margin-bottom: 2.5px;
-    color: #656565;
+    color: #fff;
 }
 
 .right form .msg {
@@ -879,17 +891,21 @@ footer {
 .right form textarea {
     width: 100%;
     font-size: 1.0625rem;
-    background: black;
-    padding-left: 10px;
-    border: 1px solid #222222;
+    /*background:#38d39f;/*red*/
+    /*border-radius: 30px;*/
+    padding: 10px 45px;
+    border-radius: 50px;
+  
+    border-color: #38d39f;
+ 
 }
 
 .right form input:focus {
-    outline-color: #3498db;
+  outline-color: #38d39f;
 }
 
 .right form textarea:focus {
-    outline-color: #3498db;
+    outline-color: #38d39f;
 }
 
 .right form input {
@@ -903,13 +919,15 @@ footer {
 .right form .fgh button {
     height: 40px;
     width: 100%;
-    border: none;
-    outline: none;
-    background: red;
+    background:#38d39f;/*red*/
+    /*border-radius: 30px;*/
+    padding: 10px 45px;
+    border-radius: 50px;
     font-size: 1.0625rem;
     font-weight: 500;
     cursor: pointer;
     transition: 3s;
+    color: #fff;
 }
 
 .bottom center {
@@ -919,11 +937,11 @@ footer {
 }
 
 .bottom center span {
-    color: #656565;
+    color: #fff;
 }
 
 .bottom center a {
-    color: red;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -950,7 +968,6 @@ footer {
 a {
     text-decoration: none;
 }
-
 
 * {
     -webkit-box-sizing: border-box;
