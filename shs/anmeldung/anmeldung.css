@@ -28,7 +28,7 @@ position: absolute;
 }
 .form-box{
   width: 400px;/*wichtig*/
-  height: 1280px;
+  height: 800px;
   position: relative;
   margin: 6% auto;
   background: #fff;
@@ -69,22 +69,11 @@ position: absolute;
   transition: .5s;
 }
 .oben-abstand {
-  margin-top: 1rem;
-
+  margin-top: 2rem;
 
 }
-.social-icons{
-  margin: 30px auto;
-  text-align: center;
-}
 
-.social-icons img{
-  width: 30px;
-  margin: 0 12px;
-  box-shadow: 0 0 20px 0 #7f7f7f3d;
-  cursor: pointer;
-  border-radius: 50%;
-}
+
 
 .input-group{
   top: 180px;
@@ -94,7 +83,19 @@ position: absolute;
 
 }
 
-.input-field  {
+.input-field   {
+  width: 100%;
+  padding: 10px 0;
+  margin: 5px 0;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid #38d39f ; /*#999*/
+  outline: none;
+  background: transparent;
+
+}
+.input-label  {
   width: 100%;
   padding: 10px 0;
   margin: 5px 0;
@@ -478,7 +479,6 @@ h2 {
   font-size: 14px;
   position: absolute;
   border-radius: 8px 8px 0 0;
-  z-index: 100;
   border: 8px solid #2f3640;
   opacity: 0;
   pointer-events: none;
