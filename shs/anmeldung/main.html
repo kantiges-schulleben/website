@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+   
 
     <title>Anmeldung ShS</title>
 </head>
@@ -100,6 +101,18 @@
             <form id="lehrer" class="input-group">
                 <input type="text" class="input-field" name="vorname" placeholder="Vorname" required>
                 <input type="text" class="input-field" name="nachname" placeholder="Nachname" required>
+                
+                  
+                <input type="mail" class="input-field" name="email" placeholder="E-Mailadresse" required>
+                <input type="handy" class="input-field" name="handy" placeholder="Telefonnummer">
+
+                <!--<input type="text" class="input-field" name="klassenstufe" placeholder="Fächer" required>-->
+                <!--<input type="text" class="input-field" name="klassenstufe" placeholder="Klassenstufe" required>-->
+                <input type="text" class="input-field" name="nachhilfe" placeholder="Form der Nachhilfe">
+                </br>
+                <input type="radio" class="box" name="box"><span id="box">Einzelnachhilfe</span>
+                </br>
+                <input type="radio" class="box" name="box"><span id="box">Gruppennachhilfe</span>
                 <!--- <input type="text" class="input-field" name="klassenstufe" placeholder="Klassenstufe" required>-->
                 <div class="klassen">
                     <!--container-->
@@ -265,20 +278,180 @@
                         </div>-->
 
 
-                  
-                        <input type="mail" class="input-field" name="email" placeholder="E-Mailadresse" required>
-                        <input type="handy" class="input-field" name="handy" placeholder="Telefonnummer">
-
-                        <!--<input type="text" class="input-field" name="klassenstufe" placeholder="Fächer" required>-->
-                        <input type="text" class="input-field" name="klassenstufe" placeholder="Klassenstufe" required>
-                        <input type="text" class="input-field" name="nachhilfe" placeholder="Form der Nachhilfe">
-                        <input type="checkbox" class="box"><span id="box">Einzelnachhilfe</span>
-                        <input type="checkbox" class="box"><span id="box">Gruppennachhilfe</span>
 
                     </div>
                 </div>
+            </br>
+                <div class="klassen">
+                    <!--container-->
 
-                <script src="main.js"></script>
+                    <div class="select-box oben-abstand">
+                        <div class="options-container">
+                            <div class="option">
+                                <input type="radio" class="radio" value="5a" name="category" />
+                                <label for="5a">5a</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="5b" name="category" />
+                                <label for="5b">5b</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="5c" name="category" />
+                                <label for="5c">5c</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="6a" name="category" />
+                                <label for="6a">6a</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="6b" name="category" />
+                                <label for="6b">6b</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="6c" name="category" />
+                                <label for="6c">6c</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="6d" name="category" />
+                                <label for="6d">6d</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="7a" name="category" />
+                                <label for="7a">7a</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="7b" name="category" />
+                                <label for="7b">7b</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="7c" name="category" />
+                                <label for="7c">7c</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="7d" name="category" />
+                                <label for="7d">7d</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="7e" name="category" />
+                                <label for="7e">7e</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="8a" name="category" />
+                                <label for="8a">8a</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="8b" name="category" />
+                                <label for="8b">8b</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="8c" name="category" />
+                                <label for="8c">8c</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="8d" name="category" />
+                                <label for="8d">8d</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="9a" name="category" />
+                                <label for="9a">9a</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="9b" name="category" />
+                                <label for="9b">9b</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="9c" name="category" />
+                                <label for="9c">9c</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="9d" name="category" />
+                                <label for="9d">9d</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="10a" name="category" />
+                                <label for="10a">10a</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="10b" name="category" />
+                                <label for="10b">10b</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="10c" name="category" />
+                                <label for="10c">10c</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="10d" name="category" />
+                                <label for="10d">10d</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="11LkMa1" name="category" />
+                                <label for="11LkMa1">11LkMa1</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="11LkMa2" name="category" />
+                                <label for="11LkMa2">11LkMa2</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="11LkDe1" name="category" />
+                                <label for="11LkDe1">11LkDe1</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="11LkDe2" name="category" />
+                                <label for="11LkDe2">11LkDe2</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="11LkDe3" name="category" />
+                                <label for="11LkDe3">11LkDe3</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="12LkBio" name="category" />
+                                <label for="12LkBio">12LkBio</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="12LkEn1" name="category" />
+                                <label for="12LkEn1">12LkEn1</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="12En2" name="category" />
+                                <label for="12LkEn2">12LkEn2</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="12LkGe" name="category" />
+                                <label for="12LkGe">12LkGe</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="12LkKu" name="category" />
+                                <label for="12LkKu">12LkKu</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="12LKPh" name="category" />
+                                <label for="12LkPh">12LkPh</label>
+                            </div>
+                        </div>
+
+
+                        <div class="selected">
+                            Nachhilfe geben für:
+                        </div>
+
+                        <div class="search-box">
+                            <input type="text" placeholder="Such dir eine Klassestufe aus..." />
+                        </div>-->
+
+
+
+                    </div>
+                </div>
+                
+                
                 <!--<input type="text" class="input-field" name="bemerkungen" placeholder="Bemerkungen">-->
                 <input type="checkbox" class="chech-box"><span id="datenschutz">Ich stimme der <a id="datenverlinkung" href="../../generel/datenschutz/index.php">Datenschutzverordnung</a> zu
                 </span>
@@ -287,13 +460,350 @@
             <form id="schueler" class="input-group">
                 <input type="text" class="input-field" name="vorname" placeholder="Vorname" required>
                 <input type="text" class="input-field" name="nachname" placeholder="Nachname" required>
-                <input type="text" class="input-field" name="klassenstufe" placeholder="Klassenstufe" required>
+                <!--<input type="text" class="input-field" name="klassenstufe" placeholder="Klassenstufe" required>-->
                 <input type="mail" class="input-field" name="email" placeholder="E-Mailadresse" required>
-                <input type="handy" class="input-field" name="handy" placeholder="Telefonnummer">
-                <input type="text" class="input-field" name="klassenstufe" placeholder="Fächer" required>
-                <input type="text" class="input-field" name="klassenstufe" placeholder="Klassenstufe" required>
-                <input type="checkbox" class="box"><span id="box">Einzelnachhilfe</span>
-                <input type="checkbox" class="box"><span id="box">Gruppennachhilfe</span>
+                <input type="handy" class="input-field" name="handy" placeholder="Telefonnummer*">
+                <input type="text" class="input-field" name="nachhilfe" placeholder="Form der Nachhilfe">
+            </br>
+            <input type="radio" class="box" name="box"><span id="box">Einzelnachhilfe</span>
+            </br>
+            <input type="radio" class="box" name="box"><span id="box">Gruppennachhilfe</span>
+                <div class="klassen">
+                    <!--container-->
+                    <div class="select-box oben-abstand">
+                        <div class="options-container">
+                            <div class="option">
+                                <input type="radio" class="radio" value="5a" name="category" />
+                                <label for="5a">5a</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="5b" name="category" />
+                                <label for="5b">5b</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="5c" name="category" />
+                                <label for="5c">5c</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="6a" name="category" />
+                                <label for="6a">6a</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="6b" name="category" />
+                                <label for="6b">6b</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="6c" name="category" />
+                                <label for="6c">6c</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="6d" name="category" />
+                                <label for="6d">6d</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="7a" name="category" />
+                                <label for="7a">7a</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="7b" name="category" />
+                                <label for="7b">7b</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="7c" name="category" />
+                                <label for="7c">7c</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="7d" name="category" />
+                                <label for="7d">7d</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="7e" name="category" />
+                                <label for="7e">7e</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="8a" name="category" />
+                                <label for="8a">8a</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="8b" name="category" />
+                                <label for="8b">8b</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="8c" name="category" />
+                                <label for="8c">8c</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="8d" name="category" />
+                                <label for="8d">8d</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="9a" name="category" />
+                                <label for="9a">9a</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="9b" name="category" />
+                                <label for="9b">9b</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="9c" name="category" />
+                                <label for="9c">9c</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="9d" name="category" />
+                                <label for="9d">9d</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="10a" name="category" />
+                                <label for="10a">10a</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="10b" name="category" />
+                                <label for="10b">10b</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="10c" name="category" />
+                                <label for="10c">10c</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="10d" name="category" />
+                                <label for="10d">10d</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="11LkMa1" name="category" />
+                                <label for="11LkMa1">11LkMa1</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="11LkMa2" name="category" />
+                                <label for="11LkMa2">11LkMa2</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="11LkDe1" name="category" />
+                                <label for="11LkDe1">11LkDe1</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="11LkDe2" name="category" />
+                                <label for="11LkDe2">11LkDe2</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="11LkDe3" name="category" />
+                                <label for="11LkDe3">11LkDe3</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="12LkBio" name="category" />
+                                <label for="12LkBio">12LkBio</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="12LkEn1" name="category" />
+                                <label for="12LkEn1">12LkEn1</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="12En2" name="category" />
+                                <label for="12LkEn2">12LkEn2</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="12LkGe" name="category" />
+                                <label for="12LkGe">12LkGe</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="12LkKu" name="category" />
+                                <label for="12LkKu">12LkKu</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="12LKPh" name="category" />
+                                <label for="12LkPh">12LkPh</label>
+                            </div>
+                        </div>
+
+
+                        <div class="selected">
+                            Such deine Klasse aus
+                        </div>
+
+                        <div class="search-box">
+                            <input type="text" placeholder="Gib deine Klasse ein..." />
+                        </div>-->
+
+
+
+                    </div>
+                </div>
+            </br>
+                <div class="klassen">
+                    <!--container-->
+
+                    <div class="select-box oben-abstand">
+                        <div class="options-container">
+                            <div class="option">
+                                <input type="radio" class="radio" value="5a" name="category" />
+                                <label for="5a">5a</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="5b" name="category" />
+                                <label for="5b">5b</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="5c" name="category" />
+                                <label for="5c">5c</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="6a" name="category" />
+                                <label for="6a">6a</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="6b" name="category" />
+                                <label for="6b">6b</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="6c" name="category" />
+                                <label for="6c">6c</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="6d" name="category" />
+                                <label for="6d">6d</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="7a" name="category" />
+                                <label for="7a">7a</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" value="7b" name="category" />
+                                <label for="7b">7b</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="7c" name="category" />
+                                <label for="7c">7c</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="7d" name="category" />
+                                <label for="7d">7d</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="7e" name="category" />
+                                <label for="7e">7e</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="8a" name="category" />
+                                <label for="8a">8a</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="8b" name="category" />
+                                <label for="8b">8b</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="8c" name="category" />
+                                <label for="8c">8c</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="8d" name="category" />
+                                <label for="8d">8d</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="9a" name="category" />
+                                <label for="9a">9a</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="9b" name="category" />
+                                <label for="9b">9b</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="9c" name="category" />
+                                <label for="9c">9c</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="9d" name="category" />
+                                <label for="9d">9d</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="10a" name="category" />
+                                <label for="10a">10a</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="10b" name="category" />
+                                <label for="10b">10b</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="10c" name="category" />
+                                <label for="10c">10c</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="10d" name="category" />
+                                <label for="10d">10d</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="11LkMa1" name="category" />
+                                <label for="11LkMa1">11LkMa1</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="11LkMa2" name="category" />
+                                <label for="11LkMa2">11LkMa2</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="11LkDe1" name="category" />
+                                <label for="11LkDe1">11LkDe1</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="11LkDe2" name="category" />
+                                <label for="11LkDe2">11LkDe2</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="11LkDe3" name="category" />
+                                <label for="11LkDe3">11LkDe3</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="12LkBio" name="category" />
+                                <label for="12LkBio">12LkBio</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="12LkEn1" name="category" />
+                                <label for="12LkEn1">12LkEn1</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="12En2" name="category" />
+                                <label for="12LkEn2">12LkEn2</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="12LkGe" name="category" />
+                                <label for="12LkGe">12LkGe</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="12LkKu" name="category" />
+                                <label for="12LkKu">12LkKu</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" class="radio" value="12LKPh" name="category" />
+                                <label for="12LkPh">12LkPh</label>
+                            </div>
+                        </div>
+
+
+                        <div class="selected">
+                           sssss
+                        </div>
+
+                        <div class="search-box">
+                            <input type="text" placeholder="Such dir eine Klasse aus..." />
+                        </div>-->
+
+
+
+                    </div>
+                </div>
                 <!--<input type="text" class="input-field" name="bemerkungen" placeholder="Bemerkungen" >-->
                 <input type="checkbox" class="chech-box"><span id="datenschutz">Ich stimme der <a id="datenverlinkung" href="../../generel/datenschutz/index.php">Datenschutzverordnung</a> zu
                 </span>
@@ -384,7 +894,7 @@
         </div>
 
     </footer>
-
+<script src="main.js"></script>
 </body>
 
 </html>
