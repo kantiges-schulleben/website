@@ -4,7 +4,7 @@
     session_start();
 
     // prüfen, ob der Benutzer schon angemeldet sein
-    if (isset($_SESSION['user']) === true && isset($_SESSION['typ']) === true) {
+    if (isset($_SESSION['user']) === true) {
         header("Location: ../");
     }
 
@@ -20,7 +20,12 @@
         if (password_verify($pwd, sqlReturn($result, 0, "password"))) {
             $_SESSION['user'] = $user;
 
+            if (isset($_SESSION['redirect']) == TRUE) {
+                header("Location: ../" . $_SESSION['redirect']);
+                die();
+            }
             header("Location: ../");
+            die();
         } else {
             header( "Location: index.php");
         }
