@@ -89,14 +89,14 @@ nav {
     color: #fff;
 }
 
-.active,
 .menu-bar ul li:hover {
-    background: red;
-    border-radius: 30px;
+    background:#38d39f;/*red*/
+    /*border-radius: 30px;*/
+    padding: 10px 45px;
+    border-radius: 50px;
     width: auto;
 
 }
-
 .sub-menu-1 {
     display: none;
 }
@@ -134,7 +134,7 @@ nav {
 }
 
 .menu-bar ul li:hover .sub-menu-1 ul li a:hover {
-    color: #b2ff00;
+    color:  #38d39f;;
 
 }
 
@@ -626,6 +626,9 @@ footer {
     bottom: 0px;
     width: 100%;
     background: black;
+    margin: 0;
+    padding: 0;
+    color:#fff;
 }
 
 .main-content {
@@ -641,11 +644,17 @@ footer {
     font-size: 1.125rem;
     font-weight: 600;
     text-transform: uppercase;
+    color: #fff;
+}
+
+.box h2:hover{
+  color:#38d39f ;
 }
 
 .box .content {
     margin: 20px 0 0 0;
     position: relative;
+    
 }
 
 .box .content:before {
@@ -662,7 +671,7 @@ footer {
     content: '';
     height: 2px;
     width: 15%;
-    background: red;
+    background: #38d39f;/*red*/
     top: -10px;
     ;
 }
@@ -684,10 +693,11 @@ footer {
     font-size: 18px;
     border-radius: 5px;
     transition: 0.3s;
+    color: #fff;
 }
 
 .left .content .social a span:hover {
-    background: red;
+    background: #38d39f; /*red*/
 }
 
 .center .content .fas {
@@ -703,13 +713,14 @@ footer {
 }
 
 .center .content .fas:hover {
-    background: red;
+    background: #38d39f;/*red*/
 }
 
 .center .content .text {
     font-size: 1.0626rem;
     font-weight: 500;
     padding-left: 10px;
+    color: #fff;
 }
 
 .center .content .phone {
@@ -719,7 +730,7 @@ footer {
 .right form .text {
     font-size: 1.0625rem;
     margin-bottom: 2.5px;
-    color: #656565;
+    color: #fff;
 }
 
 .right form .msg {
@@ -730,17 +741,21 @@ footer {
 .right form textarea {
     width: 100%;
     font-size: 1.0625rem;
-    background: black;
-    padding-left: 10px;
-    border: 1px solid #222222;
+    /*background:#38d39f;/*red*/
+    /*border-radius: 30px;*/
+    padding: 10px 45px;
+    border-radius: 50px;
+  
+    border-color: #38d39f;
+ 
 }
 
 .right form input:focus {
-    outline-color: #3498db;
+  outline-color: #38d39f;
 }
 
 .right form textarea:focus {
-    outline-color: #3498db;
+    outline-color: #38d39f;
 }
 
 .right form input {
@@ -754,13 +769,15 @@ footer {
 .right form .fgh button {
     height: 40px;
     width: 100%;
-    border: none;
-    outline: none;
-    background: red;
+    background:#38d39f;/*red*/
+    /*border-radius: 30px;*/
+    padding: 10px 45px;
+    border-radius: 50px;
     font-size: 1.0625rem;
     font-weight: 500;
     cursor: pointer;
     transition: 3s;
+    color: #fff;
 }
 
 .bottom center {
@@ -770,11 +787,11 @@ footer {
 }
 
 .bottom center span {
-    color: #656565;
+    color: #fff;
 }
 
 .bottom center a {
-    color: red;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -801,187 +818,6 @@ footer {
 a {
     text-decoration: none;
 }
-
-footer {
-    bottom: 0px;
-    width: 100%;
-    background: black;
-}
-
-.main-content {
-    display: flex;
-}
-
-.main-content .box {
-    flex-basis: 50%;
-    padding: 10px 20px;
-}
-
-.box h2 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-.box .content {
-    margin: 20px 0 0 0;
-    position: relative;
-}
-
-.box .content:before {
-    position: absolute;
-    content: '';
-    top: -10px;
-    height: 2px;
-    width: 100%;
-    background: black;
-}
-
-.box .content::after {
-    position: absolute;
-    content: '';
-    height: 2px;
-    width: 15%;
-    background: red;
-    top: -10px;
-    ;
-}
-
-.left .content p {
-    text-align: justify;
-}
-
-.left .content .social {
-    padding: 0 2px;
-}
-
-.left .content .social a span {
-    height: 40px;
-    width: 40px;
-    background: black;
-    line-height: 40px;
-    text-align: center;
-    font-size: 18px;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-.left .content .social a span:hover {
-    background: red;
-}
-
-.center .content .fas {
-    font-size: 1.4375rem;
-    background: black;
-    height: 45px;
-    width: 45px;
-    line-height: 45px;
-    text-align: center;
-    border-radius: 50px;
-    transition: 0.3s;
-    cursor: pointer;
-}
-
-.center .content .fas:hover {
-    background: red;
-}
-
-.center .content .text {
-    font-size: 1.0626rem;
-    font-weight: 500;
-    padding-left: 10px;
-}
-
-.center .content .phone {
-    margin: 10px 0;
-}
-
-.right form .text {
-    font-size: 1.0625rem;
-    margin-bottom: 2.5px;
-    color: #656565;
-}
-
-.right form .msg {
-    margin-top: 10px;
-}
-
-.right form input,
-.right form textarea {
-    width: 100%;
-    font-size: 1.0625rem;
-    background: black;
-    padding-left: 10px;
-    border: 1px solid #222222;
-}
-
-.right form input:focus {
-    outline-color: #3498db;
-}
-
-.right form textarea:focus {
-    outline-color: #3498db;
-}
-
-.right form input {
-    height: 35px;
-}
-
-.right form .fgh {
-    margin-top: 10px;
-}
-
-.right form .fgh button {
-    height: 40px;
-    width: 100%;
-    border: none;
-    outline: none;
-    background: red;
-    font-size: 1.0625rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: 3s;
-}
-
-.bottom center {
-    padding: 5px;
-    font-size: 0.9375rem;
-    background: black;
-}
-
-.bottom center span {
-    color: #656565;
-}
-
-.bottom center a {
-    color: red;
-    text-decoration: none;
-}
-
-.bottom center a:hover {
-    text-decoration: underline;
-}
-
-@media screen and (max-width: 900px) {
-    footer {
-        position: relative;
-        bottom: 0px;
-    }
-
-    .main-content {
-        flex-wrap: wrap;
-        flex-direction: column;
-    }
-
-    .main-content .box {
-        margin: 5px 0;
-    }
-}
-
-a {
-    text-decoration: none;
-}
-
 
 * {
     -webkit-box-sizing: border-box;
@@ -1239,3 +1075,4 @@ img {
     align-items: center;
     justify-content: center;
 }
+

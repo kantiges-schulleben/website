@@ -484,10 +484,11 @@ nav {
   color: #fff;
 }
 
-.active,
 .menu-bar ul li:hover {
-  background: red;
-  border-radius: 30px;
+  background:#38d39f;/*red*/
+  /*border-radius: 30px;*/
+  padding: 10px 45px;
+  border-radius: 50px;
   width: auto;
 
 }
@@ -529,7 +530,7 @@ nav {
 }
 
 .menu-bar ul li:hover .sub-menu-1 ul li a:hover {
-  color: #b2ff00;
+  color: #38d39f;
 
 }
 
@@ -656,7 +657,7 @@ footer {
   content: '';
   height: 2px;
   width: 15%;
-  background: red;
+  background: #38d39f;
   top: -10px;
   ;
 }
@@ -681,7 +682,7 @@ footer {
 }
 
 .left .content .social a span:hover {
-  background: red;
+  background: #38d39f;
 }
 
 .center .content .fas {
@@ -697,7 +698,7 @@ footer {
 }
 
 .center .content .fas:hover {
-  background: red;
+  background: #38d39f;
 }
 
 .center .content .text {
@@ -750,7 +751,7 @@ footer {
   width: 100%;
   border: none;
   outline: none;
-  background: red;
+  background: #38d39f;
   font-size: 1.0625rem;
   font-weight: 500;
   cursor: pointer;
@@ -768,7 +769,7 @@ footer {
 }
 
 .bottom center a {
-  color: red;
+  color: #38d39f;
   text-decoration: none;
 }
 
@@ -983,11 +984,11 @@ section{
 }
 
 .fa-instagram{
-  color: #e6683c;
+  color:#38d39f ;/*#e6683c*/
 }
 
 .fa-google-plus-square{
-  color: #dd4b39;
+  color: #38d39f;/*#dd4b39*/
 }
 
 .fa-facebook-square:hover, 
@@ -1040,6 +1041,9 @@ section{
     bottom: 0px;
     width: 100%;
     background: black;
+    margin: 0;
+    padding: 0;
+    color:#fff;
 }
 
 .main-content {
@@ -1055,11 +1059,17 @@ section{
     font-size: 1.125rem;
     font-weight: 600;
     text-transform: uppercase;
+    color: #fff;
+}
+
+.box h2:hover{
+  color:#38d39f ;
 }
 
 .box .content {
     margin: 20px 0 0 0;
     position: relative;
+    
 }
 
 .box .content:before {
@@ -1076,7 +1086,7 @@ section{
     content: '';
     height: 2px;
     width: 15%;
-    background: red;
+    background: #38d39f;/*red*/
     top: -10px;
     ;
 }
@@ -1098,10 +1108,11 @@ section{
     font-size: 18px;
     border-radius: 5px;
     transition: 0.3s;
+    color: #fff;
 }
 
 .left .content .social a span:hover {
-    background: red;
+    background: #38d39f; /*red*/
 }
 
 .center .content .fas {
@@ -1117,13 +1128,14 @@ section{
 }
 
 .center .content .fas:hover {
-    background: red;
+    background: #38d39f;/*red*/
 }
 
 .center .content .text {
     font-size: 1.0626rem;
     font-weight: 500;
     padding-left: 10px;
+    color: #fff;
 }
 
 .center .content .phone {
@@ -1133,7 +1145,7 @@ section{
 .right form .text {
     font-size: 1.0625rem;
     margin-bottom: 2.5px;
-    color: #656565;
+    color: #fff;
 }
 
 .right form .msg {
@@ -1144,17 +1156,21 @@ section{
 .right form textarea {
     width: 100%;
     font-size: 1.0625rem;
-    background: black;
-    padding-left: 10px;
-    border: 1px solid #222222;
+    /*background:#38d39f;/*red*/
+    /*border-radius: 30px;*/
+    padding: 10px 45px;
+    border-radius: 50px;
+  
+    border-color: #38d39f;
+ 
 }
 
 .right form input:focus {
-    outline-color: #3498db;
+  outline-color: #38d39f;
 }
 
 .right form textarea:focus {
-    outline-color: #3498db;
+    outline-color: #38d39f;
 }
 
 .right form input {
@@ -1168,13 +1184,15 @@ section{
 .right form .fgh button {
     height: 40px;
     width: 100%;
-    border: none;
-    outline: none;
-    background: red;
+    background:#38d39f;/*red*/
+    /*border-radius: 30px;*/
+    padding: 10px 45px;
+    border-radius: 50px;
     font-size: 1.0625rem;
     font-weight: 500;
     cursor: pointer;
     transition: 3s;
+    color: #fff;
 }
 
 .bottom center {
@@ -1184,11 +1202,11 @@ section{
 }
 
 .bottom center span {
-    color: #656565;
+    color: #fff;
 }
 
 .bottom center a {
-    color: red;
+    color: #fff;
     text-decoration: none;
 }
 
