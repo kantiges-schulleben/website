@@ -63,15 +63,19 @@ body{
 
 .error-cta{
     text-decoration: none;
-    color: #957c09;
+    color: #eee;
     font-size: 1.7rem;
-    border: 1px solid #957c09;
-    padding: 1rem 2.5rem;
+    /*border: 1px solid #38d39f; /*#957c09
+    padding: 1rem 2.5rem;*/
+    background-color:#38d39f;/*red*/
+    /*border-radius: 30px;*/
+    padding: 10px 45px;
+    border-radius: 50px;
     transition: background-color .5s;
 }
 
 .error-cta:hover{
-    background-color: #957c09;
+    background-color:#38d39f;
     color: #fff;
 
 }
