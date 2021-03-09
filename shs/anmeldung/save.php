@@ -1,5 +1,10 @@
 <?php
     require_once("../../include/functions.inc.php");
+
+    require_once("../../include/PHPMailer.php");
+    require_once("../../include/SMTP.php");
+    require_once("../../include/Exception.php");
+    
     /*
     * Name
     * Klasse
@@ -38,7 +43,7 @@
 
     $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
     $klasse = htmlspecialchars($_POST['klasse'], ENT_QUOTES);
-    $mail = htmlspecialchars($_POST['mail'], ENT_QUOTES);
+    $mailAddr = htmlspecialchars($_POST['mail'], ENT_QUOTES);
     $telefon = htmlspecialchars($_POST['telefon'], ENT_QUOTES);
     $nachhilfe = htmlspecialchars($_POST['nachhilfe'], ENT_QUOTES);
     $fach = htmlspecialchars($_POST['fach'], ENT_QUOTES);
@@ -56,7 +61,7 @@
         $ziel = intval(htmlspecialchars($_POST['ziel'], ENT_QUOTES));
     }
 
-    if (explode("@", $mail)[0] == $mail) {
+    if (explode("@", $mailAddr)[0] == $mailAddr) {
         $message = array(
             'success' => 'false',
             'message' => 'Es wurde keine valide Emailadresse angegeben.'
@@ -68,13 +73,51 @@
     $bemerkung = htmlspecialchars($bemerkung, ENT_QUOTES);
 
     // Daten eintragen, bei Erfolg
-    $result = SQL("INSERT INTO shsAnmeldung (name, klasse, mail, telefon, nachhilfe, fach, zeit, einzelnachhilfe, bemerkung, zielKlasse) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [$name, $klasse, $mail, $telefon, $nachhilfe, $fach, $zeit, $einzelnachhilfe, $bemerkung, $ziel]);
+    $result = SQL("INSERT INTO shsAnmeldung (name, klasse, mail, telefon, nachhilfe, fach, zeit, einzelnachhilfe, bemerkung, zielKlasse) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [$name, $klasse, $mailAddr, $telefon, $nachhilfe, $fach, $zeit, $einzelnachhilfe, $bemerkung, $ziel]);
     if ($result === false) {
         $message = array(
             'success' => 'false',
             'message' => 'Deine Daten konnte nicht gespeichert werden. Bitte kontaktiere uns über das Kontaktformular.'
         );
         die(json_encode($message));
+    }
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exceptions;
+
+    $mailer = new PHPMailer(true);
+    // $mail -> SMTPDebug = SMTP::DEBUG_SERVER;
+    $mailer -> isSMTP();
+    $mailer -> Host = "mail.gmx.net";
+    $mailer -> SMTPAuth = true;
+    $mailer -> Username = "kantiges-schulleben@gmx.de";
+    $mailer -> Password = "PASSWORD";
+    $mailer -> SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mailer -> Port = 587;
+    $mailer -> setFrom("kantiges-schulleben@gmx.de", "Schüler helfen Schülern");
+    $mailer -> isHTML(false);
+    $mailer -> Subject = "Anmeldebestätigung";
+
+    try {
+        $mailer -> addAddress($mailAddr);
+        
+        $mailer -> Body = "Hallo $name
+        Hiermit bist du offiziell ein Teil des Projekts „Schüler helfen Schüler“. Du bist in unserer Datenbank vermerkt und wirst von uns zeitnah mit weiteren Informationen versorgt. 
+        Deine Daten werden gemäß unseren Datenschutzregelung behandelt. 
+        Bei weiteren Fragen oder Problemen kannst du dich jeder Zeit an unser Team wenden. 
+        Viel Spaß beim gemeinsamen Lernen. 
+        Dein „Schüler helfen Schülern“ – Team ";
+    
+        $mailer -> send();
+    } catch (Exception $e) {
+        $message = array(
+            'success' => 'false',
+            'message' => 'Anmeldebestätigung konnte nicht versandt werden.'
+        );
+        die(json_encode($message));
+    } finally {
+        $mailer -> ClearAddresses();
     }
 
     echo json_encode(array(

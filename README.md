@@ -14,6 +14,7 @@
     * [/signup](#/signup)
         * [signup.php](#signup.php)
         * [checkUsernameExists.php](#checkUsernameExists.php)
+* [Kristian](#Kristian)
 
 ### Beschreibung
 Eine wundervolle Seite für Schüler:Innen des Kantgymnasiums.

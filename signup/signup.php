@@ -6,20 +6,24 @@
     session_start();
 
     // prüfen, ob der Benutzer schon angemeldet ist
-    if (isset($_SESSION['user']) === true && isset($_SESSION['typ']) === true) {
+    if (isset($_SESSION['user']) === true) {
         header("Location: ../");
+        die();
     }
 
     // prüfen, ob alle kritischen Parameter übergeben wurden, sonst abbrechen und false zurückgeben
-    if (isset($_POST['name']) === false or isset($_POST['password']) === false or isset($_POST['username']) === false) {
-        $message = array(
-            'success' => 'false',
-            'message' => ''
-        );
-        die(json_encode($message));
+    if (isset($_POST['firstname']) === false or isset($_POST['lastname']) === false or isset($_POST['password']) === false or isset($_POST['username']) === false) {
+        // $message = array(
+        //     'success' => 'false',
+        //     'message' => ''
+        // );
+        // die(json_encode($message));
+        header("Location: ./");
+        die();
     }
 
-    $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
+    $firstname = htmlspecialchars($_POST['firstname'], ENT_QUOTES);
+    $lastname = htmlspecialchars($_POST['lastname'], ENT_QUOTES);
     $username = htmlspecialchars($_POST['username'], ENT_QUOTES);
     $password = htmlspecialchars($_POST['password'], ENT_QUOTES);
 
@@ -30,28 +34,41 @@
     }
 
     // prüfen, ob bereits ein Benutzer mit diesem Benutzernamen existiert.
-    $count = SQL("SELECT * FROM handschlag WHERE benutzername LIKE ?", [$name])->num_rows;
+    $result = SQL("SELECT COUNT(*) from benutzer WHERE `benutzername` LIKE ?", [$username]);
+    $count = mysqli_fetch_assoc($result)['COUNT(*)'];
+
     if ($count !== 0) {
-        $message = array(
-            'success' => 'false',
-            'message' => 'Es existiert bereits ein Benutzer mit diesem Namen.'
-        );
-        die(json_encode($message));
+        // $message = array(
+        //     'success' => 'false',
+        //     'message' => 'Es existiert bereits ein Benutzer mit diesem Namen.'
+        // );
+        // die(json_encode($message));
+        header("Location: ./");
+        die();
     }
 
     //Daten speichern
-    $response = SQL("INSERT INTO handschlag (name, password, benutzername, mail) VALUES (?, ?, ?, ?)", [$name, password_hash($password, PASSWORD_DEFAULT), $username, $mail]);
+    $response = SQL("INSERT INTO benutzer (name, password, benutzername, mail) VALUES (?, ?, ?, ?)", [$firstname . " " . $lastname, password_hash($password, PASSWORD_DEFAULT), $username, $mail], TRUE);
 
-    if ($response === false) {
-        $message = array(
-            'success' => 'false'
-        );
-        die(json_encode($message));
+    if ($response[1] !== 1) {
+        // $message = array(
+        //     'success' => 'false'
+        // );
+        // die(json_encode($message));
+        header("Location: ./");
+        die();
     } else {
         $message = array(
             'success' => 'true'
         );
+        $_SESSION['user'] = $username;
     }
 
-    echo json_encode($message);
+    // echo json_encode($message);
+    if (isset($_SESSION['redirect'])) {
+        header("Location: ../" . $_SESSION['redirect']);
+        die();
+    }
+    header("Location: ../");
+    die();
 ?>
