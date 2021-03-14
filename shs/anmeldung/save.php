@@ -47,7 +47,8 @@
     $telefon = htmlspecialchars($_POST['telefon'], ENT_QUOTES);
     $nachhilfe = htmlspecialchars($_POST['nachhilfe'], ENT_QUOTES);
     $fach = htmlspecialchars($_POST['fach'], ENT_QUOTES);
-    $zeit = htmlspecialchars($_POST['zeit'], ENT_QUOTES);
+    // $zeit = htmlspecialchars($_POST['zeit'], ENT_QUOTES);
+    $zeit = 8191;//htmlspecialchars($_POST['zeit'], ENT_QUOTES);
     $einzelnachhilfe = htmlspecialchars($_POST['einzelnachhilfe'], ENT_QUOTES);
 
     // optionale Parameter überprüfen und zuweisen
