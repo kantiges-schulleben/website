@@ -5,12 +5,13 @@
   
 }
 .kontaktformular{ /*gesamter Bereich*/
-height: 340%;/*wichtig*/
+height: 190%;/*wichtig*/
 width: 100%;
 background:#323232;
 background-position: center;
 background-size: cover;
 position: absolute;
+z-index: 100;
 
 }
 
@@ -500,7 +501,7 @@ h2 {
 }
 
 
-/*footer {
+footer {
   bottom: 0px;
   width: 100%;
   background: black;
@@ -542,7 +543,7 @@ color:#38d39f ;
   content: '';
   height: 2px;
   width: 15%;
-  background: #38d39f;/*red
+  background: #38d39f;/*red*/
   top: -10px;
   ;
 }
@@ -564,7 +565,7 @@ color:#38d39f ;
   color: #fff;
 }
 .left .content .social a span:hover {
-  background: #38d39f; /*red
+  background: #38d39f; /*red*/
 }
 .center .content .fas {
   font-size: 1.4375rem;
@@ -578,7 +579,7 @@ color:#38d39f ;
   cursor: pointer;
 }
 .center .content .fas:hover {
-  background: #38d39f;/*red
+  background: #38d39f;/*red*/
 }
 .center .content .text {
   font-size: 1.0626rem;
@@ -601,9 +602,8 @@ color:#38d39f ;
 .right form textarea {
   width: 100%;
   font-size: 1.0625rem;
-  /*background:#38d39f;/*red*/
-  /*border-radius: 30px;
-  padding: 10px 45px;
+  /*background:#38d39f; red*/
+  /*border-radius: 30px;*/
   border-radius: 50px;
 
   border-color: #38d39f;
@@ -625,7 +625,7 @@ outline-color: #38d39f;
   height: 40px;
   width: 100%;
   background:#38d39f;/*red*/
-  /*border-radius: 30px;
+  /*border-radius: 30px;*/
   padding: 10px 45px;
   border-radius: 50px;
   font-size: 1.0625rem;
@@ -664,4 +664,4 @@ outline-color: #38d39f;
 }
 a {
   text-decoration: none;
-}*/
+}
