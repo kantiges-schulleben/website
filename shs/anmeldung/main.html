@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+
+    <script src="../../include/jquery-4.3.1.min.js"></script>
    
 
     <title>Anmeldung ShS</title>
@@ -94,86 +96,31 @@
             <div class="button-box">
                 <div id="platt">
                 </div>
-                <button type="button" class="nachhilfe" onclick="login()">Lehrer</button>
-                <button type="button" class="nachhilfe" onclick="register()">Schüler</button>
+                <button type="button"  id="x" class="nachhilfe" onclick="login()">Lehrer</button>
+                <button type="button"  id="y" class="nachhilfe" onclick="register()">Schüler</button>
             </div>
 
             <form id="lehrer" class="input-group">
-                <input type="text" class="input-field" name="vorname" placeholder="Vorname" required>
-                <input type="text" class="input-field" name="nachname" placeholder="Nachname" required>
+                <input type="text" class="input-field" name="vorname" placeholder="Vorname" id="vorname1" >
+                <input type="text" class="input-field" name="nachname" placeholder="Nachname" id="nachname1" >
                 
                   
-                <input type="mail" class="input-field" name="email" placeholder="E-Mailadresse" required>
-                <input type="handy" class="input-field" name="handy" placeholder="Telefonnummer">
+                <input type="mail" class="input-field" name="email" placeholder="E-Mailadresse" id="mail1" >
+                <input type="handy" class="input-field" name="handy" placeholder="Telefonnummer" id="handy1" >
 
                 <!--<input type="text" class="input-field" name="klassenstufe" placeholder="Fächer" required>-->
                 <!--<input type="text" class="input-field" name="klassenstufe" placeholder="Klassenstufe" required>-->
                 <label type="text" class="input-label" name="nachhilfe">Form der Nachhilfe</label>
                 </br>
-                <input type="radio" class="box" name="box"><span id="box">Einzelnachhilfe</span>
+                <input type="radio" class="box" name="box1" id="one1" ><span id="box1">Einzelnachhilfe</span>
                 </br>
-                <input type="radio" class="box" name="box"><span id="box">Gruppennachhilfe</span>
+                <input type="radio" class="box" name="box1" id="multiple1"><span id="box2">Gruppennachhilfe</span>
                 <!--- <input type="text" class="input-field" name="klassenstufe" placeholder="Klassenstufe" required>-->
                 <div class="klassen">
                     <!--container-->
                     <div class="select-box oben-abstand">
                         <div class="options-container">
-                            <div class="option">
-                                <input type="radio" class="radio" value="5a" name="category" />
-                                <label for="5a">5a</label>
-                            </div>
-
-                            <div class="option">
-                                <input type="radio" class="radio" value="5b" name="category" />
-                                <label for="5b">5b</label>
-                            </div>
-
-                            <div class="option">
-                                <input type="radio" class="radio" value="5c" name="category" />
-                                <label for="5c">5c</label>
-                            </div>
-
-                            <div class="option">
-                                <input type="radio" class="radio" value="6a" name="category" />
-                                <label for="6a">6a</label>
-                            </div>
-
-                            <div class="option">
-                                <input type="radio" class="radio" value="6b" name="category" />
-                                <label for="6b">6b</label>
-                            </div>
-
-                            <div class="option">
-                                <input type="radio" class="radio" value="6c" name="category" />
-                                <label for="6c">6c</label>
-                            </div>
-
-                            <div class="option">
-                                <input type="radio" class="radio" value="6d" name="category" />
-                                <label for="6d">6d</label>
-                            </div>
-
-                            <div class="option">
-                                <input type="radio" class="radio" value="7a" name="category" />
-                                <label for="7a">7a</label>
-                            </div>
-
-                            <div class="option">
-                                <input type="radio" class="radio" value="7b" name="category" />
-                                <label for="7b">7b</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" class="radio" value="7c" name="category" />
-                                <label for="7c">7c</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" class="radio" value="7d" name="category" />
-                                <label for="7d">7d</label>
-                            </div>
-                            <div class="option">
-                                <input type="radio" class="radio" value="7e" name="category" />
-                                <label for="7e">7e</label>
-                            </div>
+                            
                             <div class="option">
                                 <input type="radio" class="radio" value="8a" name="category" />
                                 <label for="8a">8a</label>
@@ -269,7 +216,7 @@
                         </div>
 
 
-                        <div class="selected">
+                        <div class="selected" id="klasse1">
                             Such deine Klasse aus
                         </div>
 
@@ -383,8 +330,8 @@
                         </div>
 
 
-                        <div class="selected">
-                            In welchen Fach Nachhilfe geben:
+                        <div class="selected" id="fach1">
+                            In welchem Fach Nachhilfe geben:
                         </div>
 
                         <div class="search-box">
@@ -441,7 +388,7 @@
                         </div>
 
 
-                        <div class="selected">
+                        <div class="selected" id="klassenstufen1">
                            Welche Klassenstufe unterrichten:
                         </div>
 
@@ -457,21 +404,23 @@
                 
                 
                 <!--<input type="text" class="input-field" name="bemerkungen" placeholder="Bemerkungen">-->
-                <input type="checkbox" class="chech-box"><span id="datenschutz">Ich stimme der <a id="datenverlinkung" href="../../generel/datenschutz/index.php">Datenschutzverordnung</a> zu
+                <input type="checkbox" class="chech-box" id="datenschutz1"><span id="datenschutz">Ich stimme der <a id="datenverlinkung1" href="../../generel/datenschutz/index.php">Datenschutzverordnung</a> zu
                 </span>
-                <button type="submit" class="anmeldungshs">Anmeldung als Nachhilfelehrer</button>
+                
+                
+                <button type="button" id="save1" class="anmeldungshs"  >Anmeldung als Nachhilfelehrer</button>
             </form>
             <form id="schueler" class="input-group">
-                <input type="text" class="input-field" name="vorname" placeholder="Vorname" required>
-                <input type="text" class="input-field" name="nachname" placeholder="Nachname" required>
+                <input type="text" class="input-field" name="vorname" placeholder="Vorname" id="vorname2" >
+                <input type="text" class="input-field" name="nachname" placeholder="Nachname" id="nachname2" >
                 <!--<input type="text" class="input-field" name="klassenstufe" placeholder="Klassenstufe" required>-->
-                <input type="mail" class="input-field" name="email" placeholder="E-Mailadresse" required>
-                <input type="handy" class="input-field" name="handy" placeholder="Telefonnummer*">
-                <input type="text" class="input-field" name="nachhilfe" placeholder="Form der Nachhilfe">
+                <input type="mail" class="input-field" name="email" placeholder="E-Mailadresse" id="mail2" >
+                <input type="handy" class="input-field" name="handy" placeholder="Telefonnummer*" id="handy2" >
+                <!--<input type="text" class="input-field" name="nachhilfe" placeholder="Form der Nachhilfe" id="form" >-->
             </br>
-            <input type="radio" class="box" name="box"><span id="box">Einzelnachhilfe</span>
+            <input type="radio" class="box" name="box2" id="one2"><span id="box3">Einzelnachhilfe</span>
             </br>
-            <input type="radio" class="box" name="box"><span id="box">Gruppennachhilfe</span>
+            <input type="radio" class="box" name="box2" id="multiple2"><span id="box4">Gruppennachhilfe</span>
                 <div class="klassen">
                     <!--container-->
                     <div class="select-box oben-abstand">
@@ -627,7 +576,7 @@
                         </div>
 
 
-                        <div class="selected">
+                        <div class="selected" id="klasse2">
                             Such deine Klasse aus
                         </div>
 
@@ -739,8 +688,8 @@
                             <label for="Philosophie">Philosophie</label>
                         </div>
                     </div>
-                    <div class="selected">
-                        In welchen Fach Nachhilfe geben:
+                    <div class="selected" id="fach2">
+                        In welchem Fach Nachhilfe nehmen:
                     </div>
 
                     <div class="search-box">
@@ -754,9 +703,10 @@
        
                
                 <!--<input type="text" class="input-field" name="bemerkungen" placeholder="Bemerkungen" >-->
-                <input type="checkbox" class="chech-box"><span id="datenschutz">Ich stimme der <a id="datenverlinkung" href="../../generel/datenschutz/index.php">Datenschutzverordnung</a> zu
+                <input type="checkbox" class="chech-box" id="datenschutz2"><span id="datenschutz">Ich stimme der <a id="datenverlinkung" href="../../generel/datenschutz/index.php">Datenschutzverordnung</a> zu
                 </span>
-                <button type="submit" class="anmeldungshs">Anmeldung als Nachhilfeschüler</button>
+                <button type="button" id="save2" class="anmeldungshs">Anmeldung als Nachhilfeschüler</button>
+                
             </form>
         </div>
     </div>
@@ -844,6 +794,8 @@
 
     </footer>
 <script src="main.js"></script>
+<script src="abschicken.js"></script>
+
 </body>
 
 </html>
