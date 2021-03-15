@@ -9,6 +9,7 @@ body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 15px;
     background: #323232;
+    overflow-x: hidden;
 }
 header {
 	text-align: center;
@@ -113,7 +114,7 @@ nav {
     justify-content: space-around;
     align-items: center;
     min-height: 15vh;
-    width: 100%;
+    width: 120%;
     background-color: black;
     font-family: 'Roboto'sans-serif;
   
@@ -288,7 +289,7 @@ nav {
         transform: translateX(100%);
         transition: transform 0.5s ease-in;
         z-index: 10; /*new*/
-        overflow-x: hidden;
+    
 
       
     }
@@ -333,17 +334,17 @@ nav {
 .toggle .line3 {
     transform: rotate(45deg) translate(-5px, -6px);
 }
-* {
+/** {
     margin: 0;
     padding: 0;
     color: cornsilk;
     box-sizing: border-box;
     font-family: 'Roboto'sans-serif;
-}
+}*/
 
 footer {
     bottom: 0px;
-    width: 100%;
+    width: 120%;
     background: black;
     margin: 0;
     padding: 0;

@@ -11,7 +11,7 @@ background:#323232;
 background-position: center;
 background-size: cover;
 position: absolute;
-z-index: 100;
+
 
 }
 
@@ -160,6 +160,8 @@ text-decoration: none;
   background: transparent;
   font-family: sans-serif;
 }
+
+
 nav{
   display: flex;
   justify-content: space-around;
@@ -262,7 +264,7 @@ nav{
   background:/* rgb( 0, 100, 0)*/ black;
   margin-top: 15px;
   margin-left: -15px;
-  z-index: 10;
+  z-index: 110;
   
 }
 .menu-bar ul li:hover .sub-menu-1 ul
@@ -318,6 +320,7 @@ nav{
 @media screen and (max-width: 768px){
   body{
       overflow-x: hidden;
+     
   }
   .nav-links {
     position: absolute;
@@ -332,7 +335,6 @@ nav{
     transform: translateX(100%);
     transition: transform 0.5s ease-in;
     z-index: 10;
-    overflow-x: hidden;
   }
 .nav-links li{
       opacity: 0
@@ -376,6 +378,7 @@ nav{
 body {
   font-family: "Roboto", sans-serif;
   background:#656565;  /*#f7f6ff*/
+  overflow-x: hidden;
 }
 
 h2 {
@@ -387,6 +390,9 @@ h2 {
   
   
 }
+
+
+
 
 .select-box {
   position: relative;
