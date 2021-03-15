@@ -21,6 +21,40 @@ position: absolute;
 }
 
 
+@media screen and (max-width:600px) {
+
+  body,
+  html {
+      font-size: 48%;
+  }
+}
+
+@media screen and (max-width:600px) {
+
+  body,
+  html {
+      font-size: 53%;
+  }
+}
+@media screen and (max-width:800px) {
+
+  body,
+  html {
+    font-size: 77%;
+  }
+}
+
+
+
+
+
+@media screen and (max-width:300px) {
+
+  body,
+  html {
+      font-size: 15%;
+  }
+}
 
 
 
@@ -37,6 +71,8 @@ position: absolute;
   overflow: hidden;
   border-radius: 50px;
 }
+
+
 
 .button-box{ /*Lehrer u. Schüler Button*/
   width: 220px;
