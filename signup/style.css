@@ -238,6 +238,7 @@ html {
 body {
     color: white;
     font-family: "Montserrat", sans-serif;
+    overflow-x: hidden;
 }
 
 h1 {
@@ -827,6 +828,7 @@ a {
 body {
     color: white;
     font-family: "Montserrat", sans-serif;
+    overflow-x: hidden;
 }
 
 h1 {
