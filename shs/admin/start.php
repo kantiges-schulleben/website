@@ -99,7 +99,7 @@
             $texts = $rawMailData[1];
 
             for ($j = 0; $j < count($mailAddresses); $j++) {
-                echo "to: " . $mailAddresses[$j] . "<br>content: " . $texts[$j] . "<br><br>=====================================<br>";
+                // echo "to: " . $mailAddresses[$j] . "<br>content: " . $texts[$j] . "<br><br>=====================================<br>";
                 sendMail($mailAddresses[$j], $texts[$j]);
             }
         }
