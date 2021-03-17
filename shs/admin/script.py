@@ -25,16 +25,16 @@ def toJsonString(inputList):
 
         if firstOrder != 2:# einzel & gruppe
             for secondOrder in range(len(inputList[firstOrder])):
-                jsonString += '''{"name":"''' + inputList[firstOrder][secondOrder][0][0] + '''","mail":"''' + inputList[firstOrder][secondOrder][0][1] + '''","nachhilfe":"''' + inputList[firstOrder][secondOrder][0][2] + '''","klasse":"''' + inputList[firstOrder][secondOrder][0][3] + '''","facher":"''' + inputList[firstOrder][secondOrder][0][4] + '''","zielKlasse":"''' + inputList[firstOrder][secondOrder][0][5] + '''","einzelnachhilfe":"''' + inputList[firstOrder][secondOrder][0][6] + '''","zeit":"''' + inputList[firstOrder][secondOrder][0][7] + '''",'''
+                jsonString += '''{"name":"''' + inputList[firstOrder][secondOrder][0][0] + '''","mail":"''' + inputList[firstOrder][secondOrder][0][1] + '''","nachhilfe":"''' + inputList[firstOrder][secondOrder][0][2] + '''","klasse":"''' + inputList[firstOrder][secondOrder][0][3] + '''","facher":"''' + inputList[firstOrder][secondOrder][0][4] + '''","zielKlasse":"''' + inputList[firstOrder][secondOrder][0][5] + '''","einzelnachhilfe":"''' + inputList[firstOrder][secondOrder][0][6] + '''","zeit":"''' + inputList[firstOrder][secondOrder][0][7] +  '''","telefon":"''' + inputList[firstOrder][secondOrder][0][8] + '''","accountID":"''' + inputList[firstOrder][secondOrder][0][10] + '''",'''
 
 
                 if firstOrder == 0:# einzel
-                    jsonString += '''"partner":{"name":"''' + inputList[firstOrder][secondOrder][1][0] + '''","mail":"''' + inputList[firstOrder][secondOrder][1][1] + '''","nachhilfe":"''' + inputList[firstOrder][secondOrder][1][2] + '''","klasse":"''' + inputList[firstOrder][secondOrder][1][3] + '''","facher":"''' + inputList[firstOrder][secondOrder][1][4] + '''","zielKlasse":"''' + inputList[firstOrder][secondOrder][1][5] + '''","einzelnachhilfe":"''' + inputList[firstOrder][secondOrder][1][6] + '''","zeit":"''' + inputList[firstOrder][secondOrder][1][7] + '''"}'''
+                    jsonString += '''"partner":{"name":"''' + inputList[firstOrder][secondOrder][1][0] + '''","mail":"''' + inputList[firstOrder][secondOrder][1][1] + '''","nachhilfe":"''' + inputList[firstOrder][secondOrder][1][2] + '''","klasse":"''' + inputList[firstOrder][secondOrder][1][3] + '''","facher":"''' + inputList[firstOrder][secondOrder][1][4] + '''","zielKlasse":"''' + inputList[firstOrder][secondOrder][1][5] + '''","einzelnachhilfe":"''' + inputList[firstOrder][secondOrder][1][6] + '''","zeit":"''' + inputList[firstOrder][secondOrder][1][7] +  '''","telefon":"''' + inputList[firstOrder][secondOrder][1][8] +  '''","accountID":"''' + inputList[firstOrder][secondOrder][1][10] + '''"}'''
                     pass
                 else:# gruppe
                     jsonString += '''"anzahlPartner":"''' + str(len(inputList[firstOrder][secondOrder]) - 1) + '''","partner":{'''
                     for thirdOrder in range(len(inputList[firstOrder][secondOrder]) - 1):
-                        jsonString += '''"''' + str(thirdOrder + 1) + '''":{"name":"''' + inputList[firstOrder][secondOrder][thirdOrder + 1][0] + '''","mail":"''' + inputList[firstOrder][secondOrder][thirdOrder + 1][1] + '''","nachhilfe":"''' + inputList[firstOrder][secondOrder][thirdOrder + 1][2] + '''","klasse":"''' + inputList[firstOrder][secondOrder][thirdOrder + 1][3] + '''","facher":"''' + inputList[firstOrder][secondOrder][thirdOrder + 1][4] + '''","zielKlasse":"''' + inputList[firstOrder][secondOrder][thirdOrder + 1][5] + '''","einzelnachhilfe":"''' + inputList[firstOrder][secondOrder][thirdOrder + 1][6] + '''","zeit":"''' + inputList[firstOrder][secondOrder][thirdOrder + 1][7] + '''"},'''
+                        jsonString += '''"''' + str(thirdOrder + 1) + '''":{"name":"''' + inputList[firstOrder][secondOrder][thirdOrder + 1][0] + '''","mail":"''' + inputList[firstOrder][secondOrder][thirdOrder + 1][1] + '''","nachhilfe":"''' + inputList[firstOrder][secondOrder][thirdOrder + 1][2] + '''","klasse":"''' + inputList[firstOrder][secondOrder][thirdOrder + 1][3] + '''","facher":"''' + inputList[firstOrder][secondOrder][thirdOrder + 1][4] + '''","zielKlasse":"''' + inputList[firstOrder][secondOrder][thirdOrder + 1][5] + '''","einzelnachhilfe":"''' + inputList[firstOrder][secondOrder][thirdOrder + 1][6] + '''","zeit":"''' + inputList[firstOrder][secondOrder][thirdOrder + 1][7] +  '''","telefon":"''' + inputList[firstOrder][secondOrder][thirdOrder + 1][8] +  '''","accountID":"''' + inputList[firstOrder][secondOrder][thirdOrder + 1][10] + '''"},'''
                         pass
                     jsonString = jsonString[:-1] + "}"
                     pass
@@ -42,23 +42,19 @@ def toJsonString(inputList):
                 jsonString += '''},'''
                 pass
 
-
-
-            # "telefon":"''' + inputList[firstOrder][secondOrder][0][8] + '''",
-            # "bemerkung":"''' + inputList[firstOrder][secondOrder][0][9] + '''",
             pass
         else:# ohne
             for secondOrder in range(len(inputList[firstOrder])):
-                jsonString += '''{"name":"''' + inputList[firstOrder][secondOrder][0] + '''","mail":"''' + inputList[firstOrder][secondOrder][1] + '''","nachhilfe":"''' + inputList[firstOrder][secondOrder][2] + '''","klasse":"''' + inputList[firstOrder][secondOrder][3] + '''","facher":"''' + inputList[firstOrder][secondOrder][4] + '''","zielKlasse":"''' + inputList[firstOrder][secondOrder][5] + '''","einzelnachhilfe":"''' + inputList[firstOrder][secondOrder][6] + '''","zeit":"''' + inputList[firstOrder][secondOrder][7] + '''"},'''
+                jsonString += '''{"name":"''' + inputList[firstOrder][secondOrder][0] + '''","mail":"''' + inputList[firstOrder][secondOrder][1] + '''","nachhilfe":"''' + inputList[firstOrder][secondOrder][2] + '''","klasse":"''' + inputList[firstOrder][secondOrder][3] + '''","facher":"''' + inputList[firstOrder][secondOrder][4] + '''","zielKlasse":"''' + inputList[firstOrder][secondOrder][5] + '''","einzelnachhilfe":"''' + inputList[firstOrder][secondOrder][6] + '''","zeit":"''' + inputList[firstOrder][secondOrder][7] +  '''","telefon":"''' + inputList[firstOrder][secondOrder][8] +  '''","accountID":"''' + inputList[firstOrder][secondOrder][10] + '''"},'''
                 pass
-
-            
-            # jsonString = jsonString[:-1]
-            # "telefon":"''' + inputList[firstOrder][secondOrder][8] + '''",
-            # "bemerkung":"''' + inputList[firstOrder][secondOrder][9] + '''",
             pass
 
-        jsonString = jsonString[:-1] + '],'
+        if (jsonString[-1] == "["):
+            jsonString += '],'
+            pass
+        else:
+            jsonString = jsonString[:-1] + '],'
+            pass
         pass
 
     jsonString = jsonString[:-1] + '}'
@@ -216,21 +212,21 @@ if len(sys.argv) > 1:
     if sys.argv[1].lower() == "--use-default":
         orig_list = [
         # Name,          E-Mail,             give private tutoring        grade         subject  einzelnachhilfe
-        ['Joyce Byers', 'Joyce@gmail.com', '0', '5a', 'Mathematik', '0', '0', '13'],
+        ['Joyce Byers', 'Joyce@gmail.com', '0', '5a', 'Mathe', '0', '0', '13'],
         ['Joyce Byers', 'Joyce@gmail.com', '0', '5a', 'Deutsch', '0', '0', '13'],
         ['Jim Hopper', 'Jim@gmail.com', '0', '5a', 'Physik', '0', '0', '13'],
         ['Mike Wheeler', 'Mike@gmail.com', '0', '5a', 'Biologie', '0', '0', '13'],
-        ['Will Byers', 'Will@gmail.com', '0', '5a', 'Mathematik', '0', '0', '13'],
+        ['Will Byers', 'Will@gmail.com', '0', '5a', 'Mathe', '0', '0', '13'],
         ['Max Mayfield', 'Max@gmail.com', '0', '5a', 'Physik', '0', '0', '13'],
         ['Steve Harrington', 'Steve@gmail.com', '0', '5a', 'Biologie', '0', '0', '13'],
-        ['Billy Hargrove', 'Billy@gmail.com', '0', '7a', 'Mathematik', '0', '0', '13'],
+        ['Billy Hargrove', 'Billy@gmail.com', '0', '7a', 'Mathe', '0', '0', '13'],
         ['Bob Newby', 'Bob@gmail.com', '0', '7a', 'Chemie', '0', '0', '13'],
-        ['Jane Hopper', 'Jane@gmail.com', '0', '7a', 'Mathematik', '0', '0', '13'],
+        ['Jane Hopper', 'Jane@gmail.com', '0', '7a', 'Mathe', '0', '0', '13'],
         ['Dustin Henderson', 'Dustin@gmail.com', '0', '7a', 'Chemie', '0', '0', '13'],
         ['Eleven', 'el@gmail.com', '0', '7a', 'Chemie', '0', '0', '13'],
         ['Alexei', 'alexei@gmail.com', '0', '8a', 'Informatik', '0', '0', '13'],
         ['Heather Holloway', 'heather@gmail.com', '0', '7a', 'Informatik', '0', '0', '13'],
-        ['Larry Kline', 'larry@gmail.com', '0', '7a', 'Mathematik', '0', '0', '13'],
+        ['Larry Kline', 'larry@gmail.com', '0', '7a', 'Mathe', '0', '0', '13'],
         ['Tom Holloway', 'tom@gmail.com', '0', '5a', 'Deutsch', '0', '0', '13'],
         ['Dr. Owens', 'owens@gmail.com', '0', '5a', 'Deutsch', '0', '0', '13'],
 
@@ -238,16 +234,16 @@ if len(sys.argv) > 1:
         ['Niels Bohr', 'niels@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
         ['Nikola Tesla', 'nikola@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
         ['Thomas Edison', 'thomas@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
-        ['Thomas Edison', 'thomas@gmail.com', '0', '5a', 'Mathematik', '0', '1', '13'],
+        ['Thomas Edison', 'thomas@gmail.com', '0', '5a', 'Mathe', '0', '1', '13'],
         ['Stephen Hawking', 'stephen@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
         ['Johannes Kepler', 'johannes@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
 
-        ['Lucas Sinclair', 'Lucas@gmail.com', '1', '10a', 'Mathematik', '5', '0', '13'],
+        ['Lucas Sinclair', 'Lucas@gmail.com', '1', '10a', 'Mathe', '5', '0', '13'],
         ['Nancy Wheeler', 'Nancy@gmail.com', '1', '10a', 'Chemie', '7', '0', '13'],
         ['Jonathan Byers', 'Jonathan@gmail.com', '1', '10a', 'Biologie', '5', '0', '13'],
-        ['Karen Wheeler', 'Karen@gmail.com', '1', '10a', 'Mathematik', '5', '0', '13'],
-        ['Martin Brenner', 'Martin@gmail.com', '1', '10a', 'Mathematik', '7', '0', '13'],
-        ['Robin Buckley', 'Robin@gmail.com', '1', '10a', 'Mathematik', '7', '0', '13'],
+        ['Karen Wheeler', 'Karen@gmail.com', '1', '10a', 'Mathe', '5', '0', '13'],
+        ['Martin Brenner', 'Martin@gmail.com', '1', '10a', 'Mathe', '7', '0', '13'],
+        ['Robin Buckley', 'Robin@gmail.com', '1', '10a', 'Mathe', '7', '0', '13'],
         ['Erica Sinclair', 'Erica@gmail.com', '1', '10a', 'Chemie', '7', '0', '13'],
         ['Barbara Holland', 'Barb@gmail.com', '1', '10a', 'Biologie', '5', '0', '13'],
         ['Ross Duffer', 'Ross@gmail.com', '1', '10a', 'Physik', '5', '0', '13'],
@@ -255,14 +251,14 @@ if len(sys.argv) > 1:
         ['eight', 'eight@gmail.com', '1', '10a', 'Physik', '5', '0', '13'],
         ['Suzi', 'suzi@gmail.com', '1', '10a', 'Informatik', '8', '0', '13'],
         ['Murray Baumann', 'Murray@gmail.com', '1', '9a', 'Informatik', '7', '0', '13'],
-        ['Becky Ives', 'becky@gmail.com', '1', '9a', 'Mathematik', '5', '0', '13'],
+        ['Becky Ives', 'becky@gmail.com', '1', '9a', 'Mathe', '5', '0', '13'],
         ['Ted Wheeler', 'ted@gmail.com', '1', '9a', 'Deutsch', '5', '0', '13'],
 
         ['Nikolaus Kopernikus', 'nikolaus@gmail.com', '1', '9a', 'Physik', '5', '1', '13'],
         ['Isaac Newton', 'isaac@gmail.com', '1', '9a', 'Physik', '5', '1', '13'],
         ['Ernest Rutherford', 'ernest@gmail.com', '1', '9a', 'Physik', '5', '1', '13'],
         ['Galileo Galilei', 'galileo@gmail.com', '1', '9a', 'Physik', '5', '1', '13'],
-        ['Nikolaus Kopernikus', 'nikolaus@gmail.com', '1', '9a', 'Mathematik', '5', '1', '13']
+        ['Nikolaus Kopernikus', 'nikolaus@gmail.com', '1', '9a', 'Mathe', '5', '1', '13']
         ]
         pass
     else:
@@ -270,16 +266,17 @@ if len(sys.argv) > 1:
         # Name, Klasse, Mail, Telefon, Nachhilfe, Fächer, Zeit, Einzelnachhilfe, Bemerkung, zielKlasse
         for i in range(len(json_dict)):
             tmp = []
-            tmp.append(json_dict[i]['name'])
-            tmp.append(json_dict[i]['mail'])
-            tmp.append(json_dict[i]['nachhilfe'])
-            tmp.append(json_dict[i]['llasse'])
-            tmp.append(json_dict[i]['facher'])
-            tmp.append(json_dict[i]['zielKlasse'])
-            tmp.append(json_dict[i]['einzelnachhilfe'])
-            tmp.append(json_dict[i]['zeit'])
-            tmp.append(json_dict[i]['telefon'])
-            tmp.append(json_dict[i]['Bemerkung'])
+            tmp.append(str(json_dict[i]['name']))
+            tmp.append(str(json_dict[i]['mail']))
+            tmp.append(str(json_dict[i]['nachhilfe']))
+            tmp.append(str(json_dict[i]['klasse']))
+            tmp.append(str(json_dict[i]['facher']))
+            tmp.append(str(json_dict[i]['zielKlasse']))
+            tmp.append(str(json_dict[i]['einzelnachhilfe']))
+            tmp.append(str(json_dict[i]['zeit']))
+            tmp.append(str(json_dict[i]['telefon']))
+            tmp.append(str(json_dict[i]['Bemerkung']))
+            tmp.append(str(json_dict[i]['accountID']))
 
             orig_list.append(tmp)
             tmp = []
@@ -415,8 +412,32 @@ ml_list_take_gruppe = tmp_ml_list
 
 # sort by subject
 
-subjects = {"Mathematik": [], "Physik": [], "Chemie": [], "Biologie": [], "Informatik": [], "Deutsch": [
-], "Englisch": [], "Franzosisch": [], "Russisch": [], "Geschichte": [], "Geografie": [], "GRW": []}
+subjects = {
+    "Deutsch": [],
+    "Englisch": [],
+    "Französisch": [],
+    "Russisch": [],
+    "naturwissenschaftliche Profil": [],
+    "künstlerisches Profil": [],
+    "gesellschaftliches Profil": [],
+    "Mathe": [],
+    "Informatik": [],
+    "Biologie": [],
+    "Chemie": [],
+    "Physik": [],
+    "Geschichte": [],
+    "Geografie": [],
+    "Ethik": [],
+    "Religion": [],
+    "Kunst": [],
+    "Musik": [],
+    "Technik und Computer": [],
+    "GRW": [],
+    "Bionik": [],
+    "Philosophie": []
+}
+
+
 
 NumberOfSubjects = len(subjects)
 

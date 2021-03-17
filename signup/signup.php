@@ -12,7 +12,7 @@
     }
 
     // prüfen, ob alle kritischen Parameter übergeben wurden, sonst abbrechen und false zurückgeben
-    if (isset($_POST['firstname']) === false or isset($_POST['lastname']) === false or isset($_POST['password']) === false or isset($_POST['username']) === false) {
+    if (isset($_POST['firstname']) === false or isset($_POST['lastname']) === false or isset($_POST['password']) === false  or isset($_POST['passwdconfirm']) === false or isset($_POST['username']) === false) {
         // $message = array(
         //     'success' => 'false',
         //     'message' => ''
@@ -26,6 +26,12 @@
     $lastname = htmlspecialchars($_POST['lastname'], ENT_QUOTES);
     $username = htmlspecialchars($_POST['username'], ENT_QUOTES);
     $password = htmlspecialchars($_POST['password'], ENT_QUOTES);
+    $passwordConfirm = htmlspecialchars($_POST['passwdconfirm'], ENT_QUOTES);
+    
+    if ($passwordConfirm != $password) {
+        header("Location: ./");
+        die();
+    }
 
     $mail = "";
 
