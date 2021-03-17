@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    
     require_once("../../include/functions.inc.php");
 
     require_once("../../include/PHPMailer.php");
@@ -30,12 +32,12 @@
         isset($_POST['nachhilfe']) === false
         or
         isset($_POST['fach']) === false
-        or
-        isset($_POST['zeit']) === false
+        // or
+        // isset($_POST['zeit']) === false
         or
         isset($_POST['einzelnachhilfe']) === false) {
             $message = array(
-                'success' => 'false',
+                'success' => FALSE,
                 'message' => 'Nicht alle benötigten Daten wurden angegeben.'
             );
             die(json_encode($message));
@@ -64,7 +66,7 @@
 
     if (explode("@", $mailAddr)[0] == $mailAddr) {
         $message = array(
-            'success' => 'false',
+            'success' => FALSE,
             'message' => 'Es wurde keine valide Emailadresse angegeben.'
         );
 
@@ -73,11 +75,14 @@
 
     $bemerkung = htmlspecialchars($bemerkung, ENT_QUOTES);
 
+    $resultForID = SQL("SELECT `id` FROM benutzer WHERE `benutzername` LIKE ?", [$_SESSION['user']]);
+    $frickingID = sqlReturn($resultForID, 0, "id");
+
     // Daten eintragen, bei Erfolg
-    $result = SQL("INSERT INTO shsAnmeldung (name, klasse, mail, telefon, nachhilfe, fach, zeit, einzelnachhilfe, bemerkung, zielKlasse) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [$name, $klasse, $mailAddr, $telefon, $nachhilfe, $fach, $zeit, $einzelnachhilfe, $bemerkung, $ziel]);
-    if ($result === false) {
+    $result = SQL("INSERT INTO shsAnmeldung (name, klasse, mail, telefon, nachhilfe, fach, zeit, einzelnachhilfe, bemerkung, zielKlasse, accountID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [$name, $klasse, $mailAddr, $telefon, $nachhilfe, $fach, $zeit, $einzelnachhilfe, $bemerkung, $ziel, $frickingID], TRUE);
+    if ($result[1] != 1) {
         $message = array(
-            'success' => 'false',
+            'success' => FALSE,
             'message' => 'Deine Daten konnte nicht gespeichert werden. Bitte kontaktiere uns über das Kontaktformular.'
         );
         die(json_encode($message));
@@ -97,23 +102,25 @@
     $mailer -> SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mailer -> Port = 587;
     $mailer -> setFrom("kantiges-schulleben@gmx.de", "Schüler helfen Schülern");
-    $mailer -> isHTML(false);
+    $mailer -> isHTML(true);
     $mailer -> Subject = "Anmeldebestätigung";
+    $mailer -> CharSet = 'UTF-8';
 
     try {
         $mailer -> addAddress($mailAddr);
         
-        $mailer -> Body = "Hallo $name
-        Hiermit bist du offiziell ein Teil des Projekts „Schüler helfen Schüler“. Du bist in unserer Datenbank vermerkt und wirst von uns zeitnah mit weiteren Informationen versorgt. 
-        Deine Daten werden gemäß unseren Datenschutzregelung behandelt. 
-        Bei weiteren Fragen oder Problemen kannst du dich jeder Zeit an unser Team wenden. 
-        Viel Spaß beim gemeinsamen Lernen. 
-        Dein „Schüler helfen Schülern“ – Team ";
+        $mailer -> Body = "Hallo $name,<br>
+        Hiermit bist du offiziell ein Teil des Projekts „Schüler helfen Schülern“. Du bist in unserer Datenbank vermerkt und wirst von uns zeitnah mit weiteren Informationen versorgt.<br>
+        Deine Daten werden gemäß unseren Datenschutzregelung behandelt.<br>
+        Bei weiteren Fragen oder Problemen kannst du dich jeder Zeit an unser Team wenden.<br>
+        Viel Spaß beim gemeinsamen Lernen.<br><br>
+
+        Dein „Schüler helfen Schülern“ – Team";
     
         $mailer -> send();
     } catch (Exception $e) {
         $message = array(
-            'success' => 'false',
+            'success' => FALSE,
             'message' => 'Anmeldebestätigung konnte nicht versandt werden.'
         );
         die(json_encode($message));
@@ -121,7 +128,8 @@
         $mailer -> ClearAddresses();
     }
 
-    echo json_encode(array(
-        'success' => 'true'
-    ));
+
+    die(json_encode(array(
+        'success' => TRUE
+    )));
 ?>

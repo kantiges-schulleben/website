@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     if (isset($_SESSION['userADMIN'])) {
     } else {
         header("Location: ./login");
@@ -57,9 +59,13 @@
 
     $parameter = json_encode($output);
 
+    // die($parameter);
+
     // Script starten (obviously)
-    $output = json_decode(exec("python3 script.py " - $parameter), true);
+    $output = json_decode(exec("python3 script.py " . "'" . $parameter . "'"), true);
     // $output = json_decode(exec("python3 script.py --use-default"), true);
+    // die(json_encode($output));
+
 
     // Mailer initialisieren
     $mail = new PHPMailer(true);
@@ -72,8 +78,11 @@
     $mail -> SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail -> Port = 587;
     $mail -> setFrom("kantiges-schulleben@gmx.de", "Schüler helfen Schülern");
-    $mail -> isHTML(false);
+    $mail -> isHTML(true);
     $mail -> Subject = "Rückmeldung Partner";
+    $mail -> CharSet = 'UTF-8';
+
+    sendMail("monsieurk1209@gmail.com", json_encode($output));
 
     $firstOrderGroups = ["einzel", "gruppe", "ohne"];
 
@@ -81,7 +90,7 @@
 
     // Datenbank löschen
     SQL("DELETE FROM handschlag", ["null"]);
-
+    $counter = 0;
     // über alle Paare loopen und Emails mit den wichtigen Daten versenden, um die Schüler und Lehrer zu informieren
     for ($group = 0; $group < count($firstOrderGroups); $group++) {
         for ($i = 0; $i < count($output[$firstOrderGroups[$group]]); $i++) {
@@ -90,14 +99,18 @@
             $texts = $rawMailData[1];
 
             for ($j = 0; $j < count($mailAddresses); $j++) {
-                // echo "to: " . $mailAddresses[$j] . "<br>content: " . $texts[$j] . "<br><br>=====================================<br>";
+                echo "to: " . $mailAddresses[$j] . "<br>content: " . $texts[$j] . "<br><br>=====================================<br>";
                 sendMail($mailAddresses[$j], $texts[$j]);
             }
         }
+        $counter++;
     }
 
     SQL("DELETE FROM shsAnmeldung", ["null"]);
-    echo "fertig";
+    echo json_encode(array(
+        "counter" => $counter,
+        "status" => "fertig"
+    ));
 
 
     // TODO ausgabe schöner formatieren vielleicht HTML/CSS mail?
@@ -125,6 +138,7 @@
         $telefon = $inputData['telefon'];
         $accountID = $inputData['accountID'];
         $klasse = $inputData['klasse'];
+        $fach = $inputData['facher'];
 
         if ($mode === 0) { // einzel
             $partner = $inputData['partner']['name'];
@@ -136,26 +150,27 @@
 
             $output = array(
                 array($mail, $mailPartner),
-                array(
-                "Hallo $name,<br>
-                Wir freuen uns dir mitzuteilen, dass wir einen Lernpartner für dich gefunden haben.<br>
-                $partner ist für das nächste Jahr dein Schützling.<br>
-                Du kannst ihn/sie folgendermaßen erreichen:<br>
-                Email: $mailPartner<br>
-                Telefon: $telefonPartner<br>
-                oder über unseren [Webchat](link zu chat)<br><br>
-                Mit freundlichen Grüßen<br>
-                das ShS-Team<br><br>",
-
+                array("Hallo $name,<br>
+                Wir freuen uns, dass du dich an dem Projekt „Schüler helfen Schülern“ beteiligen möchtest.<br>
+                Hiermit bestätigen wir dir die Teilnahme als Nachhilfelehrer/in.<br><br>
+                Du wirst $partner in diesem Schuljahr im Fach $fachPartner unterstützen.<br>
+                Sie/Ihn erreichst du unter: $mailPartner<br>
+                oder mit ihrer/seiner Telefonnummer: $telefonPartner<br><br>
+                Bei weiteren Fragen helfen wir gern über <a href = 'mailto:shs@kantgym-leipzig.de'>shs@kantgym-leipzig.de</a> weiter.<br>
+                Wir wünschen dir Spaß am Lernen und ein schönes Schuljahr.<br><br>
+                Bleib gesund!<br>
+                Dein Schüler helfen Schülern-Team",
+                
                 "Hallo $partner,<br>
-                Wir freuen uns dir mitzuteilen, dass wir einen Lernpartner für dich gefunden haben.<br>
-                $partner wird dir für das nächste Jahr zur Seite stehen um dir in $fachPartner zu helfen.<br>
-                Du kannst ihn/sie folgendermaßen erreichen:<br>
-                Email:$mail<br>
-                Telefon:$telefon<br>
-                oder über unseren [Webchat](link zu chat)<br>
-                Mit freundlichen Grüßen<br>
-                das ShS-Team<br><br>"
+                Wir freuen uns, dass du dich an dem Projekt „Schüler helfen Schülern“ beteiligen möchtest.<br>
+                Hiermit bestätigen wir dir die Teilnahme als Nachhilfeschüler/in.<br><br>
+                $name wird dich in diesem Schuljahr im Fach $fachPartner unterstützen.<br>
+                Sie/Ihn erreichst du unter: $mail<br>
+                oder mit ihrer/seiner Telefonnummer: $telefon<br><br>
+                Bei weiteren Fragen helfen wir gern über <a href = 'mailto:shs@kantgym-leipzig.de'>shs@kantgym-leipzig.de</a> weiter.<br>
+                Wir wünschen dir Spaß am Lernen und ein schönes Schuljahr.<br><br>
+                Bleib gesund!<br>
+                Dein Schüler helfen Schülern-Team"
                 )
             );
 
@@ -182,31 +197,43 @@
 
             $fach = $inputData['facher'];
 
-            array_push($texte, "
-            Hallo $name,<br>
-            Wir freuen uns dir mitzuteilen, dass wir Lernpartner für dich gefunden haben.<br>
-            " . substr(ignoreNConnect($namenPartner, $name, "", " & "), 0, -3) . " sind für das nächste Jahr deine Schützlinge.<br>
-            Du kannst sie folgendermaßen erreichen:<br>
-            Email:" . ignoreNConnect($mailsPartner, $mail, "<br>", "") ."<br>
-            Telefon:" . ignoreNConnect($telefonPartner, $telefon, "<br>", "") ."<br>
-            oder über unseren [Webchat](link zu chat)<br>
-            Mit freundlichen Grüßen<br>
-            das ShS-Team<br><br>");
+            if (intval($inputData["anzahlPartner"]) > 1) {
+                array_push($texte, "Hallo $name,<br>
+                Wir freuen uns dir mitzuteilen, dass wir Lernpartner für dich gefunden haben.<br>
+                " . substr(ignoreNConnect($namenPartner, $name, "", " & "), 0, -3) . " sind für das nächste Jahr deine Schützlinge.<br>
+                Du kannst sie folgendermaßen erreichen:<br>
+                Email:" . ignoreNConnect($mailsPartner, $mail, "<br>", "") ."<br>
+                Telefon:" . ignoreNConnect($telefonPartner, $telefon, "<br>", "") ."<br>
+                oder über unseren [Webchat](link zu chat)<br>
+                Mit freundlichen Grüßen<br><br>
+                das ShS-Team");
+            } else {
+                array_push($texte, "Hallo $name,<br>
+                Wir freuen uns, dass du dich an dem Projekt „Schüler helfen Schülern“ beteiligen möchtest.<br>
+                Hiermit bestätigen wir dir die Teilnahme als Nachhilfelehrer/in.<br><br>
+                Du wirst $namenPartner[0] in diesem Schuljahr im Fach $fach unterstützen.<br>
+                Sie/Ihn erreichst du unter: $mailsPartner[0]<br>
+                oder mit ihrer/seiner Telefonnummer: $telefonPartner[0]<br><br>
+                Bei weiteren Fragen helfen wir gern über <a href = 'mailto:shs@kantgym-leipzig.de'>shs@kantgym-leipzig.de</a> weiter.<br>
+                Wir wünschen dir Spaß am Lernen und ein schönes Schuljahr.<br><br>
+                Bleib gesund!<br>
+                Dein Schüler helfen Schülern-Team");
+            }
             // $partner = substr($partner, 0, -2);
             SQL("INSERT INTO handschlag (fach, id, partner, klasse, typ) VALUES (?, ?, ?, ?, ?)", [$fach, $accountID, ignoreNConnect($accountIDPartner, $accountID, "", ","), $klasse, "lehrer"]);
 
 
             for ($person = 1; $person < intval($inputData["anzahlPartner"]) + 1; $person++) {
-                array_push($texte, "
-                Hallo " . $inputData["partner"][strval($person)]["name"] . ",<br>
-                Wir freuen uns dir mitzuteilen, dass wir einen Lernpartner für dich gefunden haben.<br>
-                $name wird dir für das nächste Jahr zur Seite stehen um dir in $fach zu helfen.<br>
-                Du kannst ihn/sie folgendermaßen erreichen:<br>
-                Email:$mail<br>
-                Telefon:$telefon<br>
-                oder über unseren [Webchat](link zu chat)<br>
-                Mit freundlichen Grüßen<br>
-                das ShS-Team<br><br>");
+                array_push($texte, "Hallo " . $inputData['partner'][strval($person)]['name'] . ",<br>
+                Wir freuen uns, dass du dich an dem Projekt „Schüler helfen Schülern“ beteiligen möchtest.<br>
+                Hiermit bestätigen wir dir die Teilnahme als Nachhilfeschüler/in.<br><br>
+                $name wird dich in diesem Schuljahr im Fach $fachPartner unterstützen.<br>
+                Sie/Ihn erreichst du unter: $mail<br>
+                oder mit ihrer/seiner Telefonnummer: $telefon<br><br>
+                Bei weiteren Fragen helfen wir gern über <a href = 'mailto:shs@kantgym-leipzig.de'>shs@kantgym-leipzig.de</a> weiter.<br>
+                Wir wünschen dir Spaß am Lernen und ein schönes Schuljahr.<br><br>
+                Bleib gesund!<br>
+                Dein Schüler helfen Schülern-Team");
 
                 SQL("INSERT INTO handschlag (fach, id, partner, klasse, typ) VALUES (?, ?, ?, ?, ?)", [$fach, $accountIDPartner[$person], ignoreNConnect($accountIDPartner, $accountIDPartner[$person], "", ","), $klassePartner[$person], "schueler"]);
             }
@@ -219,13 +246,12 @@
             $output = array(
                 array($mail),
                 array(
-                "Hallo $name,<br>
-                Wir haben leider keinen Lernpartner für dich gefunden, werden aber alles daran setzten<br>
-                jemanden für dich zu finden und melden uns, wenn es Neuigkeiten gibt.<br>
-                Solltest du in 3 Wochen noch keine Rückmeldung erhalten haben [schreib uns bitte eine<br>
-                Email](mailto:shs@kantgym-leipzig.de).<br>
-                Mit freiundlichen Grüßen<br>
-                das ShS-Team<br><br>"
+                    "Hallo $name,<br>
+                    Es tut uns leid, aber es konnte kein Partner für dich gefunden werden. Es gibt keine passende Anmeldung für Nachhilfe in deinem Fach.<br>
+                    Versuche es doch im neuen Schuljahr wieder.<br>
+                    Wenn du noch konkretere Anliegen hast, kannst du dich an unsere E-Mail <a href = 'mailto:shs@kantgym-leipzig.de'>shs@kantgym-leipzig.de</a> wenden.<br><br>
+                    Viele Grüße<br>
+                    Euer ShS-Team"
                 )
             );
         }
@@ -246,6 +272,7 @@
     }
 
     function sendMail($to, $content) {
+        global $mail;
         try {
             $mail -> addAddress($to);
             
@@ -253,7 +280,7 @@
         
             $mail -> send();
         } catch (Exception $e) {
-            echo $mail -> ErrorInfo;
+            $mail -> ErrorInfo;
         } finally {
             $mail -> ClearAddresses();
         }
