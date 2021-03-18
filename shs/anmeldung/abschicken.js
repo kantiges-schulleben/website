@@ -167,7 +167,7 @@ window.onload = function () {
             }
         else{
             console.log("success")
-            $.post('lehrer.php', {
+            $.post('save.php', {
                 name: vorname.value + " " + nachname1.value, 
                 klasse: klasse.innerText,
                 mail: mail.value,
@@ -177,7 +177,15 @@ window.onload = function () {
                 einzelnachhilfe: anzahl,
                 ziel: klassenstufen.innerText,
             
-            });
+            }, (data) => {
+                var parsed = JSON.parse(data);
+                console.log(parsed);
+                if (parsed.success == true) {
+                    window.location = "./bestätigung.html" ;
+                }
+                else {
+                   alert("Anscheinend hat etwas geklappt. Bitte versuch's nochmal.") 
+                }});
         }
     }
 }
@@ -331,7 +339,7 @@ document.getElementById("x").addEventListener("click",()=>{
                 }
             else{
                 console.log("success")
-                $.post('lehrer.php', {
+                $.post('save.php', {
                     name: vorname.value + " " + nachname1.value, 
                     klasse: klasse.innerText,
                     mail: mail.value,
@@ -341,7 +349,15 @@ document.getElementById("x").addEventListener("click",()=>{
                     einzelnachhilfe: anzahl,
                     ziel: klassenstufen.innerText,
                 
-                });
+                }, (data) => {
+                    var parsed = JSON.parse(data);
+                    console.log(parsed);
+                    if (parsed.success == true) {
+                        window.location = "./bestätigung.html" ;
+                    }
+                    else {
+                       alert("Anscheinend hat etwas geklappt. Bitte versuch's nochmal.") 
+                    }});
             }
         }
     }
@@ -486,7 +502,7 @@ document.getElementById("x").addEventListener("click",()=>{
             }
         else{
             console.log("success")
-            $.post('lehrer.php', {
+            $.post('save.php', {
                 name: vorname.value + " " + nachname.value, 
                 klasse: klasse.innerText,
                 mail: mail.value,
@@ -496,7 +512,15 @@ document.getElementById("x").addEventListener("click",()=>{
                 einzelnachhilfe: anzahl,
                 ziel: klassenstufen.innerText,
                 
-            });
+            }, (data) => {
+                var parsed = JSON.parse(data);
+                console.log(parsed);
+                if (parsed.success == true) {
+                    window.location = "./bestätigung.html" ;
+                }
+                else {
+                   alert("Anscheinend hat etwas geklappt. Bitte versuch's nochmal.") 
+                }});
         }}
     }}
  );

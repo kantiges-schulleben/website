@@ -9,6 +9,7 @@ body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 15px;
     background: #323232;
+    overflow-x: hidden;
 }
 header {
 	text-align: center;
@@ -108,12 +109,239 @@ img{
     padding: 0px;
 }
 
+/*nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 15vh;
+    width: 120%;
+    background-color: black;
+    font-family: 'Roboto'sans-serif;
+  
+    
+}
+
+
+.logo {
+    color: rgb(226, 226, 226);
+    position: absolute;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+
+}
+
+.nav-links li {
+    list-style: none;
+}
+
+.nav-links a {
+    color: rgb(226, 226, 226);
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+    z-index: 20;
+   
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: rgb(226, 226, 226);
+    margin: 5px;
+    transition: all 0.3s ease;
+  
+
+}
+
+/*.menu-bar
+{
+    background: rgb( 0, 100, 0);
+    text-align: center;
+}*/
+
+/*.menu-bar ul {
+    /*display: /*inline-flex flex;
+    list-style: none;
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 15vh;
+    background-color: black;
+    font-family: 'Roboto'sans-serif;
+  
+}
+
+.menu-bar ul li {
+    width: 120px;
+    margin: 50px;
+    padding: 30px;
+}
+
+.menu-bar ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.menu-bar ul li:hover {
+    background:#38d39f;/*red*/
+    /*border-radius: 30px;
+    padding: 10px 45px;
+    border-radius: 50px;
+    width: auto;
+
+}
+
+.sub-menu-1 {
+    display: none;
+}
+
+.menu-bar ul li:hover .sub-menu-1 {
+    display: block;
+    position: absolute;
+    background:
+        /* rgb( 0, 100, 0)
+        black;
+    margin-top: 15px;
+    margin-left: -15px;
+    z-index: 50;
+
+}
+
+.menu-bar ul li:hover .sub-menu-1 ul {
+    display: block;
+    margin: 10px;
+}
+
+.menu-bar ul li:hover .sub-menu-1 ul li {
+    width: 150px;
+    padding: 10px;
+    border-bottom: 1px dotted #fff;
+    background: transparent;
+    border-radius: 0;
+    text-align: left;
+}
+
+.menu-bar ul li:hover .sub-menu-1 ul li:last-child {
+    border-bottom: none;
+    
+
+}
+
+.menu-bar ul li:hover .sub-menu-1 ul li a:hover {
+    color: #38d39f;
+
+}
+
+.fa-angel-right {
+    float: right;
+}
+
+.sub-menu-2 {
+    display: none;
+
+}
+
+.hover-me:hover .sub-menu-2 {
+    position: absolute;
+    display: block;
+    margin-top: -40px;
+    margin-left: 140px; /*140*/
+    /*background:/* rgb( 0, 100, 0);
+    
+
+}
+
+@media screen and (max-width: 1024px) {
+    .nav-links {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .nav-links {
+        position: absolute;
+        right: 0px;
+        height: 152vh; /*92
+        top: 15vh; /*8
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 70%; /*50
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+        z-index: 10; /*new
+    
+
+      
+    }*/
+
+/*.nav-links li {
+         opacity: 0;
+       
+    }
+  
+
+    .burger {
+        display: block;
+    }
+
+}
+
+
+.nav-active {
+    transform: translateX(0%);
+}
+
+@keyframes navLinkFade {
+    form {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.toggle .line2 {
+    opacity: 0;
+}
+
+.toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}*/
+
+
+
 nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
     min-height: 15vh;
-    width: 100%;
     background-color: black;
     font-family: 'Roboto'sans-serif;
   
@@ -203,7 +431,6 @@ nav {
     width: auto;
 
 }
-
 .sub-menu-1 {
     display: none;
 }
@@ -241,7 +468,7 @@ nav {
 }
 
 .menu-bar ul li:hover .sub-menu-1 ul li a:hover {
-    color: #38d39f;
+    color:  #38d39f;;
 
 }
 
@@ -266,7 +493,7 @@ nav {
 
 @media screen and (max-width: 1024px) {
     .nav-links {
-        width: 60%;
+        width: 120%;
     }
 }
 
@@ -332,17 +559,11 @@ nav {
 .toggle .line3 {
     transform: rotate(45deg) translate(-5px, -6px);
 }
-* {
-    margin: 0;
-    padding: 0;
-    color: cornsilk;
-    box-sizing: border-box;
-    font-family: 'Roboto'sans-serif;
-}
+
 
 footer {
     bottom: 0px;
-    width: 100%;
+    width: 130%;
     background: black;
     margin: 0;
     padding: 0;
@@ -521,6 +742,7 @@ footer {
     footer {
         position: relative;
         bottom: 0px;
+        width: 120%;
     }
 
     .main-content {

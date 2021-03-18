@@ -5,12 +5,13 @@
   
 }
 .kontaktformular{ /*gesamter Bereich*/
-height: 340%;/*wichtig*/
+height: 165%;/*wichtig*/
 width: 100%;
 background:#323232;
 background-position: center;
 background-size: cover;
 position: absolute;
+
 
 }
 
@@ -20,6 +21,40 @@ position: absolute;
 }
 
 
+@media screen and (max-width:600px) {
+
+  body,
+  html {
+      font-size: 48%;
+  }
+}
+
+@media screen and (max-width:600px) {
+
+  body,
+  html {
+      font-size: 53%;
+  }
+}
+@media screen and (max-width:800px) {
+
+  body,
+  html {
+    font-size: 77%;
+  }
+}
+
+
+
+
+
+@media screen and (max-width:300px) {
+
+  body,
+  html {
+      font-size: 15%;
+  }
+}
 
 
 
@@ -36,6 +71,8 @@ position: absolute;
   overflow: hidden;
   border-radius: 50px;
 }
+
+
 
 .button-box{ /*Lehrer u. Schüler Button*/
   width: 220px;
@@ -159,6 +196,8 @@ text-decoration: none;
   background: transparent;
   font-family: sans-serif;
 }
+
+
 nav{
   display: flex;
   justify-content: space-around;
@@ -261,7 +300,7 @@ nav{
   background:/* rgb( 0, 100, 0)*/ black;
   margin-top: 15px;
   margin-left: -15px;
-  z-index: 10;
+  z-index: 110;
   
 }
 .menu-bar ul li:hover .sub-menu-1 ul
@@ -317,6 +356,7 @@ nav{
 @media screen and (max-width: 768px){
   body{
       overflow-x: hidden;
+     
   }
   .nav-links {
     position: absolute;
@@ -374,6 +414,7 @@ nav{
 body {
   font-family: "Roboto", sans-serif;
   background:#656565;  /*#f7f6ff*/
+  overflow-x: hidden;
 }
 
 h2 {
@@ -385,6 +426,9 @@ h2 {
   
   
 }
+
+
+
 
 .select-box {
   position: relative;
@@ -499,7 +543,7 @@ h2 {
 }
 
 
-/*footer {
+footer {
   bottom: 0px;
   width: 100%;
   background: black;
@@ -541,7 +585,7 @@ color:#38d39f ;
   content: '';
   height: 2px;
   width: 15%;
-  background: #38d39f;/*red
+  background: #38d39f;/*red*/
   top: -10px;
   ;
 }
@@ -563,7 +607,7 @@ color:#38d39f ;
   color: #fff;
 }
 .left .content .social a span:hover {
-  background: #38d39f; /*red
+  background: #38d39f; /*red*/
 }
 .center .content .fas {
   font-size: 1.4375rem;
@@ -577,7 +621,7 @@ color:#38d39f ;
   cursor: pointer;
 }
 .center .content .fas:hover {
-  background: #38d39f;/*red
+  background: #38d39f;/*red*/
 }
 .center .content .text {
   font-size: 1.0626rem;
@@ -600,9 +644,8 @@ color:#38d39f ;
 .right form textarea {
   width: 100%;
   font-size: 1.0625rem;
-  /*background:#38d39f;/*red*/
-  /*border-radius: 30px;
-  padding: 10px 45px;
+  /*background:#38d39f; red*/
+  /*border-radius: 30px;*/
   border-radius: 50px;
 
   border-color: #38d39f;
@@ -624,7 +667,7 @@ outline-color: #38d39f;
   height: 40px;
   width: 100%;
   background:#38d39f;/*red*/
-  /*border-radius: 30px;
+  /*border-radius: 30px;*/
   padding: 10px 45px;
   border-radius: 50px;
   font-size: 1.0625rem;
@@ -663,4 +706,4 @@ outline-color: #38d39f;
 }
 a {
   text-decoration: none;
-}*/
+}
