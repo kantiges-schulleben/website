@@ -1,7 +1,7 @@
 <?php
-    require_once("./include/PHPMailer.php");
-    require_once("./include/SMTP.php");
-    require_once("./include/Exception.php");
+    require_once("../include/PHPMailer.php");
+    require_once("../include/SMTP.php");
+    require_once("../include/Exception.php");
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
@@ -9,15 +9,12 @@
 
     $mail = new PHPMailer(true);
 
-    if (!isset($_POST['fromMail']) || !isset($_POST['msg']) || !isset($_POST['grund']) || !isset($_POST['fromName'])) {
-        die(json_encode(array(
-            "success" => false
-        )));
+    if (!isset($_POST['fromMail']) || !isset($_POST['msg']) || !isset($_POST['fromNameFirst'])  || !isset($_POST['fromNameLast'])) {
+        die(file_get_contents("error.html"));
     } else {
         $senderMail = htmlspecialchars(strtolower($_POST['fromMail']), ENT_QUOTES);
-        $senderName = htmlspecialchars(strtolower($_POST['fromName']), ENT_QUOTES);
+        $senderName = htmlspecialchars(strtolower($_POST['fromNameFirst']), ENT_QUOTES) . " " . htmlspecialchars(strtolower($_POST['fromNameLast']), ENT_QUOTES);
         $msg = htmlspecialchars(strtolower($_POST['msg']), ENT_QUOTES);
-        $grund = htmlspecialchars($_POST['grund'], ENT_QUOTES);
     
         try {
             // $mail -> SMTPDebug = SMTP::DEBUG_SERVER;
@@ -31,21 +28,17 @@
     
             $mail -> setFrom("kantiges-schulleben@gmx.de", "Kontaktformular");
             $mail -> addAddress("shs@kantgym-leipzig.de");
-            $mail -> addReplyTo($senderName, $senderMail);
+            $mail -> addReplyTo($senderMail, $senderName);
     
-            $mail -> isHTML(false);
-            $mail -> Subject = "Mitteilung über Kontaktformular - " + $grund;
+            $mail -> isHTML(true);
+            $mail -> CharSet = 'UTF-8';
+            $mail -> Subject = "Mitteilung über Kontaktformular";
             $mail -> Body = $msg;
     
             $mail -> send();
-            die(json_encode(array(
-                "success" => true
-            )));
+            die(file_get_contents("success.html"));
         } catch (Exception $e) {
-            die(json_encode(array(
-                "success" => false,
-                "msg" => $mail -> ErrorInfo
-            )));
+            die(file_get_contents("error.html"));
         }
     }
 ?>
