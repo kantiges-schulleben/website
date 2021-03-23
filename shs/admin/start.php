@@ -113,7 +113,6 @@
     ));
 
 
-    // TODO ausgabe schöner formatieren vielleicht HTML/CSS mail?
     function createText($inputData, $mode) {
         /*
         * 0 ->  einzel
@@ -198,15 +197,16 @@
             $fach = $inputData['facher'];
 
             if (intval($inputData["anzahlPartner"]) > 1) {
-                array_push($texte, "Hallo $name,<br>
-                Wir freuen uns dir mitzuteilen, dass wir Lernpartner für dich gefunden haben.<br>
-                " . substr(ignoreNConnect($namenPartner, $name, "", " & "), 0, -3) . " sind für das nächste Jahr deine Schützlinge.<br>
+                array_push($texte,"Hallo $name,<br>
+                Wir freuen uns das du dich an dem Projekt Schüler helfen Schülern beteiligen willst.<br>
+                Hiermit bestätigen wir dir die Teilnahme als Nachhilfelehrer.<br>
+                Du wirst eine in diesem Schuljahr im Fach $fach Nachhilfe geben. Du unterrichtest eine Gruppe bestehend aus " . substr(ignoreNConnect($namenPartner, $name, "", " & "), 0, -3) . ".<br><br>
                 Du kannst sie folgendermaßen erreichen:<br>
                 Email:" . ignoreNConnect($mailsPartner, $mail, "<br>", "") ."<br>
-                Telefon:" . ignoreNConnect($telefonPartner, $telefon, "<br>", "") ."<br>
-                oder über unseren [Webchat](link zu chat)<br>
-                Mit freundlichen Grüßen<br><br>
-                das ShS-Team");
+                Telefon:" . ignoreNConnect($telefonPartner, $telefon, "<br>", "") ."<br><br>
+                Bei weiteren Fragen helfen wir gerne über <a href = 'mailto:shs@kantgym-leipzig.de'>shs@kantgym-leipzig.de</a> weiter.<br><br>
+                Bleib gesund!<br>
+                Dein Schüler helfen Schülern-Team");
             } else {
                 array_push($texte, "Hallo $name,<br>
                 Wir freuen uns, dass du dich an dem Projekt „Schüler helfen Schülern“ beteiligen möchtest.<br>
@@ -225,12 +225,12 @@
 
             for ($person = 1; $person < intval($inputData["anzahlPartner"]) + 1; $person++) {
                 array_push($texte, "Hallo " . $inputData['partner'][strval($person)]['name'] . ",<br>
-                Wir freuen uns, dass du dich an dem Projekt „Schüler helfen Schülern“ beteiligen möchtest.<br>
-                Hiermit bestätigen wir dir die Teilnahme als Nachhilfeschüler/in.<br><br>
-                $name wird dich in diesem Schuljahr im Fach $fachPartner unterstützen.<br>
-                Sie/Ihn erreichst du unter: $mail<br>
-                oder mit ihrer/seiner Telefonnummer: $telefon<br><br>
-                Bei weiteren Fragen helfen wir gern über <a href = 'mailto:shs@kantgym-leipzig.de'>shs@kantgym-leipzig.de</a> weiter.<br>
+                Wir freuen uns das du dich an dem Projekt Schüler helfen Schülern beteiligen willst.<br>
+                Hiermit bestätigen wir dir die Teilnahme als Nachhilfeschüler.<br>
+                $name wird dich in diesem Schuljahr im Fach $fach unterstützen.<br>
+                Deine/n Nachhilfelehrer/in erreichst du unter:  $mail<br>
+                oder mit der Telefonnummer: $telefon<br>
+                Bei weiteren Fragen helfen wir gerne über <a href = 'mailto:shs@kantgym-leipzig.de'>shs@kantgym-leipzig.de</a> weiter.<br>
                 Wir wünschen dir Spaß am Lernen und ein schönes Schuljahr.<br><br>
                 Bleib gesund!<br>
                 Dein Schüler helfen Schülern-Team");
@@ -251,7 +251,7 @@
                     Versuche es doch im neuen Schuljahr wieder.<br>
                     Wenn du noch konkretere Anliegen hast, kannst du dich an unsere E-Mail <a href = 'mailto:shs@kantgym-leipzig.de'>shs@kantgym-leipzig.de</a> wenden.<br><br>
                     Viele Grüße<br>
-                    Euer ShS-Team"
+                    Dein ShS-Team"
                 )
             );
         }
