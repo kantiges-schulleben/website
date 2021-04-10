@@ -55,11 +55,15 @@
 
                     <div class="card-item">
                         <div class="card-info">
-                            <h3>Füge ein Bild hinzu</h3>
-                            <div class="input-container">
-                            <p id="uploadImage">
-                                <input type="file" name="bild" id="uploadedImage"><br>
-                            </p>
+                            <div id="addImage-container">
+                                <h3>Füge ein Bild hinzu</h3>
+                                <!-- <p id="deleteThumbnailButton" onclick="removeThumbnail(); Editor();"> &#x2715 </p> -->
+                            </div>
+                            <div class="drop-zone">
+                                <span class="drop-zone__prompt">Lege es hier ab <br>oder klicke zum Auswählen</span>
+                                <p id="uploadImage">
+                                    <input type="file" accept="image/x-png,image/gif,image/jpeg" name="bild" id="uploadedImage" class="drop-zone__input">
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -69,7 +73,7 @@
                             <h3>Füge Tags hinzu</h3>
                             <div class="input-container">
                             <p>
-                                <input name="tags" type="text" size="128.5" maxlength="100" placeholder="Füge Tags hinzu, über die sich dein Artikel finden lässt. (Nur einzelne Wörter)" id="tags">
+                                <input name="tags" type="text" size="128.5" maxlength="100" placeholder="Füge Tags hinzu, über die sich dein Artikel finden lässt (nur einzelne Wörter)" id="tags">
                             </p>
                             </div>
                         </div>
@@ -91,7 +95,7 @@
                 </div>
 
                 <input type="submit" id="speichern" value="Speichern">
-                <input type="reset" id="Abbrechen" value="Abbrechen">
+                <input type="reset" id="Abbrechen" value="Abbrechen" onclick="removeThumbnail(); Editor();">
 
             </form>
             <script type="text/javascript" src="editor.js"></script>
