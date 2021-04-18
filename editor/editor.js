@@ -142,10 +142,11 @@ function Vorschau() {
 
     document.getElementById("bild").src = "";
 
-    let fr = new FileReader();
-    fr.onload = function () {
-        document.getElementById("bild").src = fr.result;
-        console.log(fr.result);
+    if(document.getElementById("uploadedImage").files[0]){
+        let fr = new FileReader();
+        fr.onload = function () {
+            document.getElementById("bild").src = fr.result;
+        }
+        fr.readAsDataURL(document.getElementById("uploadedImage").files[0]);
     }
-    fr.readAsDataURL(document.getElementById("uploadedImage").files[0]);
 }
