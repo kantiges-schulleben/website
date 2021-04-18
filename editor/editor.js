@@ -1,11 +1,13 @@
 var überschrift = document.getElementById("überschrift");
 var inhalt = document.getElementById("inhalt");
 var bild = document.getElementById("bild");
+var tags = document.getElementById("tags");
 
-document.getElementById("editorButton").style.background='#38d39f';
+document.getElementById("editorButton").style.background='#16cc68';
 document.getElementById("previewButton").style.background='white';
-document.getElementById("previewButton").style.color='#38d39f';
+document.getElementById("previewButton").style.color='#16cc68';
 document.getElementById("vorschau").hidden = true;
+document.getElementById("deleteThumbnailButton").hidden = true;
 
 
 document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
@@ -49,6 +51,7 @@ document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
 });
 
 function updateThumbnail(dropZoneElement, file) {
+    document.getElementById("deleteThumbnailButton").hidden = false;
     let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
 
     if (dropZoneElement.querySelector(".drop-zone__prompt")) {
@@ -75,6 +78,7 @@ function updateThumbnail(dropZoneElement, file) {
 }
 
 function removeThumbnail() {
+    document.getElementById("deleteThumbnailButton").hidden = true;
     document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
         const dropZoneElement = inputElement.closest(".drop-zone");
         dropZoneElement.classList.remove("drop-zone--over");
@@ -86,21 +90,33 @@ function removeThumbnail() {
     });
 }
 
+function removeJustThumbnail(){
+    var überschriftValue = überschrift.value;
+    var inhaltValue = inhalt.value;
+    var tagsValue = tags.value;
+
+    document.getElementById("Abbrechen").click();
+
+    überschrift.value = überschriftValue;
+    inhalt.value = inhaltValue;
+    tags.value = tagsValue;
+}
+
 function Editor() {
     document.getElementById("editor").hidden = false;
-    document.getElementById("editorButton").style.background='#38d39f';
+    document.getElementById("editorButton").style.background='#16cc68';
     document.getElementById("previewButton").style.background='white';
-    document.getElementById("previewButton").style.color='#38d39f';
+    document.getElementById("previewButton").style.color='#16cc68';
     document.getElementById("editorButton").style.color='white';
     document.getElementById("vorschau").hidden = true;
 }
 
 function Vorschau() {
     document.getElementById("editor").hidden = true;
-    document.getElementById("previewButton").style.background='#38d39f';
+    document.getElementById("previewButton").style.background='#16cc68';
     document.getElementById("previewButton").style.color='white';
     document.getElementById("editorButton").style.background='white';
-    document.getElementById("editorButton").style.color='#38d39f';
+    document.getElementById("editorButton").style.color='#16cc68';
     document.getElementById("vorschau").hidden = false;
 
     if (!(überschrift.value == "")){

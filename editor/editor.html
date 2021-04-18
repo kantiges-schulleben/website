@@ -57,7 +57,7 @@
                         <div class="card-info">
                             <div id="addImage-container">
                                 <h3>Füge ein Bild hinzu</h3>
-                                <!-- <p id="deleteThumbnailButton" onclick="removeThumbnail(); Editor();"> &#x2715 </p> -->
+                                <div id="deleteThumbnailButton" onclick="removeJustThumbnail();"> &#x2715 </div>
                             </div>
                             <div class="drop-zone">
                                 <span class="drop-zone__prompt">Lege es hier ab <br>oder klicke zum Auswählen</span>
@@ -81,10 +81,10 @@
                 </div>
 
                 <div id="vorschau">
-                    <div class="card-item">
+                    <div class="card-item" id="vorschau-design">
                         <div class="card-info">
                             <div id="vorschau-container" >
-                                <h3 class="msg überschrift"></h3>
+                                <h3 class="msg überschrift" id="vorschau-überschrift"></h3>
                                 <p id="vorschau-datum" class="msg datum"> </p>
                             </div>
                             <img src="" id="bild">
