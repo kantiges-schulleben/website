@@ -1,0 +1,281 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Poppins:wght@600&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;     
+}
+
+#tags {
+    font-family: 'Open Sans',sans-serif;
+    padding: 15px;
+    min-height: 50px;
+    width: 100%;
+}
+
+#vorschau-container{
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
+}
+
+#addImage-container{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 97% 3%;
+  align-items: flex-end;
+}
+
+#vorschau-überschrift{
+  color: #707070;
+}
+
+#vorschau-datum{
+  width: 100%;
+  text-align: right;
+  color: #707070;
+}
+
+img{
+  max-width: 50%;
+  vertical-align: right;
+  max-height: 50%;
+  width: auto;
+  height: auto;
+  float: right;
+  border-radius: 15px;
+}
+
+input, #textarea{
+  border-radius: 15px;
+  border-color: #707070;
+  border-style: solid;
+  border-width: 2px;
+  outline: none;
+}
+
+#textarea{
+  width: 100%;
+  padding: 15px;
+}
+
+textarea{
+  resize: vertical;
+  font-family: 'Open Sans',sans-serif;
+  min-height: 50px;
+  margin-top: 0;
+  margin-bottom: 0;
+  border: none;
+  outline: none;
+  width: 100%;
+  cursor: auto;
+}
+
+#vorschau-tags{
+  width: fit-content;
+  padding: 10px;
+  color: white;
+  margin-top: 15px;
+  background-color: #707070;
+  border-radius: 25px;
+}
+
+#vorschau-text{
+  color: white;
+}
+
+.input-container{
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: auto;
+}
+
+#überschrift{
+  font-family: 'Open Sans',sans-serif;
+  font-size: 18px;
+  padding: 15px;
+  min-height: 50px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.buttons{
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 49.5% 49.5%;
+  grid-gap: 1%;
+}
+
+#editorButton, #previewButton {
+  font-family: 'Poppins', sans-serif;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  width: 100%;
+  border-color: transparent;
+  color: white;
+  font-weight: 700;
+  font-size: .9rem;
+  outline: none;
+  cursor: pointer;
+}
+
+#speichern, #Abbrechen {
+  font-family: 'Poppins', sans-serif;
+  padding: 15px;
+  margin-bottom: 30px;
+  margin-right: 15px;
+  border-radius: 50px;
+  border-color: transparent;
+  background-color:  #16cc68;
+  color: white;
+  outline: none;
+  font-weight: 700;
+  font-size: .9rem;
+  cursor: pointer;
+}
+
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: 'Open Sans',sans-serif;
+  font-size: 18px;
+  border-radius: 15px;
+  
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px;
+ 
+}
+
+.card-item{
+    background-color: white;
+}
+section{
+    background: #272727;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+
+#cards {
+  padding: 100px 0;
+}
+
+#cards .container .card-item {
+  min-width: 270px;
+  padding: 50px 30px;
+  -webkit-box-shadow: -2px 2px 20px 0px #272727;
+          box-shadow: -2px 2px 20px 0px #272727;
+  margin-bottom: 25px;
+  border-radius: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+}
+
+#cards .container .card-item .card-info h3 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+#cards .container .card-item .card-info p {
+  font-size: .9rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+
+#vorschau-design{
+  background-color: #272727;
+  border-radius: 15px;
+  border: 1px solid #707070;
+}
+
+.drop-zone{
+  width: 100%;
+  height: 200px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  border: 2px dashed#707070;
+  border-radius: 15px;
+}
+
+.drop-zone__prompt{
+  color: #707070;
+}
+
+.drop-zone--over{
+  border-style: solid;
+}
+
+.drop-zone__input{
+  display: none;
+}
+
+.drop-zone__thumb{
+  width: 200px;
+  height: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #707070;
+  background-size: cover;
+  position: relative;
+}
+
+.drop-zone__thumb::after{
+  content: attr(data-label);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px 0;
+  color: white;
+  background: rgba(0, 0, 0, 0.75);
+  text-align: center;
+}
+
+#deleteThumbnailButton{
+  color: #707070;
+  width: fit-content;
+  cursor: pointer;
+  padding-bottom: 5px;
+  padding-left: 25%;
+}
+
+textarea::-webkit-scrollbar {
+  width: 1em;
+}
+textarea::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+textarea::-webkit-scrollbar-thumb {
+  background: #707070;
+  border-radius: 20px;
+}
+textarea::-webkit-scrollbar-thumb:hover {
+  background: #707070BF;
+}
+textarea::-webkit-scrollbar-thumb:active {
+  background: #70707080;
+}
+
+textarea::-webkit-scrollbar-corner { 
+  border-radius: 10px;
+}
