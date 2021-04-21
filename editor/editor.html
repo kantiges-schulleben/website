@@ -28,7 +28,7 @@
                 </button>
             </div>
 
-            <form id="hochladen" action="vorschau.php" method="post" enctype="multipart/form-data-" accept-charset="utf-8" autocomplete="off" novalidat>
+            <form id="hochladen" action="saveArticle.php" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off" novalidat>
                 <div id="editor">
       
                     <div class="card-item">
@@ -36,7 +36,7 @@
                             <h3>Überschrift</h3>
                             <div class="input-container">
                                 <p>
-                                    <input name="überschrift" type="text" maxlength="120" placeholder="Hier bitte die Überschrift eingeben" id="überschrift" required>
+                                    <input name="title" type="text" maxlength="120" placeholder="Hier bitte die Überschrift eingeben" id="überschrift" required>
                                 </p>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                             <div class="input-container">
                             <p>
                                 <div id="textarea">
-                                    <textarea name="inhalt" rows="10" placeholder="Hier Bitte den Textinhalt eingeben" id="inhalt"></textarea>
+                                    <textarea name="content" rows="10" placeholder="Hier Bitte den Textinhalt eingeben" id="inhalt"></textarea>
                                 </div>
                             </p>
                             </div>
@@ -64,7 +64,7 @@
                             <div class="drop-zone">
                                 <span class="drop-zone__prompt">Lege es hier ab <br>oder klicke zum Auswählen</span>
                                 <p id="uploadImage">
-                                    <input type="file" accept="image/x-png,image/gif,image/jpeg" name="bild" id="uploadedImage" class="drop-zone__input">
+                                    <input type="file" accept="image/x-png,image/gif,image/jpeg" name="imagefile[]" id="uploadedImage" class="drop-zone__input">
                                 </p>
                             </div>
                         </div>
