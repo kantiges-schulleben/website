@@ -113,7 +113,7 @@
         die(file_get_contents("./error.html"));
     }
 
-    $success = SQL("INSERT INTO articles (title, author, content, image, name) VALUES (?, ?, ?, ?, ?)", [$title, $authorID, $content, $imageName, $blogName], TRUE)[1];
+    $success = SQL("INSERT INTO articles (title, author, content, image, name, tags) VALUES (?, ?, ?, ?, ?)", [$title, $authorID, $content, $imageName, $blogName, $tags], TRUE)[1];
     if ($success > 0) {
         // $message = array(
         //     'success' => 'true'
