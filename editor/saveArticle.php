@@ -15,25 +15,24 @@
     $message = [];
     $maxSize = 512000; // maximale Dateigröße in Byte -> 500 KB
 
-    if (isset($_POST['title']) === false or isset($_POST['content']) === false /*or isset($_POST['blogname']) === false*/) {
-        // $message = array(
-        //     'success' => 'false',
-        //     'message' => 'Titel/Inhalt/Blog wurde nicht angegeben.'
-        // );
-
-        // die(json_encode($message));
-
+    if (isset($_POST['title']) === false or isset($_POST['content']) === false or isset($_GET['blogname']) === false or isset($_SESSION['user']) === false) {
         die(file_get_contents("./error.html"));
     }
+    // =============================================================
+    $title = htmlspecialchars($_POST['title'], ENT_QUOTES);
+    $content = htmlspecialchars($_POST['content'], ENT_QUOTES);
+    $blogName = htmlspecialchars($_GET['blogname'], ENT_QUOTES);
 
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-    // $blogName = $_POST['blogname'];
-    $blogName = "schuelerrat";
+    $berechtigungFürBlog = sqlReturn(SQL("SELECT id from berechtigungen WHERE name LIKE ?", [$blogName]), 0, "id");
+
+    if (!array_key_exists($berechtigungFürBlog, explode(",", $_SESSION['berechtigungen']))) {
+        die(file_get_contents("./error.html"));
+    }
+    // =============================================================
 
     $tags = "";
     if (isset($_POST['tags'])) {
-        $tags = $_POST['tags'];
+        $tags = htmlspecialchars($_POST['tags'], ENT_QUOTES);
     }
 
     $user = $_SESSION['user'];
@@ -44,7 +43,6 @@
         $file = $_FILES['imagefile'];
 
         $filename = $_FILES['imagefile']['name'];
-        // $filetype = $_FILES['imagefile']['type'];
         $tmppath = $_FILES['imagefile']['tmp_name'];
         $filesize = $_FILES['imagefile']['size'];
         $error = $_FILES['imagefile']['error'];
@@ -67,13 +65,6 @@
                     $text = "Es ist ein Fehler beim hochladen der Datei aufgetreten.";
                     break;
             }
-
-            // $message = array(
-            //     'success' => 'false',
-            //     'message' => $text
-            // );
-            // die(json_encode($message));
-
             die(file_get_contents("./error.html"));
         }
 
@@ -104,30 +95,9 @@
     $count = SQL("SELECT title FROM articles WHERE title LIKE ?", [$title])->num_rows;
     $count = 0;
     if ($count !== 0) {
-        // $message = array(
-        //     'success' => 'false',
-        //     'message' => 'Es existiert bereits ein Artikel mit diesem Namen.'
-        // );
-        // die(json_encode($message));
-
         die(file_get_contents("./error.html"));
     }
 
     $success = SQL("INSERT INTO articles (title, author, content, image, name, tags) VALUES (?, ?, ?, ?, ?)", [$title, $authorID, $content, $imageName, $blogName, $tags], TRUE)[1];
-    if ($success > 0) {
-        // $message = array(
-        //     'success' => 'true'
-        // );
-
-        die(file_get_contents("./success.html"));
-    } else {
-        // $message = array(
-        //     'success' => 'false',
-        //     'message' => 'Dein Artikel konnte nicht gespeichert werden. Bitte kontaktiere uns über das Kontaktformular.'
-        // );
-
-        die(file_get_contents("./error.html"));
-    }
-
-    // die(json_encode($message));
+    die(file_get_contents((($success > 0) ? "./success.html" : "./error.html")));
 ?>
