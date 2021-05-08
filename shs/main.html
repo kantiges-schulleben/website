@@ -18,32 +18,31 @@
 <body>
     <nav>
         <div class="menu-bar">
-            <div class="logo">
-                <h4>kantiges Schulleben</h4>
-            </div>
             <ul class="nav-links">
                 <li class="active"><a href="../index.php">Home</a>
                 </li>
                 <li>
-                    <a href="./index.php">ShS</a>
+                    <a href="../shs/index.php">ShS</a>
                     <div class="sub-menu-1">
                         <ul>
-                            <li><a href="./information/index.php">Informationen</a></li><!--##-->
+                            <li><a href="../shs/information/index.php">Informationen</a></li>
+                            <!--##-->
                             <li><a href="../shs/anmeldung/index.php">Anmeldung</a></li>
-                            <li><a href="./team/index.php">Team</a></li>
+                            <li><a href="../shs/team/index.php">Team</a></li>
                             <li><a href="../signup/index.php">Registrierung</a></li>
                             <li><a href="../login/index.php">Login</a></li>
                         </ul>
                     </div>
                 </li>
-                <li><a href="../error/index.php">Schülerrat</a><!--##-->
+                <li><a href="../schuelerrat/aktuelles/index.php">Schülerrat</a>
+                    <!--##-->
                     <div class="sub-menu-1">
                         <ul>
-                            <li><a href="../error/index.php">Aktuelles</a></li>
-                            <li><a href="../error/index.php">Allgemein</a></li>
-                            <li><a href="../error/index.php">Vorstand</a></li>
-                            <li><a href="../error/index.php">Arbeitsgruppen</a></li>
-                            <li><a href="../error/index.php">Kontakt</a></li>
+                            <li><a href="../schuelerrat/aktuelles/index.php">Aktuelles</a></li>
+                            <li><a href="../schuelerrat/allgemein/index.php">Allgemein</a></li>
+                            <li><a href="../schuelerrat/vorstand/index.php">Vorstand</a></li>
+                            <li><a href="../schuelerrat/arbeitsgruppen/index.php">Arbeitsgruppen</a></li>
+                            <li><a href="../schuelerrat/kontakt/index.php">Kontakt</a></li>
                         </ul>
                     </div>
                 </li>
@@ -62,21 +61,19 @@
                                 </div>
 
                             </li>
-
                             <li><a href="../error/index.php">internes System</a></li>
                         </ul>
                     </div>
                 </li>
                 <li>
                     <a href="../error/index.php">Projekte</a>
-                              <div class="sub-menu-1">
-                                  <ul>
-                                      <li><a href="../error/index.php">Schulband</a></li>
-                                      <li><a href="../error/index.php">Schulclub</a></li>
-                                  </ul>
-                              </div>
-                  </li>
-
+                    <div class="sub-menu-1">
+                        <ul>
+                            <li><a href="../error/index.php">Schulband</a></li>
+                            <li><a href="../error/index.php">Schulclub</a></li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
         </div>
         <div class="burger">
@@ -84,18 +81,34 @@
             <div class="line2"></div>
             <div class="line3"></div>
         </div>
-        <script src="../include/navi.js"></script>
+        <script>
+            const navSlide = () => {
+                const burger = document.querySelector('.burger');
+                const nav = document.querySelector('.nav-links');
+                const navLinks = document.querySelectorAll('.nav-links li');
+
+                burger.addEventListener('click', () => {
+                    nav.classList.toggle('nav-active');
+
+                    navLinks.forEach((link, index) => {
+                        link.style.animation = `navLinkFade 0.5s ease forwards`;
+                    });
+
+                    burger.classList.toggle('toggle');
+                });
+            }
+            navSlide();
+        </script>
     </nav>
 
 
     <section class="home">
         <div class="showcase">
             <h2>Schüler helfen Schülern</h2>
-            <img src="../assets/shs_masken.blau.png.png" alt="" />
+            <img src="../assets/Main_shs/shs.png" alt="" />
             <div class="info">
                 <h3>Werde Teil von Schüler helfen Schülern</h3>
-                <p>Du möchtest helfen oder du brauchst Hilfe dann kannst du dich bei über diese Webseite beim Projekt
-                    ShS anmelden.
+                <p>Du möchtest helfen oder du brauchst Hilfe dann kannst du dich bei über diese Webseite beim Projekt ShS anmelden.
 
                 </p>
             </div>
@@ -105,11 +118,11 @@
         <section class="features">
 
             <h2>So kommst du zur Nachhilfe</h2>
-            
-            
+
+
             <div class="cards">
                 <div class="card">
-               
+
                     <img src="../assets/info.jpg" alt="" />
                     <!--<a class="test" href="registrierung_shs.1.html"></a>-->
                     <h4>Informationen</h4>
@@ -118,8 +131,7 @@
                 <div class="card">
                     <img src="../assets/regestrierung1 (3).jpg" alt="" />
                     <h4>Registrierung</h4>
-                    <p>Wenn du an dem Projekt „Schüler helfen Schülern“ teilnehmen möchtest. Egal ob als
-                        Nachhilfeschüler oder Nachhilfelehrer. Dann registriere dich <b><a style="color: black" href="../signup/">hier</a></b>.</p>
+                    <p>Wenn du an dem Projekt „Schüler helfen Schülern“ teilnehmen möchtest. Egal ob als Nachhilfeschüler oder Nachhilfelehrer. Dann registriere dich <b><a style="color: black" href="../signup/">hier</a></b>.</p>
                 </div>
                 <div class="card">
                     <img src="../assets/login.jpg" alt="" />
@@ -140,74 +152,32 @@
             </p>
         </div>
     </section>
-
-
-
     <footer>
-        <div class="main-content">
-            <div class="left box">
-                <a class="heute" href="../generel/datenschutz/index.php">
-                    <h2>Datenschutz</h2>
-                </a>
-                <div class="content">
-                    <p>Wenn du auf Datenschutz klickst, kannst du unsere Datenschutzerklärung lesen.</p>
-                    <div class="social">
-                        <a href="https://www.instagram.com/schuelerrat_kantgym/?igshid=1t27mbn5r03ir"><span
-                                class="fab fa-instagram"></span></a>
+        <div class="footer">
+            <ul>
+                <li>
+                    <div class="titleR">
+                        Rechtliches
                     </div>
-                </div>
-            </div>
-            <div class="center box">
-                <a href="../generel/impressum/index.php">
-                    <h2>Impressum</h2>
-                </a>
-                <div class="content">
-                    <div class="place">
-                        <span class="fas fa-map-marker-alt"></span>
-                        <span class="text">Leipzig, Deutschland</span>
+                    <div class="buttonsR">
+                        <a href="../general/datenschutz/index.php">Datenschutzerklärung</a><br>
+                        <a href="../general/impressum/index.php">Impressum</a><br>
                     </div>
-                    <div class="phone">
-                        <span class="fas fa-phone-alt"></span>
-                        <span class="text">0341 303480</span>
+                </li>
+                <li>
+                    <div class="titleS">
+                        Socialmedia
                     </div>
-                    <div class="email">
-                        <span class="fas fa-envelope"></span>
-                        <span class="text">shs@kantgym-leipzig.de</span>
+                    <div class="buttonsS">
+                        <a href="https://www.kantgym-leipzig.de">Webseite unserer Schule</a><br>
+                        <a href="https://www.instagram.com/schuelerrat_kantgym/">Instagram</a><br>
                     </div>
-                </div>
-            </div>
-            <div class="right box">
-                <a href="../shs/team/index.php">
-                    <h2>Kontaktiere uns</h2>
-                </a>
-                <div class="content">
-                    <form action="#">
-                        <div class="email">
-                            <div class="text">Email *</div>
-                            <input type="email"
-                                placeholder="Dieses Feld funktioniert noch nicht. Schreib uns eine Email." required>
-                        </div>
-                        <div class="msg">
-                            <div class="text">Nachricht *</div>
-                            <textarea rows="2" cols="25"
-                                placeholder="Dieses Feld funktioniert noch nicht. Schreib uns eine Email."
-                                required></textarea>
-                        </div>
-                        <div class="fgh">
-                            <button type="submit">Abschicken</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="bottom">
-            <center>
-                <span class="credit">Created by Kilian Schneider, Benjamin Kohl, Pascal Schnabel, Peter
-                    Laser und Kristian Lehmann</span>
+                </li>
+            </ul>
+            <div class="cc">
                 <span class="far fa-copyright"></span><span>2021 All rights reserved.</span>
-            </center>
+            </div>
         </div>
-
     </footer>
 </body>
 
