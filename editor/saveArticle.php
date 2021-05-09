@@ -85,6 +85,10 @@
         // }
         $filename = md5($filename[0], false) . "." . explode(".", $filename[0])[1];
 
+        if ($filename === FALSE) {
+            die(file_get_contents("./error.html"));
+        }
+
         if (!move_uploaded_file($file['tmp_name'][0], "../images/" . $filename)) {
             die(file_get_contents("./error.html"));
         }
@@ -98,6 +102,6 @@
         die(file_get_contents("./error.html"));
     }
 
-    $success = SQL("INSERT INTO articles (title, author, content, image, name, tags) VALUES (?, ?, ?, ?, ?)", [$title, $authorID, $content, $imageName, $blogName, $tags], TRUE)[1];
+    $success = SQL("INSERT INTO articles (title, author, content, image, name, tags) VALUES (?, ?, ?, ?, ?, ?)", [$title, $authorID, $content, $imageName, $blogName, $tags], TRUE)[1];
     die(file_get_contents((($success > 0) ? "./success.html" : "./error.html")));
 ?>

@@ -3,16 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Reden</title>
+    <title>Schülerrat - Reden</title>
     <link rel="stylesheet" href="https:///fonts.googleapis.com/css?family=Roboto:300,400">
     <link rel="stylesheet" href="./aktuelles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+
+    <script src="../dom.js"></script>
+    <script src="./index.js"></script>
 </head>
 
-<body>
+<body onload="preload()">
     <nav>
         <div class="menu-bar">
             <ul class="nav-links">
@@ -47,7 +51,8 @@
                         <ul>
                             <li><a href="../../../error/index.php">Informationen</a></li>
                             <li><a href="../../../error/index.php">Vorstellung</a></li>
-                            <li class="hover-me"><a href="../../../error/index.php">Blog</a><i class="fa-angel-right"></i>
+                            <li class="hover-me"><a href="../../../error/index.php">Blog</a><i
+                                    class="fa-angel-right"></i>
                                 <div class="sub-menu-2">
                                     <ul>
                                         <li><a href="../../../error/index.php">Schulleben</a></li>
@@ -125,150 +130,24 @@
         <h3>Reden/Statements</h3>
         <h4 id="Reden/Statements">Reden/Statements</h4>
 
-        <div class="items2">
-            <div class="item2">
+        <div class="items2" id="reden">
+            <!-- <div class="item2">
                 <div class="placeholder"></div>
                 <img src="../../../assets/email.png">
                 <div class="f">Titel</div><br>
                 <div class="d">
-                    Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
+                    Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
+                    Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
+                    Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
+                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
+                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
+                    stehen! Hier könnte ihre Werbung
+                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
+                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
                 </div>
                 <a href="#Protokolle" class="button1">Beitrag anzeigen</a>
-            </div>
+            </div> -->
 
-            <div class="item2">
-                <div class="placeholder"></div>
-                <img src="../../../assets/email.png">
-                <div class="f">Titel</div><br>
-                <div class="d">
-                    Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-                </div>
-                <a href="#Protokolle" class="button1">Beitrag anzeigen</a>
-            </div>
-
-            <div class="item2">
-                <div class="placeholder"></div>
-                <img src="../../../assets/email.png">
-                <div class="f">Titel</div><br>
-                <div class="d">
-                    Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-                </div>
-                <a href="#Protokolle" class="button1">Beitrag anzeigen</a>
-            </div>
-
-            <div class="item2">
-                <div class="placeholder"></div>
-                <img src="../../../assets/email.png">
-                <div class="f">Titel</div><br>
-                <div class="d">
-                    Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-                </div>
-                <a href="#Protokolle" class="button1">Beitrag anzeigen</a>
-            </div>
-
-            <div class="item2">
-                <div class="placeholder"></div>
-                <img src="../../../assets/email.png">
-                <div class="f">Titel</div><br>
-                <div class="d">
-                    Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-                </div>
-                <a href="#Protokolle" class="button1">Beitrag anzeigen</a>
-            </div>
-
-            <div class="item2">
-                <div class="placeholder"></div>
-                <img src="../../../assets/email.png">
-                <div class="f">Titel</div><br>
-                <div class="d">
-                    Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-                </div>
-                <a href="#Protokolle" class="button1">Beitrag anzeigen</a>
-            </div>
-
-            <div class="item2">
-                <div class="placeholder"></div>
-                <img src="../../../assets/email.png">
-                <div class="f">Titel</div><br>
-                <div class="d">
-                    Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-                </div>
-                <a href="#Protokolle" class="button1">Beitrag anzeigen</a>
-            </div>
-
-            <div class="item2">
-                <div class="placeholder"></div>
-                <img src="../../../assets/email.png">
-                <div class="f">Titel</div><br>
-                <div class="d">
-                    Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-                </div>
-                <a href="#Protokolle" class="button1">Beitrag anzeigen</a>
-            </div>
-
-            <div class="item2">
-                <div class="placeholder"></div>
-                <img src="../../../assets/email.png">
-                <div class="f">Titel</div><br>
-                <div class="d">
-                    Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-                </div>
-                <a href="#Protokolle" class="button1">Beitrag anzeigen</a>
-            </div>
-
-            <div class="item2">
-                <div class="placeholder"></div>
-                <img src="../../../assets/email.png">
-                <div class="f">Titel</div><br>
-                <div class="d">
-                    Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-                </div>
-                <a href="#Protokolle" class="button1">Beitrag anzeigen</a>
-            </div>
-
-            <div class="item2">
-                <div class="placeholder"></div>
-                <img src="../../../assets/email.png">
-                <div class="f">Titel</div><br>
-                <div class="d">
-                    Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-                </div>
-                <a href="#Protokolle" class="button1">Beitrag anzeigen</a>
-            </div>
-
-            <div class="item2">
-                <div class="placeholder"></div>
-                <img src="../../../assets/email.png">
-                <div class="f">Titel</div><br>
-                <div class="d">
-                    Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-                </div>
-                <a href="#Protokolle" class="button1">Beitrag anzeigen</a>
-            </div>
         </div>
     </div>
 
