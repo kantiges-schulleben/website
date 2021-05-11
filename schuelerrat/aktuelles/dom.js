@@ -28,7 +28,7 @@ function createStatement(_title = "", _content = "", _image = "", _target="") {
 
     const content = document.createElement("div");
     content.classList.add("d");
-    content.innerText = _content;
+    content.innerHTML = _content;
 
     const linkToArticle = document.createElement("a");
     linkToArticle.classList.add("button1");

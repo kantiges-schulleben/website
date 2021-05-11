@@ -42,7 +42,7 @@
 
             array_push($output, array(
                 'title' => rawurlencode($news['title']),
-                'content' => rawurlencode(substr($news['content'], 0, 256) . "..."),
+                'content' => rawurlencode(parseMarkdown(substr($news['content'], 0, 256) . "...")),
                 'image' => rawurlencode("../images/" . $news['image']),
                 'date' => rawurlencode($date),
                 'id' => rawurlencode($news['id']),
@@ -52,4 +52,109 @@
     }
 
     die(json_encode($output));
+
+    function parseMarkdown($content) {
+        $contentToOutput = "";
+        
+        $boldStart = TRUE;
+        $italicStart = TRUE;
+        $durchStart = TRUE;
+        $underLineStart = TRUE;
+        $headlineStart = TRUE;
+        $ignoreNext = FALSE;
+
+        for ($i = 0; $i < strlen($content); $i++){
+            $char = $content[$i];
+            switch ($char) {
+                // Zeilenumbruch
+                case '\\':
+                    if ($content[$i + 1] == " ") {
+                        $contentToOutput .= $char;
+                    } else {
+                        $contentToOutput .= "<br>";
+                    }
+                    break;
+                // fett
+                case '*':
+                    if ($content[$i + 1] == " " && $boldStart === TRUE) {
+                        $contentToOutput .= $char;
+                    } else {
+                        $contentToOutput .= "<" . (($boldStart === TRUE) ? "" : "/") . "b>";
+                        $boldStart = !$boldStart;
+                    }
+                    break;
+                // kursiv
+                case '~':
+                    if ($content[$i + 1] == " " && $italicStart === TRUE) {
+                        $contentToOutput .= $char;
+                    } else {
+                        $contentToOutput .= "<" . (($italicStart === TRUE) ? "" : "/") . "i>";
+                        $italicStart = !$italicStart;
+                    }
+                    break;
+                // durchgestrichen
+                case '-':
+                    if ($content[$i + 1] == " " && $durchStart === TRUE) {
+                        $contentToOutput .= $char;
+                    } else {
+                        $contentToOutput .= "<" . (($durchStart === TRUE) ? "" : "/") . "s>";
+                        $durchStart = !$durchStart;
+                    }
+                    break;
+                // unterstrichen
+                case '_':
+                    if ($content[$i + 1] == " " && $underLineStart === TRUE) {
+                        $contentToOutput .= $char;
+                    } else {
+                        $contentToOutput .= "<" . (($underLineStart === TRUE) ? "" : "/") . "u>";
+                        $underLineStart = !$underLineStart;
+                    }
+                    break;
+                // horizontale Linie
+                case '=':
+                    if ($ignoreNext === FALSE) {
+                        if ($content[$i + 1] !== "=") {
+                            $contentToOutput .= $char;
+                        } else {
+                            $contentToOutput .= "<hr>";
+                            $ignoreNext = TRUE;
+                        }
+                    } else {
+                        $ignoreNext = FALSE;
+                    }
+                    break;
+                // Übershrift
+                case '#':
+                    if ($content[$i + 1] == " " && $headlineStart === TRUE) {
+                        $contentToOutput .= $char;
+                    } else {
+                        $contentToOutput .= "<" . (($headlineStart === TRUE) ? "" : "/") . "h5><hr>";
+                        $headlineStart = !$headlineStart;
+                    }
+                    break;
+                // Rest
+                default:
+                    $contentToOutput .= $char;
+                    break;
+            }
+        }
+
+        if ($boldStart === FALSE) {
+            $contentToOutput .= "</b>";
+        }
+        if ($italicStart === FALSE) {
+            $contentToOutput .= "</i>";
+        }
+        if ($durchStart === FALSE) {
+            $contentToOutput .= "</s>";
+        }
+        if ($underLineStart === FALSE) {
+            $contentToOutput .= "</u>";
+        }
+        if ($headlineStart === FALSE) {
+            $contentToOutput .= "</h5><hr>";
+        }
+        
+        return $contentToOutput;
+    }
 ?>
