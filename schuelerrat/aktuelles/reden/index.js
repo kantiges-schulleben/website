@@ -1,18 +1,61 @@
+var page = 0;
+
 function preload() {
-        // Reden/Statements ===================================================================================
-        for (let i = 0; i < 12; i++) {
-            document.getElementById("reden").appendChild(createStatement("Titel", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et", "../../../assets/email.png"));
+    // Reden/Statements ===================================================================================
+    $.post("../../../blog/get.php", {
+        blogname: "reden",
+        page: "0"
+    }, (data) => {
+        const json = JSON.parse(data);
+        console.log(json);
+
+        var count = 0;
+        if (json.length > 0) {
+            for (article of json) {
+                document.getElementById("reden").appendChild(createStatement(decodeURIComponent(article.title), decodeURIComponent(article.content), "../../../assets/email.png", "../../../blog/get.php?id=" + decodeURIComponent(article.id)));
+                if (count == 5) {
+                    break;
+                }
+                count++
+            }
+
+            // <a href="./reden/index.php" class="button1">Alle Beiträge anzeigen</a> -->
+            const showAllSpeaches = () => {
+                const elmnt = document.createElement("a");
+                elmnt.href = "javascript:void(0);";
+                elmnt.addEventListener("click", () => {
+                    page ++;
+                    makeCallAndUpdateDOM();
+                });
+                elmnt.classList.add("button1");
+                elmnt.innerText = "weitere Beiträge anzeigen";
+
+                return elmnt;
+            };
+            document.getElementById("redenParent").appendChild(showAllSpeaches());
+        } else {
+            document.getElementById("reden").appendChild(createNoContent("Das sind nicht die Reden, die du suchst."));
         }
-    
-        // <a href="./reden/index.php" class="button1">Alle Beiträge anzeigen</a> -->
-    
-        // const showAllSpeaches = () => {
-        //     const elmnt = document.createElement("a");
-        //     elmnt.href = "./reden/index.php";
-        //     elmnt.classList.add("button1");
-        //     elmnt.innerText = "Alle Beiträge anzeigen";
-    
-        //     return elmnt;
-        // };
-        // document.getElementById("reden").appendChild(showAllSpeaches());
+    });
+}
+
+function makeCallAndUpdateDOM() {
+    $.post("../../../blog/get.php", {
+        blogname: "reden",
+        page: page
+    }, (data) => {
+        const json = JSON.parse(data);
+        console.log(json);
+
+        var count = 0;
+        if (json.length > 0) {
+            for (article of json) {
+                document.getElementById("reden").appendChild(createStatement(decodeURIComponent(article.title), decodeURIComponent(article.content), "../../../assets/email.png", "../../../blog/get.php?id=" + decodeURIComponent(article.id)));
+                if (count == 5) {
+                    break;
+                }
+                count++
+            }
+        }
+    });
 }

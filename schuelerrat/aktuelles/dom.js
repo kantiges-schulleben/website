@@ -1,4 +1,4 @@
-function createStatement(_title = "", _content = "", _image = "") {
+function createStatement(_title = "", _content = "", _image = "", _target="") {
     /*
     <div class="item2">
         <div class="placeholder"></div>
@@ -32,7 +32,7 @@ function createStatement(_title = "", _content = "", _image = "") {
 
     const linkToArticle = document.createElement("a");
     linkToArticle.classList.add("button1");
-    linkToArticle.href = "#Protokolle";
+    linkToArticle.href = _target;
     linkToArticle.innerText = "Beitrag anzeigen";
 
     // ===========================================================
@@ -76,4 +76,25 @@ function createDownloadProtokoll(_title = "", _date = "",  _downloadLocation = "
     // ===========================================================
 
     return container
+}
+
+function createNoContent(_title = "") {
+    const container = document.createElement("div");
+    // container.classList.add("item2");
+
+    const placeholder = document.createElement("div");
+    placeholder.classList.add("placeholder");
+
+
+    const title = document.createElement("div");
+    title.classList.add("f");
+    title.innerText = _title;
+    title.style.fontStyle = "italic";
+
+    // ===========================================================
+    container.appendChild(placeholder);
+    container.appendChild(title);
+    // ===========================================================
+
+    return container;
 }

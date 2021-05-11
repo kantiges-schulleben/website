@@ -23,9 +23,9 @@
     $content = htmlspecialchars($_POST['content'], ENT_QUOTES);
     $blogName = htmlspecialchars($_GET['blogname'], ENT_QUOTES);
 
-    $berechtigungFürBlog = sqlReturn(SQL("SELECT id from berechtigungen WHERE name LIKE ?", [$blogName]), 0, "id");
+    $berechtigungForBlog = sqlReturn(SQL("SELECT id from berechtigungen WHERE `name` LIKE ?", [$blogName], FALSE), 0, 'id');
 
-    if (!array_key_exists($berechtigungFürBlog, explode(",", $_SESSION['berechtigungen']))) {
+    if (!in_array(strval($berechtigungForBlog), explode(",", $_SESSION['berechtigungen'])) === TRUE) {
         die(file_get_contents("./error.html"));
     }
     // =============================================================
@@ -40,60 +40,68 @@
     $imageName = "";
 
     if (isset($_FILES['imagefile'])) {
-        $file = $_FILES['imagefile'];
+        if(!file_exists($_FILES['myfile']['tmp_name']) || !is_uploaded_file($_FILES['myfile']['tmp_name'])) {
+        } else {
+            $file = $_FILES['imagefile'];
 
-        $filename = $_FILES['imagefile']['name'];
-        $tmppath = $_FILES['imagefile']['tmp_name'];
-        $filesize = $_FILES['imagefile']['size'];
-        $error = $_FILES['imagefile']['error'];
+            $filename = $_FILES['imagefile']['name'];
+            $tmppath = $_FILES['imagefile']['tmp_name'];
+            $filesize = $_FILES['imagefile']['size'];
+            $error = $_FILES['imagefile']['error'];
 
-        if ($error === UPLOAD_ERR_OK) {
-            switch ($error) {
-                case UPLOAD_ERR_INI_SIZE:
-                    $text = "Die hochgeladene Datei ist zu groß.";
-                    break;
-                case UPLOAD_ERR_FORM_SIZE:
-                    $text = "Die hochgeladene Datei ist zu groß.";
-                    break;
-                case UPLOAD_ERR_PARTIAL:
-                    $text = "Die Datei wurde nur zum Teil hochgeladen.";
-                    break;
-                case UPLOAD_ERR_CANT_WRITE:
-                    $text = "Die Datei konnte nicht gespeichert werden. Bitte kontaktiere uns über das Kontaktformular.";
-                    break;
-                default:
-                    $text = "Es ist ein Fehler beim hochladen der Datei aufgetreten.";
-                    break;
+            if ($error === UPLOAD_ERR_OK) {
+                switch ($error) {
+                    case UPLOAD_ERR_NO_FILE:
+                        break;
+                    case UPLOAD_ERR_INI_SIZE:
+                        $text = "Die hochgeladene Datei ist zu groß.";
+                        break;
+                    case UPLOAD_ERR_FORM_SIZE:
+                        $text = "Die hochgeladene Datei ist zu groß.";
+                        break;
+                    case UPLOAD_ERR_PARTIAL:
+                        $text = "Die Datei wurde nur zum Teil hochgeladen.";
+                        break;
+                    case UPLOAD_ERR_CANT_WRITE:
+                        $text = "Die Datei konnte nicht gespeichert werden. Bitte kontaktiere uns über das Kontaktformular.";
+                        break;
+                    default:
+                        $text = "Es ist ein Fehler beim hochladen der Datei aufgetreten.";
+                        break;
+                }
+                if (!$justNoFile) {
+                    die(file_get_contents("./error.html"));
+                }
             }
-            die(file_get_contents("./error.html"));
-        }
 
-        // TODO prüfen, ob valider Dateityp
+            // TODO prüfen, ob valider Dateityp
+
+            // $filetype = explode("/", $filetype);
+            // if ($filetype[0] !== "image" or ($filetype[1] !== "bmp" and $filetype[1] !== "gif" and $filetype[1] !== "jpeg" and $filetype[1] !== "png")) {
+            //     $message = array(
+            //         'success' => 'false',
+            //         'message' => 'Die Datei besitzt einen nicht erlaubten Dateityp.',
+            //         "filename" => $filename,
+            //         "filetype" => $filetype,
+            //         "tmppath" => $tmppath,
+            //         "filesize" => $filesize,
+            //         "error" => $error
+            //     );
+            //     die(json_encode($message));
+            // }
+
+            $filename = md5($filename[0], false) . "." . explode(".", $filename[0])[1];
+
+            if ($filename === FALSE) {
+                die(file_get_contents("./error.html"));
+            }
         
-        // $filetype = explode("/", $filetype);
-        // if ($filetype[0] !== "image" or ($filetype[1] !== "bmp" and $filetype[1] !== "gif" and $filetype[1] !== "jpeg" and $filetype[1] !== "png")) {
-        //     $message = array(
-        //         'success' => 'false',
-        //         'message' => 'Die Datei besitzt einen nicht erlaubten Dateityp.',
-        //         "filename" => $filename,
-        //         "filetype" => $filetype,
-        //         "tmppath" => $tmppath,
-        //         "filesize" => $filesize,
-        //         "error" => $error
-        //     );
-        //     die(json_encode($message));
-        // }
-        $filename = md5($filename[0], false) . "." . explode(".", $filename[0])[1];
-
-        if ($filename === FALSE) {
-            die(file_get_contents("./error.html"));
+            if (!move_uploaded_file($file['tmp_name'][0], "../images/" . $filename)) {
+                die(file_get_contents("./error.html"));
+            }
+        
+            $imageName = $filename;
         }
-
-        if (!move_uploaded_file($file['tmp_name'][0], "../images/" . $filename)) {
-            die(file_get_contents("./error.html"));
-        }
-
-        $imageName = $filename;
     }
 
     $count = SQL("SELECT title FROM articles WHERE title LIKE ?", [$title])->num_rows;

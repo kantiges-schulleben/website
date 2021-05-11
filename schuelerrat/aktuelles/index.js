@@ -1,39 +1,71 @@
 function preload() {
     // Reden/Statements ===================================================================================
-    for (let i = 0; i < 3; i++) {
-        document.getElementById("reden").appendChild(createStatement("Titel", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et", "../../assets/email.png"));
-    }
+    $.post("../../blog/get.php", {
+        blogname: "reden",
+        page: "0"
+    }, (data) => {
+        const json = JSON.parse(data);
 
-    // <a href="./reden/index.php" class="button1">Alle Beiträge anzeigen</a> -->
+        var count = 0;
+        if (json.length > 0) {
+            for (article of json) {
+                document.getElementById("reden").appendChild(createStatement(decodeURIComponent(article.title), decodeURIComponent(article.content), "../../assets/email.png", "../../blog/get.php?id=" + decodeURIComponent(article.id)));
+                if (count == 2) {
+                    break;
+                }
+                count++
+            }
 
-    const showAllSpeaches = () => {
-        const elmnt = document.createElement("a");
-        elmnt.href = "./reden/index.php";
-        elmnt.classList.add("button1");
-        elmnt.innerText = "Alle Beiträge anzeigen";
+            // <a href="./reden/index.php" class="button1">Alle Beiträge anzeigen</a> -->
+            const showAllSpeaches = () => {
+                const elmnt = document.createElement("a");
+                elmnt.href = "./reden/index.php";
+                elmnt.classList.add("button1");
+                elmnt.innerText = "Alle Beiträge anzeigen";
 
-        return elmnt;
-    };
-    document.getElementById("reden").appendChild(showAllSpeaches());
+                return elmnt;
+            };
+            document.getElementById("redenParent").appendChild(showAllSpeaches());
+        } else {
+            document.getElementById("reden").appendChild(createNoContent("Das sind nicht die Reden, die du suchst."));
+        }
+    });
 
     // Relevantes ===================================================================================
-    for (let i = 0; i < 3; i++) {
-        document.getElementById("relevantes").appendChild(createStatement("Titel", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et", "../../assets/info.jpg"));
-    }
+    $.post("../../blog/get.php", {
+        blogname: "schuelerrat",
+        page: "0"
+    }, (data) => {
+        const json = JSON.parse(data);
 
-    // <a href="./relevantes/index.php" class="button1">Alle Beiträge anzeigen</a>
+        var count = 0;
+        if (json.length > 0) {
+            for (article of json) {
+                document.getElementById("relevantes").appendChild(createStatement(decodeURIComponent(article.title), decodeURIComponent(article.content), "../../assets/email.png", "../../blog/get.php?id=" + decodeURIComponent(article.id)));
+                if (count == 2) {
+                    break;
+                }
+                count++
+            }
 
-    const showAllRelevant = () => {
-        const elmnt = document.createElement("a");
-        elmnt.href = "./relevantes/index.php";
-        elmnt.classList.add("button1");
-        elmnt.innerText = "Alle Beiträge anzeigen";
+            // <a href="./reden/index.php" class="button1">Alle Beiträge anzeigen</a> -->
+            const showAllSpeaches = () => {
+                const elmnt = document.createElement("a");
+                elmnt.href = "./relevantes/index.php";
+                elmnt.classList.add("button1");
+                elmnt.innerText = "Alle Beiträge anzeigen";
 
-        return elmnt;
-    };
-    document.getElementById("relevantes").appendChild(showAllRelevant());
+                return elmnt;
+            };
+            document.getElementById("relevantesParent").appendChild(showAllSpeaches());
+        } else {
+            document.getElementById("relevantes").appendChild(createNoContent("Gehen Sie weiter. Hier gibt es nichts relevantes zu sehen!"));
+        }
+    });
 
     // Protokolle ===================================================================================
+    document.getElementById("protokolle").appendChild(createNoContent("Unmöglich. Vielleicht sind die Archive unvollständig."));
+    return;
     for (let i = 0; i < 9; i++) {
         document.getElementById("protokolle").appendChild(createDownloadProtokoll(`Protokoll ${i}`, "09.05.2021", "#Protokolle"));
     }

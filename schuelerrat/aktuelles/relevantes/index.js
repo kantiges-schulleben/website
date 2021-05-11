@@ -1,18 +1,61 @@
+var page = 0;
+
 function preload() {
     // Reden/Statements ===================================================================================
-    for (let i = 0; i < 12; i++) {
-        document.getElementById("relevantes").appendChild(createStatement("Titel", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et", "../../../assets/info.jpg"));
-    }
+    $.post("../../../blog/get.php", {
+        blogname: "schuelerrat",
+        page: "0"
+    }, (data) => {
+        const json = JSON.parse(data);
+        console.log(json);
 
-    // <a href="./reden/index.php" class="button1">Alle Beiträge anzeigen</a> -->
+        var count = 0;
+        if (json.length > 0) {
+            for (article of json) {
+                document.getElementById("relevantes").appendChild(createStatement(decodeURIComponent(article.title), decodeURIComponent(article.content), "../../../assets/email.png", "../../../blog/get.php?id=" + decodeURIComponent(article.id)));
+                if (count == 5) {
+                    break;
+                }
+                count++
+            }
 
-    // const showAllSpeaches = () => {
-    //     const elmnt = document.createElement("a");
-    //     elmnt.href = "./reden/index.php";
-    //     elmnt.classList.add("button1");
-    //     elmnt.innerText = "Alle Beiträge anzeigen";
+            // <a href="./reden/index.php" class="button1">Alle Beiträge anzeigen</a> -->
+            const showAllSpeaches = () => {
+                const elmnt = document.createElement("a");
+                elmnt.href = "javascript:void(0);";
+                elmnt.addEventListener("click", () => {
+                    page ++;
+                    makeCallAndUpdateDOM();
+                });
+                elmnt.classList.add("button1");
+                elmnt.innerText = "weitere Beiträge anzeigen";
 
-    //     return elmnt;
-    // };
-    // document.getElementById("reden").appendChild(showAllSpeaches());
+                return elmnt;
+            };
+            document.getElementById("relevantesParent").appendChild(showAllSpeaches());
+        } else {
+            document.getElementById("relevantes").appendChild(createNoContent("Gehen Sie weiter. Hier gibt es nichts relevantes zu sehen!"));
+        }
+    });
+}
+
+function makeCallAndUpdateDOM() {
+    $.post("../../../blog/get.php", {
+        blogname: "schuelerrat",
+        page: page
+    }, (data) => {
+        const json = JSON.parse(data);
+        console.log(json);
+
+        var count = 0;
+        if (json.length > 0) {
+            for (article of json) {
+                document.getElementById("relevantes").appendChild(createStatement(decodeURIComponent(article.title), decodeURIComponent(article.content), "../../../assets/email.png", "../../../blog/get.php?id=" + decodeURIComponent(article.id)));
+                if (count == 5) {
+                    break;
+                }
+                count++
+            }
+        }
+    });
 }
