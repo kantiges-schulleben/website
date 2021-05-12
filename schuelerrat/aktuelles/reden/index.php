@@ -123,20 +123,20 @@
             <h1>Schülerrat</h1>
 
             <div class="desktop">
-                <a href="#Protokolle" class="button1">Relevantes</a>
-                <a href="#Protokolle" class="button2">Reden/Statements</a>
-                <a href="#Protokolle" class="button3">Protokolle</a>
+                <a href="../relevantes" class="button1">Relevantes</a>
+                <a href="#" class="button2">Reden/Statements</a>
+                <a href="#" class="button3">Protokolle</a>
             </div>
 
             <ul class="mobil">
                 <li>
-                    <a href="#Protokolle" class="button2">Reden/Statements</a>
+                    <a href="../relevantes" class="button2">Reden/Statements</a>
                 </li>
                 <li>
-                    <a href="#Protokolle" class="button1">Relevantes</a>
+                    <a href="#" class="button1">Relevantes</a>
                 </li>
                 <li>
-                    <a href="#Protokolle" class="button3">Protokolle</a>
+                    <a href="#" class="button3">Protokolle</a>
                 </li>
             </ul>
         </div>

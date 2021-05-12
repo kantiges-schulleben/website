@@ -9,7 +9,8 @@ function preload() {
         var count = 0;
         if (json.length > 0) {
             for (article of json) {
-                document.getElementById("reden").appendChild(createStatement(decodeURIComponent(article.title), decodeURIComponent(article.content), "../../assets/email.png", "../../blog/get.php?id=" + decodeURIComponent(article.id)));
+                console.log(article.image);
+                document.getElementById("reden").appendChild(createStatement(decodeURIComponent(article.title), decodeURIComponent(article.content), "../" + ((decodeURIComponent(article.image) != "../images/") ? decodeURIComponent(article.image) : "../assets/email.png"), "../../blog/get.php?id=" + decodeURIComponent(article.id)));
                 if (count == 2) {
                     break;
                 }
@@ -41,7 +42,8 @@ function preload() {
         var count = 0;
         if (json.length > 0) {
             for (article of json) {
-                document.getElementById("relevantes").appendChild(createStatement(decodeURIComponent(article.title), decodeURIComponent(article.content), "../../assets/email.png", "../../blog/get.php?id=" + decodeURIComponent(article.id)));
+                console.log(article.image);
+                document.getElementById("relevantes").appendChild(createStatement(decodeURIComponent(article.title), decodeURIComponent(article.content),  "../" + ((decodeURIComponent(article.image) != "../images/") ? decodeURIComponent(article.image) : "../assets/email.png"), "../../blog/get.php?id=" + decodeURIComponent(article.id)));
                 if (count == 2) {
                     break;
                 }

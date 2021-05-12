@@ -186,7 +186,7 @@
         </div>
 
         <h6><b>Stellv. Schulkonferenzmitglied:</b></h6><br><br>
-        <img src="" alt="">
+        <img src="../../assets/vorstand/stellmit2.png" alt="">
         <div class="text">
             Mein Name ist Tom Spiegel, ich bin 15 Jahre alt und gehe in die 10. Klasse. Meine Hobbys sind singen, Bass spielen und schauspielern. Ich freue mich darüber in diesem Jahr wieder ein Teil des Schülerrats zu sein. Es ist einfach großartig, dass wir Schüler
             einen Ort haben, um Demokratie zu leben und dadurch mit in den Schulalltag eingreifen zu können. Umso mehr freue ich mich wieder stellvertretendes Schulkonferenz-Mitglied zu sein. Mir hat dieses Amt schon letztes Jahr sehr viel Freude bereitet,
@@ -197,10 +197,28 @@
         <h6><b>Stadtschülerratsdelegierte:</b></h6><br><br>
         <img src="../../assets/vorstand/stadts1.jpg" alt="">
         <div class="text">
-            Mein Name ist Tom Spiegel, ich bin 15 Jahre alt und gehe in die 10. Klasse. Meine Hobbys sind singen, Bass spielen und schauspielern. Ich freue mich darüber in diesem Jahr wieder ein Teil des Schülerrats zu sein. Es ist einfach großartig, dass wir Schüler
-            einen Ort haben, um Demokratie zu leben und dadurch mit in den Schulalltag eingreifen zu können. Umso mehr freue ich mich wieder stellvertretendes Schulkonferenz-Mitglied zu sein. Mir hat dieses Amt schon letztes Jahr sehr viel Freude bereitet,
-            da man mit der Schulleitung und den Elternrat wichtige Probleme im Schulhaus und Schulleben ansprechen und verändern konnte. Ich hoffe das wir trotz Corona dieses Jahr wieder Erfolge feiern können und das Schulleben Verbessern werden. Ich
-            freue mich auf das Schuljahr 2020/2021 und wünsche uns dem Schülerrat und euch Schülern maximale Erfolge. Liebe Grüße Euer Tom
+        Hallöchen,
+        ich bin Freda Lehmann, 11 Jahre alt und gehe in die
+        Klasse 6a, die Bläserklasse (ich spiele eine von 5
+        Querflöten). In meiner Freizeit spiele ich Volleyball
+        und treffe mich gerne mit Freunden.
+        Ich habe mich sehr darüber gefreut, dass ich schon
+        im zweiten Jahr an dieser Schule von euch zur
+        Stadtschülerrats Delegierten gewählt wurde. Ich
+        denke, es wird mir sehr viel Spaß machen und ich
+        werde viele neue Erfahrungen sammeln können.
+        Viele werden vielleicht denken, dass ich dem Amt noch nicht gewachsen bin, weil ich erst in
+        die sechste Klasse gehe, aber ich kann euch versichern, dass ich meine Aufgabe ernst nehme
+        und mich ins Zeug legen werde, um eure Erwartungen und Wünsche zu erfüllen und
+        durchzusetzen (Na ja, vielleicht muss ich noch ein, zwei Mal nachfragen, aber dann kriege ich
+        es auch selbst hin;)). Denn ich diskutiere gern und finde es toll, dass es so eine Organisation,
+        wie den Schülerrat gibt, in der wir SchülerInnen unsere Probleme und Wünsche vortragen
+        dürfen und versuchen, das was nicht funktioniert, gemeinsam mit anderen Schülern zu
+        verbessern.
+        Außerdem wird es sehr spannend sein zu erfahren, was die anderen Schulen aus unserer Stadt
+        Leipzig so für Probleme haben - und wie wir sie zusammen lösen können.
+        Denn ich finde, zusammen klappt alles besser und es macht auch mehr Spaß! ;)
+        Liebe Grüße, Freda 
         </div>
 
         <h6><b>Stadtschülerratsdelegierte:</b></h6><br><br>

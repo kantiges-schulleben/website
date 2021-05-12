@@ -13,7 +13,7 @@
     * id    -> auto
     */
     $message = [];
-    $maxSize = 512000; // maximale Dateigröße in Byte -> 500 KB
+    $maxSize = 3145728; // maximale Dateigröße in Byte -> 3 MB
 
     if (isset($_POST['title']) === false or isset($_POST['content']) === false or isset($_GET['blogname']) === false or isset($_SESSION['user']) === false) {
         die(file_get_contents("./error.html"));
@@ -40,7 +40,7 @@
     $imageName = "";
 
     if (isset($_FILES['imagefile'])) {
-        if(!file_exists($_FILES['myfile']['tmp_name']) || !is_uploaded_file($_FILES['myfile']['tmp_name'])) {
+        if(!file_exists($_FILES['imagefile']['tmp_name'][0]) || !is_uploaded_file($_FILES['imagefile']['tmp_name'][0])) {
         } else {
             $file = $_FILES['imagefile'];
 
