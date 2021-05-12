@@ -180,7 +180,7 @@
             ?>
         </h4>
 
-        <img src=<?php echo "../../" . rawurldecode($output[0]['image']); ?> alt="">
+        <img src=<?php echo "../" . rawurldecode($output[0]['image']); ?> alt="">
         <div class="text">
             <?php
                 $contentToOutput = "";
