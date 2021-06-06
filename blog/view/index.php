@@ -1,5 +1,43 @@
 <?php
     session_start();
+
+    include_once("../../include/functions.inc.php");
+
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+
+        $result = SQL("SELECT * from articles WHERE id LIKE ?", [$id]);
+
+        $output = [];
+
+        while($news = mysqli_fetch_assoc($result)){
+            $array = str_split($news['date']);
+            $date = "";
+
+            foreach ($array as $value) {
+                if ($value == " ") {
+                    break;
+                } else {
+                    $date .= $value;
+                }
+            }
+
+            array_push($output, array(
+                'title' => rawurlencode($news['title']),
+                'content' => rawurlencode($news['content']),
+                'image' => rawurlencode("../images/" . $news['image']),
+                'date' => rawurlencode($date),
+                'id' => rawurlencode($news['id']),
+                'name' => rawurlencode($news['name'])
+            ));
+        }
+
+        if ($output == []) {
+            die(file_get_contents("./noContent.html"));
+        }
+    } else {
+        header("Location: ../../");
+    }
 ?>
 
 <!doctype html>
@@ -9,18 +47,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Schülerrat - Aktuelles</title>
-    <link rel="stylesheet" href="https:///fonts.googleapis.com/css?family=Roboto:300,400">
-    <link rel="stylesheet" href="./aktuelles.css">
+    <title>
+        <?php
+            echo rawurldecode($output[0]['title']);
+        ?>
+    </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400">
+    <link rel="stylesheet" href="./beitrag.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-
-    <script src="../../include/jquery-4.3.1.min.js"></script>
-    <script src="./dom.js"></script>
-    <script src="./index.js"></script>
 </head>
 
-<body onload="preload()">
+<body>
     <nav>
         <div class="menu-bar">
             <ul class="nav-links">
@@ -117,82 +155,124 @@
 
     <div class="outersplash">
         <div class="splash">
-            <h2>Willkommen zur <b>News Seite</b> des</h2>
-            <h1>Schülerrat</h1>
-
-            <div class="desktop">
-                <a href="#Relevantes" class="button1">Relevantes</a>
-                <a href="#Reden" class="button2">Reden/Statements</a>
-                <a href="#Protokolle" class="button3">Protokolle</a>
-            </div>
-
-            <ul class="mobil">
-                <li>
-                    <a href="#Protokolle" class="button2">Reden/Statements</a>
-                </li>
-                <li>
-                    <a href="#Protokolle" class="button1">Relevantes</a>
-                </li>
-                <li>
-                    <a href="#Protokolle" class="button3">Protokolle</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Serverseitig vorschau auf 700 Zeichen begrenzen -->
-    <div class="fieldS" id="redenParent">
-        <h3>Reden/Statements</h3>
-        <h4 id="Reden">Reden/Statements</h4>
-
-        <div class="items2" id="reden">
-            <!-- <div class="item2">
-                <div class="placeholder"></div>
-                <img src="../../assets/email.png">
-                <div class="f">Titel</div><br>
-                <div class="d">
-                    Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-                </div>
-                <a href="#Protokolle" class="button1">Beitrag anzeigen</a>
-            </div>
-            <a href="./reden/index.php" class="button1">Alle Beiträge anzeigen</a> -->
-        </div>
-    </div>
-
-    <!-- Serverseitig vorschau auf 700 Zeichen begrenzen -->
-    <div class="fieldS" id="relevantesParent">
-        <h3>Relevantes</h3>
-        <h4 id="Relevantes">Relevantes</h4>
-
-        <div class="items2" id="relevantes">
-            <!-- <div class="item2">
-                <div class="placeholder"></div>
-                <img src="../../assets/info.jpg">
-                <div class="f">Titel</div><br>
-                <div class="d">
-                    Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung
-                    stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-                </div>
-                <a href="./beitrag" class="button">Beitrag anzeigen</a>
-            </div>
-            <a href="./relevantes/index.php" class="button1">Alle Beiträge anzeigen</a> -->
+            <h2>
+                <?php
+                    echo rawurldecode($output[0]['name']);
+                ?>
+            </h2>
+            <h1>
+                <?php
+                    echo rawurldecode($output[0]['title']);
+                ?>
+            </h1>
         </div>
     </div>
 
     <div class="field">
-        <h3>Protokolle</h3>
-        <h4 id="Protokolle">Protokolle</h4>
+        <h3>
+            <?php
+                echo rawurldecode($output[0]['title']);
+            ?>
+        </h3>
+        <h4 id="Reden/Statements">
+            <?php
+                echo rawurldecode($output[0]['title']);
+            ?>
+        </h4>
 
-        <div class="items" id="protokolle">
-            <!-- <div class="item">
-                Protokol 1 <br>
-                <div class="d">12.04.2021</div>
-                <a href="#Protokolle" class="button">download</a>
-            </div> -->
-        </div>
+        <img src=<?php echo "../" . rawurldecode($output[0]['image']); ?> alt="">
+        <div class="text">
+            <?php
+                $contentToOutput = "";
+                $content = rawurldecode($output[0]['content']);
+                
+                $boldStart = TRUE;
+                $italicStart = TRUE;
+                $durchStart = TRUE;
+                $underLineStart = TRUE;
+                $headlineStart = TRUE;
+                $ignoreNext = FALSE;
+
+                for ($i = 0; $i < strlen($content); $i++){
+                    $char = $content[$i];
+                    switch ($char) {
+                        // Zeilenumbruch
+                        case '\\':
+                            if ($content[$i + 1] == " ") {
+                                $contentToOutput .= $char;
+                            } else {
+                                $contentToOutput .= "<br>";
+                            }
+                            break;
+                        // fett
+                        case '*':
+                            if ($content[$i + 1] == " " && $boldStart === TRUE) {
+                                $contentToOutput .= $char;
+                            } else {
+                                $contentToOutput .= "<" . (($boldStart === TRUE) ? "" : "/") . "b>";
+                                $boldStart = !$boldStart;
+                            }
+                            break;
+                        // kursiv
+                        case '~':
+                            if ($content[$i + 1] == " " && $italicStart === TRUE) {
+                                $contentToOutput .= $char;
+                            } else {
+                                $contentToOutput .= "<" . (($italicStart === TRUE) ? "" : "/") . "i>";
+                                $italicStart = !$italicStart;
+                            }
+                            break;
+                        // durchgestrichen
+                        case '-':
+                            if ($content[$i + 1] == " " && $durchStart === TRUE) {
+                                $contentToOutput .= $char;
+                            } else {
+                                $contentToOutput .= "<" . (($durchStart === TRUE) ? "" : "/") . "s>";
+                                $durchStart = !$durchStart;
+                            }
+                            break;
+                        // unterstrichen
+                        case '_':
+                            if ($content[$i + 1] == " " && $underLineStart === TRUE) {
+                                $contentToOutput .= $char;
+                            } else {
+                                $contentToOutput .= "<" . (($underLineStart === TRUE) ? "" : "/") . "u>";
+                                $underLineStart = !$underLineStart;
+                            }
+                            break;
+                        // horizontale Linie
+                        case '=':
+                            if ($ignoreNext === FALSE) {
+                                if ($content[$i + 1] !== "=") {
+                                    $contentToOutput .= $char;
+                                } else {
+                                    $contentToOutput .= "<hr>";
+                                    $ignoreNext = TRUE;
+                                }
+                            } else {
+                                $ignoreNext = FALSE;
+                            }
+                            break;
+                        // Übershrift
+                        case '#':
+                            if ($content[$i + 1] == " " && $headlineStart === TRUE) {
+                                $contentToOutput .= $char;
+                            } else {
+                                $contentToOutput .= "<" . (($headlineStart === TRUE) ? "" : "/") . "h5><hr>";
+                                $headlineStart = !$headlineStart;
+                            }
+                            break;
+                        // Rest
+                        default:
+                            $contentToOutput .= $char;
+                            break;
+                    }
+                }
+                
+                echo $contentToOutput;
+            ?>
+        </div><br><br><br>
+
     </div>
 
     <footer>

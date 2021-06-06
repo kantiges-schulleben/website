@@ -54,7 +54,7 @@
     }
 
     //Daten speichern
-    $response = SQL("INSERT INTO benutzer (name, password, benutzername, mail) VALUES (?, ?, ?, ?)", [$firstname . " " . $lastname, password_hash($password, PASSWORD_DEFAULT), $username, $mail], TRUE);
+    $response = SQL("INSERT INTO benutzer (name, password, benutzername, mail, berechtigung) VALUES (?, ?, ?, ?, ?)", [$firstname . " " . $lastname, password_hash($password, PASSWORD_DEFAULT), $username, $mail, ","], TRUE);
 
     if ($response[1] !== 1) {
         // $message = array(
@@ -68,6 +68,7 @@
             'success' => 'true'
         );
         $_SESSION['user'] = $username;
+        $_SESSION['berechtigungen'] = ",";
     }
 
     // echo json_encode($message);
