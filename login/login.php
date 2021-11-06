@@ -18,7 +18,9 @@
     if ($count  === 1) {
         $result = SQL("SELECT * FROM benutzer WHERE benutzername LIKE ?", [$user]);
         if (password_verify($pwd, sqlReturn($result, 0, "password"))) {
+            $result = SQL("SELECT * FROM benutzer WHERE benutzername LIKE ?", [$user]);
             $_SESSION['user'] = $user;
+            $_SESSION['berechtigungen'] = sqlReturn($result, 0, 'berechtigung');
 
             if (isset($_SESSION['redirect']) == TRUE) {
                 header("Location: ../" . $_SESSION['redirect']);
@@ -27,7 +29,7 @@
             header("Location: ../");
             die();
         } else {
-            header( "Location: index.php");
+            header( "Location: index.php"); 
         }
     } else {
         header( "Location: index.php");

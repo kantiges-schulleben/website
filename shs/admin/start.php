@@ -82,7 +82,7 @@
     $mail -> Subject = "Rückmeldung Partner";
     $mail -> CharSet = 'UTF-8';
 
-    sendMail("monsieurk1209@gmail.com", json_encode($output));
+    sendMail("BACKAUP@MAIL.COM", json_encode($output));
 
     $firstOrderGroups = ["einzel", "gruppe", "ohne"];
 

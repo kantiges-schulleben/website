@@ -184,7 +184,7 @@ window.onload = function () {
                     window.location = "./bestätigung.html" ;
                 }
                 else {
-                   alert("Anscheinend hat etwas geklappt. Bitte versuch's nochmal.") 
+                   alert("Anscheinend hat etwas nicht geklappt. Bitte versuch's nochmal.") 
                 }});
         }
     }
@@ -519,7 +519,7 @@ document.getElementById("x").addEventListener("click",()=>{
                     window.location = "./bestätigung.html" ;
                 }
                 else {
-                   alert("Anscheinend hat etwas geklappt. Bitte versuch's nochmal.") 
+                   alert("Anscheinend hat etwas nicht geklappt. Bitte versuch's nochmal.") 
                 }});
         }}
     }}

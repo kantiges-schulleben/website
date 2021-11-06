@@ -2,9 +2,9 @@
     // SQL-Abfrage mit Prep-Statment
     function SQL($prepareStatement, $parameter, $showAffectedRows = FALSE) {
         $servername = "localhost";
-        $username = "ksde";
-        $password = "website";
-        $dbname = "ksde";
+        $username = "USERNAME";
+        $password = "PASSWORD";
+        $dbname = "DBNAME";
 
         // =======================================================================================
 
