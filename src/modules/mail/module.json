@@ -1,0 +1,13 @@
+{
+    "name": "mail",
+    "description": "",
+    "authors": ["KlnSdr"],
+    "version": "0.0.1",
+    "routes": [
+        {
+            "path": "/contact",
+            "type": "post"
+        }
+    ],
+    "files": ["index"]
+}

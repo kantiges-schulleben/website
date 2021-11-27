@@ -1,0 +1,16 @@
+{
+    "from": {
+        "name": "kilian",
+        "mail": "test@test.com"
+    },
+    "to": {
+        "name": "klnsdr",
+        "mail": "test2@test.com"
+    },
+    "replyTo": {
+        "name": "kilian",
+        "mail": "test@test.com"
+    },
+    "subject": "not important",
+    "content": "AHHHHHHHHHHHHHHHHH!"
+}

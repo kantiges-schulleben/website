@@ -1,0 +1,11 @@
+node_modules/
+.env
+*.js
+!jquery.js
+!abschicken.js
+!main.js
+!teamtest.js
+!peerjs.min.js
+!socket.io.js
+!ggRemote.js
+!calls.js
