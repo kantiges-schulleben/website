@@ -71,10 +71,10 @@ function preload() {
                                 </div>
                             </li>
                             <li>
-                                <a href='/schuelerzeitung/allgemein'>Schülerzeitung</a>
+                                <a href='/schuelerzeitung/informationen'>Schülerzeitung</a>
                                 <div class='sub-menu-1'>
                                     <ul>
-                                        <li><a href='/schuelerzeitung/allgemein'>Allgemein</a></li>
+                                        <li><a href='/schuelerzeitung/informationen'>Allgemein</a></li>
                                     </ul>
                                 </div>
                             </li>
