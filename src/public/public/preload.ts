@@ -71,21 +71,10 @@ function preload() {
                                 </div>
                             </li>
                             <li>
-                                <a href='/error'>Schülerzeitung</a>
+                                <a href='/schuelerzeitung/informationen'>Schülerzeitung</a>
                                 <div class='sub-menu-1'>
                                     <ul>
-                                        <li><a href='/error'>Informationen</a></li>
-                                        <li><a href='/error'>Vorstellung</a></li>
-                                        <li class='hover-me'><a href='/error'>Blog</a><i class='fa-angel-right'></i>
-                                            <div class='sub-menu-2'>
-                                                <ul>
-                                                    <li><a href='/error'>Schulleben</a></li>
-                                                    <li><a href='/error'>Tipps und Tricks</a></li>
-                                                </ul>
-                                            </div>
-                                        
-                                        </li>
-                                        <li><a href='/error'>internes System</a></li>
+                                        <li><a href='/schuelerzeitung/informationen'>Allgemein</a></li>
                                     </ul>
                                 </div>
                             </li>
