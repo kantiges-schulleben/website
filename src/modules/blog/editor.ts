@@ -8,6 +8,11 @@ import IncomingForm from 'formidable/Formidable';
 import * as fs from 'fs';
 
 let UPLOAD_PATH: string = '';
+enum fileStatus {
+    moved,
+    failure,
+    noFile,
+}
 
 export function config(
     server: Application,
@@ -164,7 +169,10 @@ export function config(
                                             moveFile(
                                                 files,
                                                 (MV_FILE: types.obj) => {
-                                                    if (MV_FILE.success) {
+                                                    if (
+                                                        MV_FILE.status !==
+                                                        fileStatus.failure
+                                                    ) {
                                                         // artikel in der datenbank speichern
                                                         database.query(
                                                             'INSERT INTO articles (title, author, content, image, name, tags) VALUES (?, ?, ?, ?, ?, ?)',
@@ -172,10 +180,13 @@ export function config(
                                                                 TITLE,
                                                                 USER_ID,
                                                                 CONTENT,
-                                                                path.join(
-                                                                    '/images',
-                                                                    MV_FILE.newName
-                                                                ),
+                                                                MV_FILE.status ===
+                                                                fileStatus.moved
+                                                                    ? path.join(
+                                                                          '/images',
+                                                                          MV_FILE.newName
+                                                                      )
+                                                                    : '',
                                                                 BLOG_NAME,
                                                                 TAGS,
                                                             ],
@@ -192,16 +203,25 @@ export function config(
                                                                     );
                                                                 }
 
-                                                                use(
-                                                                    'images',
-                                                                    (
-                                                                        images: types.obj
-                                                                    ) => {
-                                                                        images.updateImageCache(
-                                                                            MV_FILE.newName
-                                                                        );
-                                                                    }
-                                                                );
+                                                                if (
+                                                                    MV_FILE.status ===
+                                                                    fileStatus.moved
+                                                                ) {
+                                                                    use(
+                                                                        'images',
+                                                                        (
+                                                                            images: types.obj
+                                                                        ) => {
+                                                                            images.updateImageCache(
+                                                                                MV_FILE.newName
+                                                                            );
+                                                                        }
+                                                                    );
+                                                                } else {
+                                                                    removeFile(
+                                                                        files
+                                                                    );
+                                                                }
 
                                                                 res.redirect(
                                                                     '/editor/success.html'
@@ -252,36 +272,43 @@ function moveFile(
     files: formidable.Files,
     callback: (moveData: types.obj) => void
 ) {
-    const OLD_PATH: string = (files['imagefile[]'] as formidable.File).path;
-    fs.rename(
-        OLD_PATH,
-        path.join(
-            UPLOAD_PATH,
-            (files['imagefile[]'] as formidable.File).hash! +
-                '.' +
-                (files['imagefile[]'] as formidable.File).name!.split('.')[
-                    (files['imagefile[]'] as formidable.File).name!.split('.')
-                        .length - 1
-                ]
-        ),
-        (err) => {
-            if (err) {
-                console.log(err);
-                callback({ success: false });
-            }
-            callback({
-                success: true,
-                newName:
-                    (files['imagefile[]'] as formidable.File).hash! +
+    if ((files['imagefile[]'] as formidable.File).size > 0) {
+        const OLD_PATH: string = (files['imagefile[]'] as formidable.File).path;
+        fs.rename(
+            OLD_PATH,
+            path.join(
+                UPLOAD_PATH,
+                (files['imagefile[]'] as formidable.File).hash! +
                     '.' +
                     (files['imagefile[]'] as formidable.File).name!.split('.')[
                         (files['imagefile[]'] as formidable.File).name!.split(
                             '.'
                         ).length - 1
-                    ],
-            });
-        }
-    );
+                    ]
+            ),
+            (err) => {
+                if (err) {
+                    console.log(err);
+                    callback({ status: fileStatus.failure });
+                }
+                callback({
+                    status: fileStatus.moved,
+                    newName:
+                        (files['imagefile[]'] as formidable.File).hash! +
+                        '.' +
+                        (files['imagefile[]'] as formidable.File).name!.split(
+                            '.'
+                        )[
+                            (
+                                files['imagefile[]'] as formidable.File
+                            ).name!.split('.').length - 1
+                        ],
+                });
+            }
+        );
+    } else {
+        callback({ status: fileStatus.noFile });
+    }
 }
 
 function removeFile(files: formidable.Files) {

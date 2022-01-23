@@ -4,6 +4,7 @@ import { use } from '../moduleManager/index';
 import { encode } from 'html-entities';
 import * as path from 'path';
 import { config as editorConfig } from './editor';
+import { parseMarkdown } from './markdown';
 
 export function config(
     server: Application,
@@ -71,64 +72,15 @@ export function config(
                         return;
                     }
 
-                    use('user', (userModule: types.obj) => {
-                        userModule.session.setSessionValue(req, 'article', ID);
-                        res.sendFile('./html/view.html', {
-                            root: path.join(rootPath, 'blog'),
-                        });
+                    res.render('viewBlog', {
+                        layout: 'index',
+                        title: result[0]['title'],
+                        content: parseMarkdown(result[0]['content']),
+                        imagePath: result[0]['image'],
+                        blogName: result[0]['name'],
                     });
                 }
             );
-        });
-    });
-
-    // Inhalt des Artukels senden
-    server.get('/blog/readArticle', (req: Request, res: Response) => {
-        use('user', (module: types.obj) => {
-            const ID: string | undefined = module.session.getSessionValue(
-                req,
-                'article'
-            );
-
-            module.session.setSessionValue(req, 'article', undefined);
-
-            if (ID === undefined) {
-                res.json({
-                    title: '',
-                    content: '',
-                    image: '',
-                    id: '',
-                    name: '',
-                });
-                return;
-            }
-
-            use('databaseConnection', (module: types.obj) => {
-                module.query(
-                    'SELECT * from articles WHERE id LIKE ?',
-                    [ID],
-                    (err: boolean, result: types.obj) => {
-                        if (err || result.length === 0) {
-                            res.json({
-                                title: '',
-                                content: '',
-                                image: '',
-                                id: '',
-                                name: '',
-                            });
-                            return;
-                        }
-
-                        res.json({
-                            title: encodeURIComponent(result[0]['title']),
-                            content: encodeURIComponent(result[0]['content']),
-                            image: encodeURIComponent(result[0]['image']),
-                            id: encodeURIComponent(result[0]['id']),
-                            name: encodeURIComponent(result[0]['name']),
-                        });
-                    }
-                );
-            });
         });
     });
 

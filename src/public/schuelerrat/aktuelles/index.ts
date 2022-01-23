@@ -1,12 +1,13 @@
 export {};
 
 function startup() {
+    const numberOfArticlesToRender: number = 3;
     // Reden/Statements ===================================================================================
     $.get('/blog/reden/getArticles/0', (json: { [key: string]: any }[]) => {
         let count: number = 0;
         if (json.length > 0) {
             json.forEach((article: { [key: string]: any }) => {
-                if (count >= 2) {
+                if (count >= numberOfArticlesToRender) {
                     return;
                 }
 
@@ -51,7 +52,7 @@ function startup() {
         let count: number = 0;
         if (json.length > 0) {
             json.forEach((article: { [key: string]: any }) => {
-                if (count >= 2) {
+                if (count >= numberOfArticlesToRender) {
                     return;
                 }
 

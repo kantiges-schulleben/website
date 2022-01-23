@@ -1,4 +1,4 @@
-function parseMarkdown(content: string = ''): string {
+export function parseMarkdown(content: string = ''): string {
     let contentToOutput: string = '';
 
     let boldStart: boolean = true;

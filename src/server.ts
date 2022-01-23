@@ -7,6 +7,7 @@ import * as path from 'path';
 import { config as dotenvConfig } from 'dotenv';
 import session from 'express-session';
 import { Server } from 'http';
+import { engine as handlebars } from 'express-handlebars';
 // imports ================================================================================
 dotenvConfig();
 // vars ===================================================================================
@@ -29,6 +30,8 @@ app.use(
         saveUninitialized: true,
     })
 );
+app.engine('handlebars', handlebars());
+app.set('view engine', 'handlebars');
 
 const directoryPath: string = path.join(__dirname, 'modules');
 const moduleBlacklist: string[] = ['tmp'];

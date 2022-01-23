@@ -4,12 +4,12 @@ let page: number = 0;
 function startup() {
     // Reden/Statements ===================================================================================
     $.get(
-        '/blog/schuelerrat/getArticles/0',
+        '/blog/relevantes/getArticles/0',
         (json: { [key: string]: any }[]) => {
             let count: number = 0;
             if (json.length > 0) {
                 json.forEach((article: { [key: string]: any }) => {
-                    if (count >= 2) {
+                    if (count >= 5) {
                         return;
                     }
 
