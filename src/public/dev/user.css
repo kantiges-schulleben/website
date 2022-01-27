@@ -39,7 +39,7 @@ td {
     padding: 5px;
 }
 
-#serach {
+#search {
     width: 75%;
     vertical-align: top;
 }
@@ -58,7 +58,8 @@ td {
     font-style: italic;
 }
 
-.saveButton, .deleteButton {
+.saveButton,
+.deleteButton {
     width: 100%;
     margin-top: 5px;
 }
@@ -67,6 +68,12 @@ td {
     background-color: tomato;
 }
 
-#inputMail, #inputName {
+#inputMail,
+#inputName {
     width: 100% !important;
+}
+
+#berechtigungen0,
+#berechtigungen1 {
+    vertical-align: top;
 }
