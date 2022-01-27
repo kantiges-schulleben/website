@@ -55,26 +55,19 @@ function preload() {
                                         <li><a href='/schuelerrat/vorstand'>Vorstand</a></li>
                                         <li><a href='/schuelerrat/arbeitsgruppen'>Arbeitsgruppen</a></li>
                                         <li><a href='/schuelerrat/kontakt'>Kontakt</a></li>
-                                        <!-- <?php
-                                            if (isset($_SESSION['user'])) {
-                                                if (in_array(strval('1'), explode(',', $_SESSION['berechtigungen'])) === TRUE) {
-                                                    echo '<li><a href='/editor?name=reden'>neu: Statements</a></li>';
-                                                }
-                                            
-                                            
-                                                if (in_array(strval('0'), explode(',', $_SESSION['berechtigungen'])) === TRUE) {
-                                                    echo '<li><a href='/editor?name=schuelerrat'>neu: Relevantes</a></li>';
-                                                }
-                                            }
-                                        ?> -->
                                     </ul>
                                 </div>
                             </li>
                             <li>
-                                <a href='/schuelerzeitung/informationen'>Schülerzeitung</a>
+                                <a href='/schuelerzeitung/aktuelles'>Schülerzeitung</a>
                                 <div class='sub-menu-1'>
                                     <ul>
-                                        <li><a href='/schuelerzeitung/informationen'>Allgemein</a></li>
+                                        <li><a href='/schuelerzeitung/vorstellung'>Vorstellung</a></li>
+                                        <li><a href='/schuelerzeitung/aktuelles'>Aktuelles</a></li>
+                                        <li><a href='/schuelerzeitung/lokal'>Lokales</a></li>
+                                        <li><a href='/schuelerzeitung/internationales'>Internationales</a></li>
+                                        <li><a href='/schuelerzeitung/empfehlungen'>Empfehlungen</a></li>
+                                        <li><a href='/schuelerzeitung/tipps'>Tipps & Tricks</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -130,7 +123,7 @@ function preload() {
                     </ul>
                     <div class="cc">
                         <span class="fa fa-copyright"></span
-                        ><span>2021 All rights reserved.</span>
+                        ><span>2022 All rights reserved.</span>
                     </div>
                 </div>`;
 
