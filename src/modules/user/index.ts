@@ -43,7 +43,7 @@ export function config(
     server.get('/kontoSubMenuInfo', (req: Request, res: Response) => {
         const BESONDERE_BERECHTIGUNGEN: types.obj = {
             '0': {
-                target: '<li><a href="/modules">moduleManager</a></li>',
+                target: '<li><a href="/dev">Controlpanel</a></li>',
             },
             '3': {
                 target: '<li><a href="/shs/admin">ShS Auswertung</a></li>',

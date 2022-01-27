@@ -1,49 +1,28 @@
-export {};
-
-interface obj extends Object {
-    [key: string]: any;
+// markup
+function muModules(): obj {
+    return [
+        {
+            tag: 'button',
+            classes: ['fa', 'fa-refresh'],
+            handler: [
+                {
+                    type: 'click',
+                    id: 'reladModules',
+                    arguments: '',
+                    body: 'reload();',
+                },
+            ],
+        },
+        {
+            tag: 'div',
+            id: 'container',
+        },
+    ];
 }
 
-function startup() {
-    edom.init();
-    edom.fromTemplate({
-        children: [
-            {
-                tag: 'nav',
-                id: 'navbar',
-            },
-            {
-                tag: 'div',
-                classes: ['content'],
-                children: [
-                    {
-                        tag: 'button',
-                        classes: ['fa', 'fa-refresh'],
-                        handler: [
-                            {
-                                type: 'click',
-                                id: 'reladModules',
-                                arguments: '',
-                                body: 'reload();',
-                            },
-                        ],
-                    },
-                    {
-                        tag: 'div',
-                        id: 'container',
-                    },
-                ],
-            },
-            {
-                tag: 'footer',
-                id: 'footer',
-            },
-        ],
-    });
+// =======================================================================================
 
-    loadModules();
-}
-
+// code
 function loadModules() {
     $.get('/modules/getall', (data: obj) => {
         console.log(data);

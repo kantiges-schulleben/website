@@ -1,0 +1,72 @@
+.searchButton {
+    width: unset;
+    margin-left: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#actualContent input {
+    border: 1px solid var(--accent);
+    height: 25px;
+    width: 25%;
+    color: black;
+}
+
+#actualContent input[type='checkbox'] {
+    border: initial;
+    height: initial;
+    width: initial;
+    color: initial;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.tableHead {
+    font-weight: bold;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.outputTable:hover {
+    background-color: var(--accent);
+}
+
+td {
+    padding: 5px;
+}
+
+#serach {
+    width: 75%;
+    vertical-align: top;
+}
+
+#details {
+    width: 25%;
+    vertical-align: top;
+}
+
+.detailsContainer {
+    width: 100%;
+}
+
+.outputDetails {
+    margin-left: 5px;
+    font-style: italic;
+}
+
+.saveButton, .deleteButton {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.deleteButton {
+    background-color: tomato;
+}
+
+#inputMail, #inputName {
+    width: 100% !important;
+}
