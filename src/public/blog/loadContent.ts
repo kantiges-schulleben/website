@@ -1,4 +1,5 @@
 function loadContent() {
+    return;
     $.get('/blog/readArticle', (data) => {
         (document.getElementById('blogName') as HTMLHeadingElement).innerText =
             decodeURIComponent(capitalizeFirstLetter(data.name));

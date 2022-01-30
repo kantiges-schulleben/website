@@ -43,7 +43,7 @@ export function config(
     server.get('/kontoSubMenuInfo', (req: Request, res: Response) => {
         const BESONDERE_BERECHTIGUNGEN: types.obj = {
             '0': {
-                target: '<li><a href="/modules">moduleManager</a></li>',
+                target: '<li><a href="/dev">Controlpanel</a></li>',
             },
             '3': {
                 target: '<li><a href="/shs/admin">ShS Auswertung</a></li>',
@@ -71,9 +71,7 @@ export function config(
                 }
 
                 use('databaseConnection', (database: types.obj) => {
-                    let output: string[] = [
-                        '<li><a href="/logout">Logout</a></li>',
-                    ];
+                    let output: string[] = [];
 
                     database.query(
                         'SELECT * FROM berechtigungen;',
@@ -82,7 +80,9 @@ export function config(
                             if (err) {
                                 res.json({
                                     username: USERNAME,
-                                    links: output,
+                                    links: [
+                                        '<li><a href="/logout">Logout</a></li>',
+                                    ],
                                 });
                                 return;
                             }
@@ -115,7 +115,10 @@ export function config(
                             });
                             res.json({
                                 username: USERNAME,
-                                links: output,
+                                links: [
+                                    ...output,
+                                    '<li><a href="/logout">Logout</a></li>',
+                                ],
                             });
                         }
                     );

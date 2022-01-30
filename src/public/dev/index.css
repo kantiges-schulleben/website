@@ -37,7 +37,11 @@
 
 .content {
     margin: 5px;
-    margin-top: 65px;
+    margin-top: 100px;
+}
+
+#actualContent {
+    margin-top: 5px;
 }
 
 button {

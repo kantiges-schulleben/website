@@ -5,7 +5,7 @@
     "version": "0.0.1",
     "routes": [
         {
-            "path": "/modules",
+            "path": "/dev",
             "type": "get"
         },
         {
@@ -19,7 +19,31 @@
         {
             "path": "/modules/start/:modulename",
             "type": "get"
+        },
+        {
+            "path": "/berechtigungen/getall",
+            "type": "get"
+        },
+        {
+            "path": "/berechtigungen/create/:name",
+            "type": "get"
+        },
+        {
+            "path": "/serachUser",
+            "type": "post"
+        },
+        {
+            "path": "/userdata/:userID",
+            "type": "get"
+        },
+        {
+            "path": "/updateUser/:userID",
+            "type": "post"
+        },
+        {
+            "path": "/deleteUser/:userID",
+            "type": "get"
         }
     ],
-    "files": ["index"]
+    "files": ["index", "modules", "berechtigungen", "user"]
 }

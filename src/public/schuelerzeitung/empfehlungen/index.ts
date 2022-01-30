@@ -1,10 +1,11 @@
 export {};
+
 let page: number = 0;
 
 function startup() {
     // Reden/Statements ===================================================================================
     $.get(
-        '/blog/relevantes/getArticles/0',
+        '/blog/empfehlungen/getArticles/0',
         (json: { [key: string]: any }[]) => {
             let count: number = 0;
             if (json.length > 0) {
@@ -14,7 +15,7 @@ function startup() {
                     }
 
                     (
-                        document.getElementById('relevantes') as HTMLDivElement
+                        document.getElementById('reden') as HTMLDivElement
                     ).appendChild(
                         createStatement(
                             decodeURIComponent(article.title),
@@ -22,11 +23,12 @@ function startup() {
                             decodeURIComponent(article.image) != ''
                                 ? decodeURIComponent(article.image)
                                 : '/images/default.png',
-                            `/blog/relevantes/view/${decodeURIComponent(
+                            `/blog/empfehlungen/view/${decodeURIComponent(
                                 article.id
                             )}`
                         )
                     );
+
                     count++;
                 });
 
@@ -47,17 +49,13 @@ function startup() {
                 };
 
                 (
-                    document.getElementById(
-                        'relevantesParent'
-                    ) as HTMLDivElement
+                    document.getElementById('redenParent') as HTMLDivElement
                 ).appendChild(showAllSpeeches());
             } else {
                 (
-                    document.getElementById('relevantes') as HTMLDivElement
+                    document.getElementById('reden') as HTMLDivElement
                 ).appendChild(
-                    createNoContent(
-                        'Gehen Sie weiter. Hier gibt es nichts relevantes zu sehen!'
-                    )
+                    createNoContent('Das sind nicht die Reden, die du suchst.')
                 );
             }
         }
@@ -66,9 +64,9 @@ function startup() {
 
 function makeCallAndUpdateDOM() {
     $.get(
-        `/blog/relevantes/getArticles/${page}`,
+        `/blog/empfehlungen/getArticles/${page}`,
         (json: { [key: string]: any }[]) => {
-            var count = 0;
+            let count: number = 0;
             if (json.length > 0) {
                 json.forEach((article: { [key: string]: any }) => {
                     if (count >= 5) {
@@ -76,7 +74,7 @@ function makeCallAndUpdateDOM() {
                     }
 
                     (
-                        document.getElementById('relevantes') as HTMLDivElement
+                        document.getElementById('reden') as HTMLDivElement
                     ).appendChild(
                         createStatement(
                             decodeURIComponent(article.title),
@@ -84,7 +82,7 @@ function makeCallAndUpdateDOM() {
                             decodeURIComponent(article.image) != ''
                                 ? decodeURIComponent(article.image)
                                 : '/images/default.png',
-                            `/blog/relevantes/view/${decodeURIComponent(
+                            `/blog/empfehlungen/view/${decodeURIComponent(
                                 article.id
                             )}`
                         )

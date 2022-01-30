@@ -2,8 +2,8 @@ export {};
 
 function startup() {
     const numberOfArticlesToRender: number = 3;
-    // Reden/Statements ===================================================================================
-    $.get('/blog/reden/getArticles/0', (json: { [key: string]: any }[]) => {
+    // Lokales ===================================================================================
+    $.get('/blog/lokales/getArticles/0', (json: { [key: string]: any }[]) => {
         let count: number = 0;
         if (json.length > 0) {
             json.forEach((article: { [key: string]: any }) => {
@@ -20,18 +20,17 @@ function startup() {
                         decodeURIComponent(article.image) != ''
                             ? decodeURIComponent(article.image)
                             : '/images/default.png',
-                        `/blog/reden/view/${decodeURIComponent(article.id)}`
+                        `/blog/lokales/view/${decodeURIComponent(article.id)}`
                     )
                 );
                 count++;
             });
 
-            // <a href="./reden/index.php" class="button1">Alle Beiträge anzeigen</a> -->
             const showAllSpeeches = () => {
                 const elmnt: HTMLAnchorElement = document.createElement(
                     'a'
                 ) as HTMLAnchorElement;
-                elmnt.href = './reden';
+                elmnt.href = '../lokales';
                 elmnt.classList.add('button1');
                 elmnt.innerText = 'Alle Beiträge anzeigen';
 
@@ -46,9 +45,8 @@ function startup() {
             );
         }
     });
-
-    // Relevantes ===================================================================================
-    $.get('/blog/relevantes/getArticles/0', (json) => {
+    // interationales ===================================================================================
+    $.get('/blog/internationales/getArticles/0', (json) => {
         let count: number = 0;
         if (json.length > 0) {
             json.forEach((article: { [key: string]: any }) => {
@@ -65,7 +63,7 @@ function startup() {
                         decodeURIComponent(article.image) != ''
                             ? decodeURIComponent(article.image)
                             : '/images/default.png',
-                        `/blog/relevantes/view/${decodeURIComponent(
+                        `/blog/internationales/view/${decodeURIComponent(
                             article.id
                         )}`
                     )
@@ -78,7 +76,7 @@ function startup() {
                 const elmnt: HTMLAnchorElement = document.createElement(
                     'a'
                 ) as HTMLAnchorElement;
-                elmnt.href = './relevantes';
+                elmnt.href = '../internationales';
                 elmnt.classList.add('button1');
                 elmnt.innerText = 'Alle Beiträge anzeigen';
 
@@ -98,18 +96,47 @@ function startup() {
         }
     });
 
-    // Protokolle ===================================================================================
-    (document.getElementById('protokolle') as HTMLDivElement).appendChild(
-        createNoContent('Unmöglich. Vielleicht sind die Archive unvollständig.')
-    );
-    return;
-    for (let i = 0; i < 9; i++) {
-        (document.getElementById('protokolle') as HTMLDivElement).appendChild(
-            createDownloadProtokoll(
-                `Protokoll ${i}`,
-                '09.05.2021',
-                '#Protokolle'
-            )
-        );
-    }
+    // empfehlungen ===================================================================================
+    $.get('/blog/empfehlungen/getArticles/0', (json: { [key: string]: any }[]) => {
+        let count: number = 0;
+        if (json.length > 0) {
+            json.forEach((article: { [key: string]: any }) => {
+                if (count >= numberOfArticlesToRender) {
+                    return;
+                }
+
+                (
+                    document.getElementById('protokolle') as HTMLDivElement
+                ).appendChild(
+                    createStatement(
+                        decodeURIComponent(article.title),
+                        parseMarkdown(decodeURIComponent(article.content)),
+                        decodeURIComponent(article.image) != ''
+                            ? decodeURIComponent(article.image)
+                            : '/images/default.png',
+                        `/blog/empfehlungen/view/${decodeURIComponent(article.id)}`
+                    )
+                );
+                count++;
+            });
+
+            const showAllSpeeches = () => {
+                const elmnt: HTMLAnchorElement = document.createElement(
+                    'a'
+                ) as HTMLAnchorElement;
+                elmnt.href = '../empfehlungen';
+                elmnt.classList.add('button1');
+                elmnt.innerText = 'Alle Beiträge anzeigen';
+
+                return elmnt;
+            };
+            (
+                document.getElementById('protokolleParent') as HTMLDivElement
+            ).appendChild(showAllSpeeches());
+        } else {
+            (document.getElementById('protokolle') as HTMLDivElement).appendChild(
+                createNoContent('Das sind nicht die protokolle, die du suchst.')
+            );
+        }
+    });
 }

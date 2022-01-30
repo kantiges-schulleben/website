@@ -3,9 +3,10 @@ interface handlerObject {
     [id: string]: () => void;
 }
 
-interface edomObj extends Object {
+interface edomObj {
     [key: string]: any;
 }
+
 // edomError ========================================================================================
 class edomElementNullExeption {
     message: string;
@@ -33,7 +34,9 @@ class edom {
         | edomInputElement
         | edomAnchorElement
         | edomListElement
-        | edomImageElement {
+        | edomImageElement
+        | edomLabelElement
+        | edomTAElement {
         switch (tagname.toLowerCase()) {
             case 'input':
                 const elmnt: edomInputElement = new edomInputElement(
@@ -61,6 +64,8 @@ class edom {
                 return new edomListElement(false, tagname);
             case 'img':
                 return new edomImageElement(false, tagname);
+            case 'label':
+                return new edomLabelElement(false, tagname);
             default:
                 return new edomElement(false, tagname);
         }
@@ -81,7 +86,17 @@ class edom {
         return Array.from(element.children);
     }
 
-    static findById(id: string): edomElement | undefined {
+    static findById(
+        id: string
+    ):
+        | edomElement
+        | edomInputElement
+        | edomAnchorElement
+        | edomListElement
+        | edomImageElement
+        | edomLabelElement
+        | edomTAElement
+        | undefined {
         var toReturn: edomElement | undefined;
         edom.allElements.forEach((element: edomElement) => {
             if (element.id === id) {
@@ -96,41 +111,68 @@ class edom {
         return edom.newElement('br');
     }
 
-    static fromTemplate(template: edomObj, parent: edomElement | null = null) {
+    static fromTemplate(
+        template: edomObj | edomObj[],
+        parent: edomElement | null = null
+    ) {
         if (parent === null) {
-            if (template.classes != undefined) {
-                edom.body.applyStyle(...template.classes);
-            }
-            this.fromTemplate(template.children, edom.body);
-        } else {
-            for (let i = 0; i < template.length; i++) {
-                const currentChild: edomElement = edom.newElement(
-                    template[i].tag
+            if ((template as edomObj).classes != undefined) {
+                edom.body.applyStyle(
+                    ...((template as edomObj).classes as string[])
                 );
-                if (template[i].id != undefined) {
-                    currentChild.id = template[i].id;
+            }
+            this.fromTemplate(
+                (template as edomObj).children as edomObj[],
+                edom.body
+            );
+        } else {
+            for (let i = 0; i < (template as edomObj[]).length; i++) {
+                const _template: edomObj = (template as edomObj[])[
+                    i
+                ] as edomObj;
+                const currentChild: edomElement = edom.newElement(
+                    _template.tag
+                );
+                if (_template.id != undefined) {
+                    currentChild.id = _template.id;
                 }
-                if (template[i].text != undefined) {
-                    currentChild.setText(template[i].text);
+                if (_template.text != undefined) {
+                    currentChild.setText(_template.text);
                 }
-                if (template[i].type != undefined) {
-                    (currentChild as edomInputElement).setType(
-                        template[i].type
+                if (_template.type != undefined) {
+                    (currentChild as edomInputElement).setType(_template.type);
+
+                    if (_template.type === 'checkbox') {
+                        (currentChild as edomInputElement).addClick(
+                            'clickSetState',
+                            (self: edomInputElement) => {
+                                self.state = !self.state;
+                            }
+                        );
+                    }
+                }
+                if (_template.classes != undefined) {
+                    currentChild.applyStyle(..._template.classes);
+                }
+                if (_template.src != undefined) {
+                    (currentChild as edomImageElement).setSrc(_template.src);
+                }
+                if (_template.for != undefined) {
+                    (currentChild as edomLabelElement).setFor(_template.for);
+                }
+                if (_template.groupID != undefined) {
+                    (currentChild as edomInputElement).setGroup(
+                        _template.groupID
                     );
                 }
-                if (template[i].classes != undefined) {
-                    currentChild.applyStyle(...template[i].classes);
+                if (_template.state != undefined) {
+                    (currentChild as edomInputElement).state = _template.state;
                 }
-                if (template[i].src != undefined) {
-                    (currentChild as edomImageElement).setSrc(template[i].src);
+                if (_template.target != undefined) {
+                    (currentChild as edomAnchorElement).href(_template.target);
                 }
-                if (template[i].target != undefined) {
-                    (currentChild as edomAnchorElement).href(
-                        template[i].target
-                    );
-                }
-                if (template[i].handler != undefined) {
-                    template[i].handler.forEach((handler: edomObj) => {
+                if (_template.handler != undefined) {
+                    _template.handler.forEach((handler: edomObj) => {
                         currentChild.addEvent(
                             handler.type,
                             handler.id,
@@ -142,8 +184,8 @@ class edom {
                 }
                 parent.addChild(currentChild);
 
-                if (template[i].children != undefined) {
-                    this.fromTemplate(template[i].children, currentChild);
+                if (_template.children != undefined) {
+                    this.fromTemplate(_template.children, currentChild);
                 }
             }
         }
@@ -166,12 +208,12 @@ class edomElement {
 
     set id(id: string) {
         this._id = id;
-        this.element.id = this._id;
+        this.element.id = id;
     }
 
     private handlers: handlerObject = {};
 
-    private values: edomObj = {};
+    private values: obj = {};
 
     constructor(
         fromExisting: boolean,
@@ -192,7 +234,6 @@ class edomElement {
         }
         edom.allElements.push(this);
         this.tag = tagname;
-        this.element.id = this._id;
         return this;
     }
 
@@ -324,6 +365,7 @@ class edomElement {
 class edomInputElement extends edomElement {
     value: string = '';
     type: string = 'text';
+    groupID: string = '';
 
     addChange(identifier: string, func: (self: this) => any) {
         this.addEvent('input', identifier, (self) => {
@@ -347,6 +389,21 @@ class edomInputElement extends edomElement {
 
     select() {
         (this.element as HTMLInputElement).select();
+    }
+
+    setGroup(_groupID: string) {
+        this.groupID = _groupID;
+        (this.element as HTMLInputElement).name = this.groupID;
+    }
+
+    private _state: boolean = false;
+    get state(): boolean {
+        return this._state;
+    }
+
+    set state(state: boolean) {
+        this._state = state;
+        (this.element as HTMLInputElement).checked = state;
     }
 }
 
@@ -408,5 +465,13 @@ class edomImageElement extends edomElement {
     setSrc(src: string) {
         this.src = src;
         (this.element as HTMLImageElement).src = this.src;
+    }
+}
+// edomLabelElement ==================================================================================
+class edomLabelElement extends edomElement {
+    for: string = '';
+    setFor(htmlFor: string) {
+        this.for = htmlFor;
+        (this.element as HTMLLabelElement).htmlFor = this.for;
     }
 }
