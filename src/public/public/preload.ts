@@ -64,7 +64,7 @@ function preload() {
                                     <ul>
                                         <li><a href='/schuelerzeitung/vorstellung'>Vorstellung</a></li>
                                         <li><a href='/schuelerzeitung/aktuelles'>Aktuelles</a></li>
-                                        <li><a href='/schuelerzeitung/lokal'>Lokales</a></li>
+                                        <li><a href='/schuelerzeitung/lokales'>Lokales</a></li>
                                         <li><a href='/schuelerzeitung/internationales'>Internationales</a></li>
                                         <li><a href='/schuelerzeitung/empfehlungen'>Empfehlungen</a></li>
                                         <li><a href='/schuelerzeitung/tipps'>Tipps & Tricks</a></li>
