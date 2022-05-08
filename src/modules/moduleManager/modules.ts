@@ -107,6 +107,8 @@ export function config(
                     ];
                 });
 
+                updateConfig(rootPath, req.params.modulename, false);
+
                 res.json({ success: true });
             }
         );
@@ -129,6 +131,7 @@ export function config(
         try {
             modules[module] = require(path.join(rootPath, `${module}/index`));
             modules[module].config(app, modules, rootPath, httpServer);
+            updateConfig(rootPath, req.params.modulename, true);
             res.json({ success: true });
         } catch (error: unknown) {
             console.log(error);
@@ -172,4 +175,24 @@ export function config(
             }
         );
     });
+}
+
+function updateConfig(
+    rootPath: string,
+    modulename: string,
+    isRunning: boolean
+) {
+    const configPath: string = path.join(
+        (() => {
+            const srp: string[] = rootPath.split('/');
+            srp.pop();
+            return srp.join('/');
+        })(),
+        'config.json'
+    );
+
+    const configJson: obj = JSON.parse(fs.readFileSync(configPath).toString());
+
+    configJson['modules'][modulename] = isRunning;
+    fs.writeFileSync(configPath, JSON.stringify(configJson));
 }

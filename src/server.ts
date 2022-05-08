@@ -34,7 +34,18 @@ app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
 
 const directoryPath: string = path.join(__dirname, 'modules');
-const moduleBlacklist: string[] = ['tmp'];
+let moduleBlacklist: string[] = ['tmp'];
+
+const moduleSettings: obj = JSON.parse(
+    fs.readFileSync('./src/config.json').toString()
+);
+
+Object.keys(moduleSettings['modules']).forEach((key: string) => {
+    if (moduleSettings['modules'][key] === false) {
+        moduleBlacklist.push(key);
+    }
+});
+
 fs.readdir(
     directoryPath,
     function (err: NodeJS.ErrnoException | null, files: string[]) {
