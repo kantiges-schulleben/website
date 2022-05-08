@@ -42,7 +42,7 @@ export function query(
                 query,
                 escape,
                 (_err: MysqlError | null, _result: any) => {
-                    if (err) {
+                    if (_err) {
                         console.log('sql error', _err);
                         callback(true, {});
                         return;
