@@ -1,9 +1,9 @@
-import { Application, Request, Response } from 'express';
+import { Application } from 'express';
 import * as types from '../../types';
 
-import * as mysql from 'mysql';
+import { createPool, MysqlError, Pool, PoolConnection } from 'mysql';
 
-var connection: any;
+let pool: Pool | undefined;
 
 export function config(
     server: Application,
@@ -14,27 +14,13 @@ export function config(
 }
 
 // Datanbankverbindung aufbauen und falls sie verloren geht wieder herstellen
-export function connect() {
-    connection = mysql.createConnection({
+function connect() {
+    pool = createPool({
         host: process.env.SQL_SERVER,
         user: process.env.SQL_USER,
         password: process.env.SQL_PASSWORD,
         database: process.env.SQL_DATABASE,
         port: parseInt(process.env.SQL_PORT || '3306'),
-    });
-
-    connection.connect((err: Error) => {
-        console.log('connected');
-    });
-
-    connection.on('error', function onError(err: mysql.MysqlError) {
-        console.log('connection error', err);
-        if (
-            err.code == 'PROTOCOL_CONNECTION_LOST' ||
-            err.code == 'ECONNRESET'
-        ) {
-            connect();
-        }
     });
 }
 
@@ -44,12 +30,26 @@ export function query(
     escape: Array<string>,
     callback: (error: boolean, param: types.obj) => void
 ) {
-    connection.query(query, escape, (err: Error, result: any) => {
-        if (err) {
-            console.log('sql error', err);
-            callback(true, {});
-            return;
+    pool?.getConnection(
+        (err: MysqlError | null, connection: PoolConnection) => {
+            if (err) {
+                console.log('connection error', err);
+                callback(true, {});
+                return;
+            }
+
+            connection.query(
+                query,
+                escape,
+                (_err: MysqlError | null, _result: any) => {
+                    if (_err) {
+                        console.log('sql error', _err);
+                        callback(true, {});
+                        return;
+                    }
+                    callback(false, _result);
+                }
+            );
         }
-        callback(false, result);
-    });
+    );
 }
