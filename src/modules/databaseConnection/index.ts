@@ -13,7 +13,6 @@ export function config(
     connect();
 }
 
-// Datanbankverbindung aufbauen und falls sie verloren geht wieder herstellen
 function connect() {
     pool = createPool({
         host: process.env.SQL_SERVER,
@@ -30,26 +29,12 @@ export function query(
     escape: Array<string>,
     callback: (error: boolean, param: types.obj) => void
 ) {
-    pool?.getConnection(
-        (err: MysqlError | null, connection: PoolConnection) => {
-            if (err) {
-                console.log('connection error', err);
-                callback(true, {});
-                return;
-            }
-
-            connection.query(
-                query,
-                escape,
-                (_err: MysqlError | null, _result: any) => {
-                    if (_err) {
-                        console.log('sql error', _err);
-                        callback(true, {});
-                        return;
-                    }
-                    callback(false, _result);
-                }
-            );
+    pool?.query(query, escape, (_err: MysqlError | null, _result: any) => {
+        if (_err) {
+            console.log('sql error', _err);
+            callback(true, {});
+            return;
         }
-    );
+        callback(false, _result);
+    });
 }
