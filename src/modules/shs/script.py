@@ -154,7 +154,7 @@ def assignByTime(list1, list2, isGroup = False, maximum = 2):
                             # tmp_l_paare.append(list(temporary[j]))
                             tmp_l_paare.append(list(temporary[j]))
                             pass
-                        print(tmp_l_paare)
+                        # print(tmp_l_paare)
                         l_paare.append(list(tmp_l_paare))
 
                         # l_paare.append([list(list1[i]), list(temporary[0]), list(temporary[1])])
@@ -169,7 +169,7 @@ def assignByTime(list1, list2, isGroup = False, maximum = 2):
                         # l_paare[-1][1][7] = "".join(tmp) # take
                         # l_paare[-1][0][7] = "".join(tmp) # give
                         
-                        print(len(l_paare[-1]))
+                        # print(len(l_paare[-1]))
                         for j in range(len(l_paare[-1])):
                             l_paare[len(l_paare) - 1][j][7] = "".join(tmp) # give
                             if j == 0:
@@ -212,53 +212,53 @@ if len(sys.argv) > 1:
     if sys.argv[1].lower() == "--use-default":
         orig_list = [
         # Name,          E-Mail,             give private tutoring        grade         subject  einzelnachhilfe
-        ['Joyce Byers', 'Joyce@gmail.com', '0', '5a', 'Mathe', '0', '0', '13'],
-        ['Joyce Byers', 'Joyce@gmail.com', '0', '5a', 'Deutsch', '0', '0', '13'],
-        ['Jim Hopper', 'Jim@gmail.com', '0', '5a', 'Physik', '0', '0', '13'],
-        ['Mike Wheeler', 'Mike@gmail.com', '0', '5a', 'Biologie', '0', '0', '13'],
-        ['Will Byers', 'Will@gmail.com', '0', '5a', 'Mathe', '0', '0', '13'],
-        ['Max Mayfield', 'Max@gmail.com', '0', '5a', 'Physik', '0', '0', '13'],
-        ['Steve Harrington', 'Steve@gmail.com', '0', '5a', 'Biologie', '0', '0', '13'],
-        ['Billy Hargrove', 'Billy@gmail.com', '0', '7a', 'Mathe', '0', '0', '13'],
-        ['Bob Newby', 'Bob@gmail.com', '0', '7a', 'Chemie', '0', '0', '13'],
-        ['Jane Hopper', 'Jane@gmail.com', '0', '7a', 'Mathe', '0', '0', '13'],
-        ['Dustin Henderson', 'Dustin@gmail.com', '0', '7a', 'Chemie', '0', '0', '13'],
-        ['Eleven', 'el@gmail.com', '0', '7a', 'Chemie', '0', '0', '13'],
-        ['Alexei', 'alexei@gmail.com', '0', '8a', 'Informatik', '0', '0', '13'],
-        ['Heather Holloway', 'heather@gmail.com', '0', '7a', 'Informatik', '0', '0', '13'],
-        ['Larry Kline', 'larry@gmail.com', '0', '7a', 'Mathe', '0', '0', '13'],
-        ['Tom Holloway', 'tom@gmail.com', '0', '5a', 'Deutsch', '0', '0', '13'],
-        ['Dr. Owens', 'owens@gmail.com', '0', '5a', 'Deutsch', '0', '0', '13'],
+        ['Joyce Byers', 'Joyce@gmail.com', '0', '5a', 'Mathe', '0', '0', '13', '00000000000', '', '1'],
+        ['Joyce Byers', 'Joyce@gmail.com', '0', '5a', 'Deutsch', '0', '0', '13', '00000000000', '', '1'],
+        ['Jim Hopper', 'Jim@gmail.com', '0', '5a', 'Physik', '0', '0', '13', '00000000000', '', '1'],
+        ['Mike Wheeler', 'Mike@gmail.com', '0', '5a', 'Biologie', '0', '0', '13', '00000000000', '', '1'],
+        ['Will Byers', 'Will@gmail.com', '0', '5a', 'Mathe', '0', '0', '13', '00000000000', '', '1'],
+        ['Max Mayfield', 'Max@gmail.com', '0', '5a', 'Physik', '0', '0', '13', '00000000000', '', '1'],
+        ['Steve Harrington', 'Steve@gmail.com', '0', '5a', 'Biologie', '0', '0', '13', '00000000000', '', '1'],
+        ['Billy Hargrove', 'Billy@gmail.com', '0', '7a', 'Mathe', '0', '0', '13', '00000000000', '', '1'],
+        ['Bob Newby', 'Bob@gmail.com', '0', '7a', 'Chemie', '0', '0', '13', '00000000000', '', '1'],
+        ['Jane Hopper', 'Jane@gmail.com', '0', '7a', 'Mathe', '0', '0', '13', '00000000000', '', '1'],
+        ['Dustin Henderson', 'Dustin@gmail.com', '0', '7a', 'Chemie', '0', '0', '13', '00000000000', '', '1'],
+        ['Eleven', 'el@gmail.com', '0', '7a', 'Chemie', '0', '0', '13', '00000000000', '', '1'],
+        ['Alexei', 'alexei@gmail.com', '0', '8a', 'Informatik', '0', '0', '13', '00000000000', '', '1'],
+        ['Heather Holloway', 'heather@gmail.com', '0', '7a', 'Informatik', '0', '0', '13', '00000000000', '', '1'],
+        ['Larry Kline', 'larry@gmail.com', '0', '7a', 'Mathe', '0', '0', '13', '00000000000', '', '1'],
+        ['Tom Holloway', 'tom@gmail.com', '0', '5a', 'Deutsch', '0', '0', '13', '00000000000', '', '1'],
+        ['Dr. Owens', 'owens@gmail.com', '0', '5a', 'Deutsch', '0', '0', '13', '00000000000', '', '1'],
 
-        ['Albert Einstein', 'albert@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
-        ['Niels Bohr', 'niels@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
-        ['Nikola Tesla', 'nikola@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
-        ['Thomas Edison', 'thomas@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
-        ['Thomas Edison', 'thomas@gmail.com', '0', '5a', 'Mathe', '0', '1', '13'],
-        ['Stephen Hawking', 'stephen@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
-        ['Johannes Kepler', 'johannes@gmail.com', '0', '5a', 'Physik', '0', '1', '13'],
+        ['Albert Einstein', 'albert@gmail.com', '0', '5a', 'Physik', '0', '1', '13', '00000000000', '', '1'],
+        ['Niels Bohr', 'niels@gmail.com', '0', '5a', 'Physik', '0', '1', '13', '00000000000', '', '1'],
+        ['Nikola Tesla', 'nikola@gmail.com', '0', '5a', 'Physik', '0', '1', '13', '00000000000', '', '1'],
+        ['Thomas Edison', 'thomas@gmail.com', '0', '5a', 'Physik', '0', '1', '13', '00000000000', '', '1'],
+        ['Thomas Edison', 'thomas@gmail.com', '0', '5a', 'Mathe', '0', '1', '13', '00000000000', '', '1'],
+        ['Stephen Hawking', 'stephen@gmail.com', '0', '5a', 'Physik', '0', '1', '13', '00000000000', '', '1'],
+        ['Johannes Kepler', 'johannes@gmail.com', '0', '5a', 'Physik', '0', '1', '13', '00000000000', '', '1'],
 
-        ['Lucas Sinclair', 'Lucas@gmail.com', '1', '10a', 'Mathe', '5', '0', '13'],
-        ['Nancy Wheeler', 'Nancy@gmail.com', '1', '10a', 'Chemie', '7', '0', '13'],
-        ['Jonathan Byers', 'Jonathan@gmail.com', '1', '10a', 'Biologie', '5', '0', '13'],
-        ['Karen Wheeler', 'Karen@gmail.com', '1', '10a', 'Mathe', '5', '0', '13'],
-        ['Martin Brenner', 'Martin@gmail.com', '1', '10a', 'Mathe', '7', '0', '13'],
-        ['Robin Buckley', 'Robin@gmail.com', '1', '10a', 'Mathe', '7', '0', '13'],
-        ['Erica Sinclair', 'Erica@gmail.com', '1', '10a', 'Chemie', '7', '0', '13'],
-        ['Barbara Holland', 'Barb@gmail.com', '1', '10a', 'Biologie', '5', '0', '13'],
-        ['Ross Duffer', 'Ross@gmail.com', '1', '10a', 'Physik', '5', '0', '13'],
-        ['Matt Duffer', 'Matt@gmail.com', '1', '10a', 'Physik', '5', '0', '13'],
-        ['eight', 'eight@gmail.com', '1', '10a', 'Physik', '5', '0', '13'],
-        ['Suzi', 'suzi@gmail.com', '1', '10a', 'Informatik', '8', '0', '13'],
-        ['Murray Baumann', 'Murray@gmail.com', '1', '9a', 'Informatik', '7', '0', '13'],
-        ['Becky Ives', 'becky@gmail.com', '1', '9a', 'Mathe', '5', '0', '13'],
-        ['Ted Wheeler', 'ted@gmail.com', '1', '9a', 'Deutsch', '5', '0', '13'],
+        ['Lucas Sinclair', 'Lucas@gmail.com', '1', '10a', 'Mathe', '5', '0', '13', '00000000000', '', '1'],
+        ['Nancy Wheeler', 'Nancy@gmail.com', '1', '10a', 'Chemie', '7', '0', '13', '00000000000', '', '1'],
+        ['Jonathan Byers', 'Jonathan@gmail.com', '1', '10a', 'Biologie', '5', '0', '13', '00000000000', '', '1'],
+        ['Karen Wheeler', 'Karen@gmail.com', '1', '10a', 'Mathe', '5', '0', '13', '00000000000', '', '1'],
+        ['Martin Brenner', 'Martin@gmail.com', '1', '10a', 'Mathe', '7', '0', '13', '00000000000', '', '1'],
+        ['Robin Buckley', 'Robin@gmail.com', '1', '10a', 'Mathe', '7', '0', '13', '00000000000', '', '1'],
+        ['Erica Sinclair', 'Erica@gmail.com', '1', '10a', 'Chemie', '7', '0', '13', '00000000000', '', '1'],
+        ['Barbara Holland', 'Barb@gmail.com', '1', '10a', 'Biologie', '5', '0', '13', '00000000000', '', '1'],
+        ['Ross Duffer', 'Ross@gmail.com', '1', '10a', 'Physik', '5', '0', '13', '00000000000', '', '1'],
+        ['Matt Duffer', 'Matt@gmail.com', '1', '10a', 'Physik', '5', '0', '13', '00000000000', '', '1'],
+        ['eight', 'eight@gmail.com', '1', '10a', 'Physik', '5', '0', '13', '00000000000', '', '1'],
+        ['Suzi', 'suzi@gmail.com', '1', '10a', 'Informatik', '8', '0', '13', '00000000000', '', '1'],
+        ['Murray Baumann', 'Murray@gmail.com', '1', '9a', 'Informatik', '7', '0', '13', '00000000000', '', '1'],
+        ['Becky Ives', 'becky@gmail.com', '1', '9a', 'Mathe', '5', '0', '13', '00000000000', '', '1'],
+        ['Ted Wheeler', 'ted@gmail.com', '1', '9a', 'Deutsch', '5', '0', '13', '00000000000', '', '1'],
 
-        ['Nikolaus Kopernikus', 'nikolaus@gmail.com', '1', '9a', 'Physik', '5', '1', '13'],
-        ['Isaac Newton', 'isaac@gmail.com', '1', '9a', 'Physik', '5', '1', '13'],
-        ['Ernest Rutherford', 'ernest@gmail.com', '1', '9a', 'Physik', '5', '1', '13'],
-        ['Galileo Galilei', 'galileo@gmail.com', '1', '9a', 'Physik', '5', '1', '13'],
-        ['Nikolaus Kopernikus', 'nikolaus@gmail.com', '1', '9a', 'Mathe', '5', '1', '13']
+        ['Nikolaus Kopernikus', 'nikolaus@gmail.com', '1', '9a', 'Physik', '5', '1', '13', '00000000000', '', '1'],
+        ['Isaac Newton', 'isaac@gmail.com', '1', '9a', 'Physik', '5', '1', '13', '00000000000', '', '1'],
+        ['Ernest Rutherford', 'ernest@gmail.com', '1', '9a', 'Physik', '5', '1', '13', '00000000000', '', '1'],
+        ['Galileo Galilei', 'galileo@gmail.com', '1', '9a', 'Physik', '5', '1', '13', '00000000000', '', '1'],
+        ['Nikolaus Kopernikus', 'nikolaus@gmail.com', '1', '9a', 'Mathe', '5', '1', '13', '00000000000', '', '1']
         ]
         pass
     else:
