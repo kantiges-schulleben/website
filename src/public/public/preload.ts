@@ -46,28 +46,28 @@ function preload() {
                                     </ul>
                                 </div>
                             </li>
-                            <li><a href='/schuelerrat/aktuelles'>Schülerrat</a>
+                            <li><a href='/kantrat/aktuelles'>Kantrat</a>
                                 <!--##-->
                                 <div class='sub-menu-1'>
                                     <ul>
-                                        <li><a href='/schuelerrat/aktuelles'>Aktuelles</a></li>
-                                        <li><a href='/schuelerrat/allgemein'>Allgemein</a></li>
-                                        <li><a href='/schuelerrat/vorstand'>Vorstand</a></li>
-                                        <li><a href='/schuelerrat/arbeitsgruppen'>Arbeitsgruppen</a></li>
-                                        <li><a href='/schuelerrat/kontakt'>Kontakt</a></li>
+                                        <li><a href='/kantrat/aktuelles'>Aktuelles</a></li>
+                                        <li><a href='/kantrat/allgemein'>Allgemein</a></li>
+                                        <li><a href='/kantrat/vorstand'>Vorstand</a></li>
+                                        <li><a href='/kantrat/arbeitsgruppen'>Arbeitsgruppen</a></li>
+                                        <li><a href='/kantrat/kontakt'>Kontakt</a></li>
                                     </ul>
                                 </div>
                             </li>
                             <li>
-                                <a href='/schuelerzeitung/aktuelles'>Schülerzeitung</a>
+                                <a href='/provokant/aktuelles'>Provokant</a>
                                 <div class='sub-menu-1'>
                                     <ul>
-                                        <li><a href='/schuelerzeitung/vorstellung'>Vorstellung</a></li>
-                                        <li><a href='/schuelerzeitung/aktuelles'>Aktuelles</a></li>
-                                        <li><a href='/schuelerzeitung/lokales'>Lokales</a></li>
-                                        <li><a href='/schuelerzeitung/internationales'>Internationales</a></li>
-                                        <li><a href='/schuelerzeitung/empfehlungen'>Empfehlungen</a></li>
-                                        <li><a href='/schuelerzeitung/tipps'>Tipps & Tricks</a></li>
+                                        <li><a href='/provokant/vorstellung'>Vorstellung</a></li>
+                                        <li><a href='/provokant/aktuelles'>Aktuelles</a></li>
+                                        <li><a href='/provokant/lokales'>Lokales</a></li>
+                                        <li><a href='/provokant/internationales'>Internationales</a></li>
+                                        <li><a href='/provokant/empfehlungen'>Empfehlungen</a></li>
+                                        <li><a href='/provokant/tipps'>Tipps & Tricks</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -115,7 +115,7 @@ function preload() {
                                     >Webseite unserer Schule</a
                                 ><br />
                                 <a
-                                    href="https://www.instagram.com/schuelerrat_kantgym/"
+                                    href="https://www.instagram.com/kantrat_kantgym/"
                                     >Instagram</a
                                 ><br />
                             </div>
