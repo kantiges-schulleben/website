@@ -3,6 +3,7 @@ import * as types from '../../types';
 import { use } from '../moduleManager';
 import * as path from 'path';
 import { config as adminConfig } from './admin';
+import { emailText } from './emailText';
 
 export function config(
     server: Application,
@@ -54,13 +55,9 @@ export function config(
                                             mail: 'shs@kantgym-leipzig.de',
                                         },
                                         'Anmeldebestätigung',
-                                        `Hallo ${req.body.name},<br>
-                                        Hiermit bist du offiziell ein Teil des Projekts „Schüler*innen helfen Schülern*innen“. Du bist in unserer Datenbank vermerkt und wirst von uns zeitnah mit weiteren Informationen versorgt.<br>
-                                        Deine Daten werden gemäß unseren Datenschutzregelung behandelt.<br>
-                                        Bei weiteren Fragen oder Problemen kannst du dich jeder Zeit an unser Team wenden.<br>
-                                        Viel Spaß beim gemeinsamen Lernen.<br><br>
-                                
-                                        Dein „Schüler*innen helfen Schülern*innen“ – Team`
+                                        emailText.get('bestMail', 'bestMail', {
+                                            name: req.body.name,
+                                        })
                                     );
                                 });
                                 res.json({ success: true });

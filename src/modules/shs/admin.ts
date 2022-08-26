@@ -3,12 +3,17 @@ import * as types from '../../types';
 import { use } from '../moduleManager';
 import * as path from 'path';
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process';
+import { emailText } from './emailText';
+import { sendMail } from '../mail';
+
+let modulesPath: string = '';
 
 export function config(
     server: Application,
     modules: types.obj,
     rootPath: string
 ) {
+    modulesPath = rootPath;
     server.get('/shs/admin', (req: Request, res: Response) => {
         use('user', (user: types.obj) => {
             if (
@@ -60,7 +65,6 @@ export function config(
         });
     });
 
-    // TODO make work
     server.get('/shs/admin/start', (req: Request, res: Response) => {
         use('user', (user: types.obj) => {
             if (
@@ -72,18 +76,257 @@ export function config(
                         .getSessionValue(req, 'berechtigung')
                         .includes('0'))
             ) {
-                console.log('starting script');
-                const process: ChildProcessWithoutNullStreams = spawn(
-                    'python3',
-                    ['test.py']
-                );
-                process.stdout.on('data', (data: any) => {
-                    console.log(data);
-                });
-                res.json({ success: true });
+                getStudentDataFromDB()
+                    .then((studentData: types.obj) =>
+                        runSortScript(studentData)
+                    )
+                    .then((sortedStudentData: types.obj) =>
+                        sendMailsToStudents(sortedStudentData)
+                    )
+                    .then(() => {
+                        res.json({ success: true });
+                    });
             } else {
                 res.redirect('/login');
             }
         });
     });
+}
+
+function getStudentDataFromDB(): Promise<types.obj> {
+    return new Promise<types.obj>((resolve) => {
+        use('databaseConnection', (database: types.obj) => {
+            database.query(
+                'SELECT * FROM shsAnmeldung',
+                ['empty'],
+                (error: boolean, result: types.obj) => {
+                    if (error) {
+                        return;
+                    }
+
+                    let studentData: types.obj = [];
+                    result.forEach((student: types.obj) => {
+                        studentData.push({
+                            name: student['name'],
+                            mail: student['mail'],
+                            klasse: student['klasse'],
+                            telefon: student['telefon'],
+                            nachhilfe: student['nachhilfe'],
+                            facher: student['fach'], // falls irgendwann mehrere Fächer im FE ausgewählt werden können
+                            zeit: student['zeit'],
+                            einzelnachhilfe: student['einzelnachhilfe'],
+                            accountID: student['accountID'],
+                            Bemerkung: student['bemerkung'] || '', // ich geb's ja zu, ich bin dumm und faul
+                            zielKlasse: student['zielKlasse'],
+                        });
+                    });
+                    resolve(studentData);
+                }
+            );
+        });
+    });
+}
+
+function runSortScript(studentData: types.obj): Promise<types.obj> {
+    return new Promise<types.obj>((resolve) => {
+        console.log('starting script');
+        const process: ChildProcessWithoutNullStreams = spawn('python3', [
+            path.join(modulesPath, '/shs/script.py'),
+            JSON.stringify(studentData),
+        ]);
+
+        let scriptOutput: string = '';
+
+        process.stdout.on('data', (data: any) => {
+            scriptOutput += data.toString();
+        });
+        process.on('close', (code: number) => {
+            console.log('script done');
+            resolve(
+                code === 0
+                    ? JSON.parse(scriptOutput)
+                    : { einzel: [], gruppe: [], ohne: [] }
+            );
+        });
+    });
+}
+
+function sendMailsToStudents(sortedStudentData: types.obj): Promise<boolean> {
+    return new Promise<boolean>((resolve) => {
+        let queries: string[] = ['DELETE FROM handschlag'];
+        let queryData: string[][] = [['empty']];
+        use('databaseConnection', (database: types.obj) => {
+            sortedStudentData['einzel'].forEach((paar: types.obj) => {
+                queries.push(
+                    'INSERT INTO handschlag (fach, id, partner, klasse, typ) VALUES (?, ?, ?, ?, ?)'
+                );
+                queryData.push([
+                    paar['facher'],
+                    paar['accountID'],
+                    paar['partner']['accountID'],
+                    paar['klasse'],
+                    'lehrer',
+                ]);
+                sendMail(
+                    'Schüler*innen helfen Schüler*innen',
+                    {
+                        name: paar['name'],
+                        mail: paar['mail'],
+                    },
+                    { name: 'ShS-Team', mail: 'shs@kantgym-leipzig.de' },
+                    'Rückmeldung Partner*in',
+                    emailText.get('einzel', 'lehrer', {
+                        name: paar['name'],
+                        namePartner: paar['partner']['name'],
+                        fach: paar['facher'],
+                        mailPartner: `<a href='mailto:${paar['partner']['mail']}'>${paar['partner']['mail']}</a>`,
+                        telefonPartner: paar['partner']['telefon'],
+                    })
+                );
+
+                queries.push(
+                    'INSERT INTO handschlag (fach, id, partner, klasse, typ) VALUES (?, ?, ?, ?, ?)'
+                );
+                queryData.push([
+                    paar['partner']['facher'],
+                    paar['partner']['accountID'],
+                    paar['accountID'],
+                    paar['partner']['klasse'],
+                    'schueler',
+                ]);
+
+                sendMail(
+                    'Schüler*innen helfen Schüler*innen',
+                    {
+                        name: paar['partner']['name'],
+                        mail: paar['partner']['mail'],
+                    },
+                    { name: 'ShS-Team', mail: 'shs@kantgym-leipzig.de' },
+                    'Rückmeldung Partner*in',
+                    emailText.get('einzel', 'schueler', {
+                        name: paar['partner']['name'],
+                        partner: paar['name'],
+                        fach: paar['facher'],
+                        mailPartner: `<a href='mailto:${paar['mail']}'>${paar['mail']}</a>`,
+                        telefonPartner: paar['telefon'],
+                    })
+                );
+            });
+
+            sortedStudentData['gruppe'].forEach((paar: types.obj) => {
+                queries.push(
+                    'INSERT INTO handschlag (fach, id, partner, klasse, typ) VALUES (?, ?, ?, ?, ?)'
+                );
+                queryData.push([
+                    paar['facher'],
+                    paar['accountID'],
+                    Object.keys(paar['partner'])
+                        .map((partnerIndex: string) => {
+                            return paar['partner'][partnerIndex]['accountID'];
+                        })
+                        .join(','),
+                    paar['klasse'],
+                    'lehrer',
+                ]);
+
+                sendMail(
+                    'Schüler*innen helfen Schüler*innen',
+                    {
+                        name: paar['name'],
+                        mail: paar['mail'],
+                    },
+                    { name: 'ShS-Team', mail: 'shs@kantgym-leipzig.de' },
+                    'Rückmeldung Partner*in',
+                    emailText.get('gruppe', 'lehrer', {
+                        name: paar['name'],
+                        fach: paar['facher'],
+                        gruppenPartner: Object.keys(paar['partner'])
+                            .map((partnerIndex: string) => {
+                                return paar['partner'][partnerIndex]['name'];
+                            })
+                            .join(', '),
+                        mailsStudents: Object.keys(paar['partner'])
+                            .map((partnerIndex: string) => {
+                                return `<a href="mailto:${paar['partner'][partnerIndex]['mail']}">${paar['partner'][partnerIndex]['mail']}</a>`;
+                            })
+                            .join(', '),
+                        telefonStudents: Object.keys(paar['partner'])
+                            .map((partnerIndex: string) => {
+                                return paar['partner'][partnerIndex]['telefon'];
+                            })
+                            .join(', '),
+                    })
+                );
+
+                Object.keys(paar['partner']).forEach((partnerIndex: string) => {
+                    queries.push(
+                        'INSERT INTO handschlag (fach, id, partner, klasse, typ) VALUES (?, ?, ?, ?, ?)'
+                    );
+                    queryData.push([
+                        paar['partner'][partnerIndex]['facher'],
+                        paar['partner'][partnerIndex]['accountID'],
+                        paar['accountID'],
+                        paar['partner'][partnerIndex]['klasse'],
+                        'schueler',
+                    ]);
+
+                    sendMail(
+                        'Schüler*innen helfen Schüler*innen',
+                        {
+                            name: paar['partner'][partnerIndex]['name'],
+                            mail: paar['partner'][partnerIndex]['mail'],
+                        },
+                        { name: 'ShS-Team', mail: 'shs@kantgym-leipzig.de' },
+                        'Rückmeldung Partner*in',
+                        emailText.get('gruppe', 'schueler', {
+                            name: paar['partner'][partnerIndex]['name'],
+                            nameTeacher: paar['name'],
+                            fach: paar['facher'],
+                            mailTeacher: paar['mail'],
+                            telefonTeacher: paar['telefon'],
+                        })
+                    );
+                });
+            });
+
+            sortedStudentData['ohne'].forEach((looser: types.obj) => {
+                sendMail(
+                    'Schüler*innen helfen Schüler*innen',
+                    {
+                        name: looser['name'],
+                        mail: looser['mail'],
+                    },
+                    { name: 'ShS-Team', mail: 'shs@kantgym-leipzig.de' },
+                    'Rückmeldung Partner*in',
+                    emailText.get('ohne', 'ohne', {
+                        name: looser['name'],
+                    })
+                );
+            });
+
+            doBatchQueryStudents(queries, queryData, 0, database);
+            resolve(true);
+        });
+    });
+}
+
+function doBatchQueryStudents(
+    queries: string[],
+    queryData: string[][],
+    index: number,
+    database: types.obj
+) {
+    if (index == queries.length) {
+        return;
+    }
+    database.query(
+        queries[index],
+        queryData[index],
+        (
+            error: boolean,
+            result: types.obj /*ignore both we are cowboys, YEEHA!*/
+        ) => {
+            doBatchQueryStudents(queries, queryData, ++index, database);
+        }
+    );
 }
