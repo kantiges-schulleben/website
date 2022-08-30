@@ -109,6 +109,10 @@ function switchContent(contentID: string) {
             break;
         case 'tabUser':
             edom.fromTemplate(muUser(), edom.findById('actualContent'));
+            (
+                edom.findById('inputUserName')?.element as HTMLInputElement
+            ).placeholder = 'Benutzer*innenname';
+
             break;
         case 'tabBerechtigungen':
             edom.fromTemplate(

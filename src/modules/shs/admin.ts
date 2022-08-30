@@ -5,6 +5,7 @@ import * as path from 'path';
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process';
 import { emailText } from './emailText';
 import { sendMail } from '../mail';
+import { encode } from 'html-entities';
 
 let modulesPath: string = '';
 
@@ -91,6 +92,188 @@ export function config(
             }
         });
     });
+
+    server.post('/shs/admin/searchUser', (req: Request, res: Response) => {
+        use('user', (user: types.obj) => {
+            if (
+                !(
+                    user.login.isLoggedIn(req) &&
+                    (user.session
+                        .getSessionValue(req, 'berechtigung')
+                        .includes('3') ||
+                        user.session
+                            .getSessionValue(req, 'berechtigung')
+                            .includes('0'))
+                )
+            ) {
+                res.json({ userlist: [] });
+                return;
+            }
+
+            const USERNAME: string = encode(req.body.username, {
+                mode: 'specialChars',
+                level: 'html5',
+            });
+
+            use('databaseConnection', (database: types.obj) => {
+                database.query(
+                    'SELECT fach, id, name FROM shsAnmeldung WHERE name LIKE ?;',
+                    [`%${USERNAME}%`],
+                    (err: boolean, result: types.obj) => {
+                        if (err) {
+                            res.json({ userlist: [] });
+                            return;
+                        }
+
+                        res.json({ userlist: result });
+                    }
+                );
+            });
+        });
+    });
+
+    server.get('/shs/admin/userdata/:userID', (req: Request, res: Response) => {
+        use('user', (user: types.obj) => {
+            if (
+                !(
+                    user.login.isLoggedIn(req) &&
+                    (user.session
+                        .getSessionValue(req, 'berechtigung')
+                        .includes('3') ||
+                        user.session
+                            .getSessionValue(req, 'berechtigung')
+                            .includes('0'))
+                )
+            ) {
+                res.json({ userlist: {} });
+                return;
+            }
+
+            const USER_ID: string = encode(req.params.userID, {
+                mode: 'specialChars',
+                level: 'html5',
+            });
+
+            use('databaseConnection', (database: types.obj) => {
+                database.query(
+                    'SELECT name, mail, telefon, fach, einzelnachhilfe, nachhilfe, klasse, zielKlasse, accountID FROM shsAnmeldung WHERE id LIKE ?;',
+                    [USER_ID],
+                    (err: boolean, result: types.obj) => {
+                        if (err || result.length === 0) {
+                            res.json({ userdata: {} });
+                            return;
+                        }
+
+                        res.json({ userdata: result[0] });
+                    }
+                );
+            });
+        });
+    });
+
+    server.get(
+        '/shs/admin/deleteUser/:userID',
+        (req: Request, res: Response) => {
+            use('user', (user: types.obj) => {
+                if (
+                    !(
+                        user.login.isLoggedIn(req) &&
+                        (user.session
+                            .getSessionValue(req, 'berechtigung')
+                            .includes('3') ||
+                            user.session
+                                .getSessionValue(req, 'berechtigung')
+                                .includes('0'))
+                    )
+                ) {
+                    res.json({ success: false });
+                    return;
+                }
+
+                const USER_ID: string = encode(req.params.userID, {
+                    mode: 'specialChars',
+                    level: 'html5',
+                });
+
+                use('databaseConnection', (database: types.obj) => {
+                    database.query(
+                        'DELETE FROM shsAnmeldung WHERE id = ?',
+                        [USER_ID],
+                        (err: boolean, result: types.obj) => {
+                            if (err) {
+                                res.json({ success: false });
+                                return;
+                            }
+
+                            res.json({ success: result['affectedRows'] > 0 });
+                        }
+                    );
+                });
+            });
+        }
+    );
+
+    server.post(
+        '/shs/admin/updateUser/:userID',
+        (req: Request, res: Response) => {
+            use('user', (user: types.obj) => {
+                if (
+                    !(
+                        user.login.isLoggedIn(req) &&
+                        (user.session
+                            .getSessionValue(req, 'berechtigung')
+                            .includes('3') ||
+                            user.session
+                                .getSessionValue(req, 'berechtigung')
+                                .includes('0'))
+                    )
+                ) {
+                    res.json({ success: false });
+                    return;
+                }
+
+                const dataKeys: string[] = [
+                    'name',
+                    'klasse',
+                    'mail',
+                    'telefon',
+                    'fach',
+                    'einzelnachhilfe',
+                    'nachhilfe',
+                ];
+
+                const USER_ID: string = encode(req.params.userID, {
+                    mode: 'specialChars',
+                    level: 'html5',
+                });
+
+                use('databaseConnection', (database: types.obj) => {
+                    database.query(
+                        `UPDATE shsAnmeldung SET ${dataKeys.join(
+                            '=?, '
+                        )}=? WHERE id = ?`,
+                        [
+                            ...dataKeys.map((key: string) => {
+                                return encode(req.body[key], {
+                                    mode: 'specialChars',
+                                    level: 'html5',
+                                });
+                            }),
+                            USER_ID,
+                        ],
+                        (err: boolean, result: types.obj) => {
+                            if (err) {
+                                res.json({ success: false });
+                                return;
+                            }
+
+                            res.json({ success: result['affectedRows'] > 0 });
+                        }
+                    );
+                });
+            });
+        }
+    );
 }
 
 function getStudentDataFromDB(): Promise<types.obj> {

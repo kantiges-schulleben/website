@@ -18,34 +18,18 @@
             crossorigin="anonymous"
         ></script>
         <link rel="stylesheet" href="style.css" />
-        <link rel="stylesheet" href="index.css" />
+        <link rel="stylesheet" href="/dev/index.css" />
+        <link rel="stylesheet" href="/dev/user.css" />
+        <link rel="stylesheet" href="/dev/style.css" />
 
         <script src="/public/navi.js"></script>
         <script src="/public/preload.js"></script>
 
+        <script src="user.js"></script>
         <script src="sketch.js"></script>
         <script src="/lib/js/jquery.js"></script>
+        <script src="/lib/js/edom.js"></script>
     </head>
 
-    <body onload="preload(); setup();">
-        <nav id="navbar"></nav>
-        <section class="home">
-            <table>
-                <tr>
-                    <td>
-                        <div id="AUSWERTUNG">
-                            <button onclick="startScript();">
-                                Auswertung starten
-                            </button>
-                            <p id="output"></p>
-                        </div>
-                    </td>
-                    <td>
-                        <label id="counter"></label>
-                    </td>
-                </tr>
-            </table>
-        </section>
-        <footer id="footer"></footer>
-    </body>
+    <body onload="startup(); preload();"></body>
 </html>

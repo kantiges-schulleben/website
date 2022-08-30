@@ -1,24 +1,67 @@
-// Variablen================================================================================================================================================
-let timer: number;
+function startup() {
+    edom.init();
+    edom.fromTemplate({
+        children: [
+            {
+                tag: 'nav',
+                id: 'navbar',
+            },
+            {
+                tag: 'div',
+                classes: ['content'],
+                children: [
+                    {
+                        tag: 'div',
+                        classes: ['tabs'],
+                    },
 
-// setup====================================================================================================================================================
-function setup() {
-    timer = window.setInterval(count, 10000);
-    count();
+                    {
+                        tag: 'div',
+                        id: 'actualContent',
+                        classes: ['content'],
+                        children: [
+                            {
+                                tag: 'lable',
+                                id: 'counter',
+                                text: 'amgemeldete Schüler*innnen:',
+                            },
+                            {
+                                tag: 'button',
+                                text: 'Auswertung starten',
+                                classes: ['searchButton'],
+                                handler: [
+                                    {
+                                        type: 'click',
+                                        id: 'clickStartScript',
+                                        arguments: '',
+                                        body: 'startScript()',
+                                    },
+                                ],
+                            },
+                            ...markupUser(),
+                        ],
+                    },
+                ],
+            },
+
+            {
+                tag: 'footer',
+                id: 'footer',
+            },
+        ],
+    });
+    displayStudentCount();
+    (edom.findById('inputUserName')?.element as HTMLInputElement).placeholder =
+        'Name';
 }
-// count====================================================================================================================================================
-function count() {
+
+function displayStudentCount() {
     $.get('/shs/admin/count', function (data) {
-        if (data == '') {
-            window.clearInterval(timer);
-        } else {
-            (
-                document.getElementById('counter') as HTMLParagraphElement
-            ).innerText = data.count + ' angemeldete Schüler*innen';
-        }
+        (document.getElementById('counter') as HTMLLabelElement).innerText =
+            'angemeldete Schüler*innen: ' + data.count;
     });
 }
-// start script=============================================================================================================================================
+
 function startScript() {
     if (confirm('Auswertung starten?')) {
         (document.getElementById('output') as HTMLParagraphElement).innerText =
