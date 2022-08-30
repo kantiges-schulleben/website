@@ -46,7 +46,7 @@ export function config(
                 target: '<li><a href="/dev">Controlpanel</a></li>',
             },
             '3': {
-                target: '<li><a href="/shs/admin">ShS Auswertung</a></li>',
+                target: '<li><a href="/shs/admin">ShS Dashboard</a></li>',
             },
         };
 

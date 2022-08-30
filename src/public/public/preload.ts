@@ -39,6 +39,7 @@ function preload() {
                                 <div class='sub-menu-1'>
                                     <ul>
                                         <li><a href='/shs/information'>Informationen</a></li>
+                                        <li><a href='/shs/blog'>Aktuelles</a></li>
                                         <!--##-->
                                         <li><a href='/shs/anmeldung'>Anmeldung</a></li>
                                         <li><a href='/shs/team'>Team</a></li>
