@@ -229,7 +229,6 @@ a.button3:hover {
     }
 }
 
-
 /* ================================= Standard ================================= */
 
 * {
@@ -351,7 +350,7 @@ nav {
     justify-content: space-around;
     align-items: center;
     min-height: 15vh;
-    font-family: 'Roboto'sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .menu-bar ul li {
@@ -448,7 +447,7 @@ footer {
     min-height: 150px;
     padding: 30px;
     font-family: Roboto;
-    line-height: 120%
+    line-height: 120%;
 }
 
 .footer ul {
@@ -461,7 +460,7 @@ footer {
     padding-right: 50px;
     color: #16cc68;
     font-size: 24px;
-    line-height: 50px
+    line-height: 50px;
 }
 
 .buttonsR {
@@ -471,7 +470,7 @@ footer {
 
 .buttonsR a {
     color: white;
-    line-height: 35px
+    line-height: 35px;
 }
 
 .buttonsR a:hover {
@@ -483,7 +482,7 @@ footer {
     padding-left: 50px;
     color: #16cc68;
     font-size: 24px;
-    line-height: 50px
+    line-height: 50px;
 }
 
 .buttonsS {
@@ -493,7 +492,7 @@ footer {
 
 .buttonsS a {
     color: white;
-    line-height: 35px
+    line-height: 35px;
 }
 
 .buttonsS a:hover {
@@ -640,5 +639,5 @@ a {
     }
 }
 
-
 /* ================================= Standard ================================= */
+

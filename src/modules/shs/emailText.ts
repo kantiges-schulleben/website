@@ -6,6 +6,7 @@ import {
     gruppeLehrer,
     gruppeSchueler,
     ohnePartner,
+    newEnroll,
 } from './emailTextStore';
 
 export class emailText {
@@ -20,6 +21,7 @@ export class emailText {
         },
         ohne: { ohne: ohnePartner },
         bestMail: { bestMail: bestMail },
+        newEnroll: { newEnroll: newEnroll },
     };
 
     public static get(

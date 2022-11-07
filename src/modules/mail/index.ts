@@ -44,7 +44,7 @@ export function sendMail(
 
     exec(
         // TODO make pretty
-        `php ${path.join(ROOT_PATH, 'mail', 'php', 'mail.php')} "${
+        `php81 ${path.join(ROOT_PATH, 'mail', 'php', 'mail.php')} "${
             FROM.name
         }" "${FROM.mail}" "${to.name}" "${to.mail}" "${replyTo.name}" "${
             replyTo.mail

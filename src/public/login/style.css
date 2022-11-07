@@ -5,19 +5,17 @@
 * {
     color: rgb(255, 255, 255);
     box-sizing: border-box;
-    font-family: 'Roboto'sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
-@media screen and (min-width:200px) {
-
+@media screen and (min-width: 200px) {
     body,
     html {
         font-size: 48%;
     }
 }
 
-@media screen and (min-width:290px) {
-
+@media screen and (min-width: 290px) {
     body,
     html {
         font-size: 50%;
@@ -28,40 +26,35 @@ nav ul li a.active {
     border-bottom: 0.188em solid #001524;
 }
 
-@media screen and (min-width:600px) {
-
+@media screen and (min-width: 600px) {
     body,
     html {
         font-size: 48%;
     }
 }
 
-@media screen and (min-width:600px) {
-
+@media screen and (min-width: 600px) {
     body,
     html {
         font-size: 53%;
     }
 }
 
-@media screen and (min-width:800px) {
-
+@media screen and (min-width: 800px) {
     body,
     html {
         font-size: 57%;
     }
 }
 
-@media screen and (min-width:1200px) {
-
+@media screen and (min-width: 1200px) {
     body,
     html {
         font-size: 70%;
     }
 }
 
-@media screen and (max-width:300px) {
-
+@media screen and (max-width: 300px) {
     body,
     html {
         font-size: 15%;
@@ -131,22 +124,22 @@ form {
 }
 
 .i i {
-    transition: .3s;
+    transition: 0.3s;
 }
 
-.input-div>div {
+.input-div > div {
     position: relative;
     height: 45px;
 }
 
-.input-div>div>h5 {
+.input-div > div > h5 {
     position: absolute;
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
     color: rgb(255, 255, 255);
     font-size: 18px;
-    transition: .3s;
+    transition: 0.3s;
 }
 
 .input-div:before,
@@ -156,8 +149,8 @@ form {
     bottom: -2px;
     width: 0%;
     height: 2px;
-    background-color:#38d39f;
-    transition: .4s;
+    background-color: #38d39f;
+    transition: 0.4s;
 }
 
 .input-div:before {
@@ -173,16 +166,16 @@ form {
     width: 50%;
 }
 
-.input-div.focus>div>h5 {
+.input-div.focus > div > h5 {
     top: -5px;
     font-size: 15px;
 }
 
-.input-div.focus>.i>i {
+.input-div.focus > .i > i {
     color: red;
 }
 
-.input-div>div>input {
+.input-div > div > input {
     position: absolute;
     left: 0;
     top: 0;
@@ -207,13 +200,12 @@ form {
     text-decoration: none;
     color: rgb(255, 255, 255);
     font-size: 0.9rem;
-    transition: .3s;
+    transition: 0.3s;
     cursor: pointer;
 }
 
-
 a:hover {
-    color:#16cc68;
+    color: #16cc68;
 }
 
 .btn {
@@ -224,7 +216,7 @@ a:hover {
     outline: none;
     border: none;
     /*background-image: linear-gradient(to right, red, red, red);*/
-    background-image: linear-gradient(to right,#16cc68, #16cc68, #16cc68);
+    background-image: linear-gradient(to right, #16cc68, #16cc68, #16cc68);
     background-size: 200%;
     font-size: 1.2rem;
     color: rgb(255, 255, 255);
@@ -232,14 +224,13 @@ a:hover {
     text-transform: uppercase;
     margin: 1rem 0;
     cursor: pointer;
-    transition: .5s;
+    transition: 0.5s;
     text-align: center;
 }
 
 .btn:hover {
     background-position: right;
 }
-
 
 @media screen and (max-width: 1050px) {
     .container {
@@ -281,9 +272,8 @@ a:hover {
     padding: 0;
     color: rgb(255, 255, 255);
     box-sizing: border-box;
-    font-family: 'Roboto'sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
-
 
 /* ================================= Standard ================================= */
 * {
@@ -292,7 +282,7 @@ a:hover {
     box-sizing: border-box;
 }
 body {
-	font-family: 'Roboto';
+    font-family: 'Roboto';
     background: #323232;
 }
 .bod {
@@ -302,38 +292,37 @@ body {
 }
 header {
     margin: 100px 50px 0 50px;
-	text-align: center;
-	padding-top: 50px;
+    text-align: center;
+    padding-top: 50px;
 }
 
 header h1 {
-	font-size: 24px;
-	color: white;
+    font-size: 24px;
+    color: white;
 }
 header h2 {
-	font-size: 24px;
-	color: #16cc68;
+    font-size: 24px;
+    color: #16cc68;
 }
 header p {
     padding-top: 50px;
-	font-size: 16px;
-	color: white;
-	max-width: 800px;
-	margin: auto;
+    font-size: 16px;
+    color: white;
+    max-width: 800px;
+    margin: auto;
 }
 
-
-#sidebar{
-    position:relative;
+#sidebar {
+    position: relative;
     margin-top: -50px;
-    height:610px;
-    width:600px;
+    height: 610px;
+    width: 600px;
 }
-#sidebar ul{
-    width:600px;
-    overflow-y:auto;
-    position:absolute;
-    height:625px;
+#sidebar ul {
+    width: 600px;
+    overflow-y: auto;
+    position: absolute;
+    height: 625px;
 }
 ::-webkit-scrollbar {
     width: 10px;
@@ -351,7 +340,6 @@ header p {
     background: rgb(85, 85, 85);
 }
 
-
 nav {
     position: fixed;
     width: 100%;
@@ -359,11 +347,11 @@ nav {
     z-index: 99;
 
     min-height: 50px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: rgb(39, 39, 39);
-	box-shadow: 2px 8px 14px 0px rgba(12, 12, 12, 0.596);
+    box-shadow: 2px 8px 14px 0px rgba(12, 12, 12, 0.596);
 }
 
 .nav-links {
@@ -380,12 +368,10 @@ nav {
     font-size: 14px;
 }
 
-
 .burger {
     display: none;
     cursor: pointer;
     z-index: 20;
-   
 }
 .burger div {
     width: 25px;
@@ -395,7 +381,6 @@ nav {
     transition: all 0.3s ease;
 }
 
-
 .menu-bar ul {
     margin: -40px 0 -40px 0;
     list-style: none;
@@ -404,8 +389,7 @@ nav {
     justify-content: space-around;
     align-items: center;
     min-height: 15vh;
-    font-family: 'Roboto'sans-serif;
-  
+    font-family: 'Roboto', sans-serif;
 }
 
 .menu-bar ul li {
@@ -419,10 +403,10 @@ nav {
 }
 
 .menu-bar ul li:hover {
-    background:#16cc68;
+    background: #16cc68;
     border-radius: 50px;
     padding: 10px 30px 10px 30px;
-    transform:scale(1.02);
+    transform: scale(1.02);
     transform-origin: center;
 }
 .sub-menu-1 {
@@ -433,7 +417,7 @@ nav {
     display: flex;
     position: fixed;
     background: rgba(20, 20, 20, 0.959);
-	box-shadow: 2px 8px 14px 0px rgba(12, 12, 12, 0.596);
+    box-shadow: 2px 8px 14px 0px rgba(12, 12, 12, 0.596);
     border-radius: 15px;
     margin-top: 10px;
     margin-left: -32px;
@@ -458,7 +442,7 @@ nav {
 }
 
 .menu-bar ul li:hover .sub-menu-1 ul li a:hover {
-    color:  #16cc68;
+    color: #16cc68;
 }
 
 .fa-angel-right {
@@ -467,7 +451,6 @@ nav {
 
 .sub-menu-2 {
     display: none;
-
 }
 
 .hover-me:hover .sub-menu-2 {
@@ -498,11 +481,11 @@ nav {
 
 footer {
     background-color: rgb(39, 39, 39);
-	box-shadow: 2px 0px 14px 8px rgba(12, 12, 12, 0.596);
+    box-shadow: 2px 0px 14px 8px rgba(12, 12, 12, 0.596);
     min-height: 150px;
     padding: 30px;
     font-family: Roboto;
-    line-height:120%
+    line-height: 120%;
 }
 .footer ul {
     list-style: none;
@@ -514,17 +497,17 @@ footer {
     padding-right: 50px;
     color: #16cc68;
     font-size: 24px;
-    line-height:50px
+    line-height: 50px;
 }
-.buttonsR{
+.buttonsR {
     padding-right: 50px;
     text-align: right;
 }
-.buttonsR a{
+.buttonsR a {
     color: white;
-    line-height:35px
+    line-height: 35px;
 }
-.buttonsR a:hover{
+.buttonsR a:hover {
     color: #16cc68;
 }
 
@@ -533,17 +516,17 @@ footer {
     padding-left: 50px;
     color: #16cc68;
     font-size: 24px;
-    line-height:50px
+    line-height: 50px;
 }
 .buttonsS {
     padding-left: 50px;
     text-align: left;
 }
-.buttonsS a{
+.buttonsS a {
     color: white;
-    line-height:35px
+    line-height: 35px;
 }
-.buttonsS a:hover{
+.buttonsS a:hover {
     color: #16cc68;
 }
 .cc {
@@ -591,7 +574,7 @@ a {
         height: 100%;
         padding: 0px 30px 0px 30px;
     }
-    
+
     .nav-links li {
         opacity: 0;
     }
@@ -629,9 +612,7 @@ a {
         position: absolute;
         display: none;
     }
-    
 
-  
     .burger {
         display: block;
     }
@@ -658,7 +639,6 @@ a {
     }
 }
 
-
 .nav-active {
     transform: translateX(0%);
 }
@@ -673,25 +653,24 @@ a {
     }
 }
 
-
 @media only screen and (min-width: 1200px) {
-	body {
-		font-size: 18px;
-	}
-	header h1,
-	header h2 {
-		font-size: 2em;
-	}
-	header p {
-		font-size: 1.1rem;
-	}
-	.cards {
-		flex-direction: row;
-	}
-	.card {
-		margin: 2rem;
-	}
+    body {
+        font-size: 18px;
+    }
+    header h1,
+    header h2 {
+        font-size: 2em;
+    }
+    header p {
+        font-size: 1.1rem;
+    }
+    .cards {
+        flex-direction: row;
+    }
+    .card {
+        margin: 2rem;
+    }
 }
 
-
 /* ================================= Standard ================================= */
+

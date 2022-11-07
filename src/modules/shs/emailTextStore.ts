@@ -15,3 +15,6 @@ export const ohnePartner: string =
 
 export const bestMail: string =
     "Hallo {{name}},<br>Hiermit bist du offiziell ein Teil des Projekts Schüler*innen helfen Schülern*innen. Du bist in unserer Datenbank vermerkt und wirst von uns zeitnah mit weiteren Informationen versorgt.<br>Deine Daten werden gemäß unseren Datenschutzregelung behandelt.<br>Bei weiteren Fragen oder Problemen kannst du dich jeder Zeit über <a href = 'mailto: shs@kantgym-leipzig.de'>shs@kantgym-leipzig.de</a> an unser Team wenden.<br>Viel Spaß beim gemeinsamen Lernen.<br><br>Dein ShS - Team";
+
+export const newEnroll: string =
+    'Eine neue Anmeldung wurde über die Website vorgenommen.';
