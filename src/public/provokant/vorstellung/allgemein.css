@@ -354,7 +354,7 @@ nav {
     justify-content: space-around;
     align-items: center;
     min-height: 15vh;
-    font-family: 'Roboto' sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .menu-bar ul li {

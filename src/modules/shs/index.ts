@@ -59,6 +59,24 @@ export function config(
                                             name: req.body.name,
                                         })
                                     );
+
+                                    mail.sendMail(
+                                        'kantiges-schulleben.de',
+                                        {
+                                            name: 'ShS-Team',
+                                            mail: 'shs@kantgym-leipzig.de',
+                                        },
+                                        {
+                                            name: 'ShS-Team',
+                                            mail: 'shs@kantgym-leipzig.de',
+                                        },
+                                        'neue Anmeldung',
+                                        emailText.get(
+                                            'newEnroll',
+                                            'newEnroll',
+                                            {}
+                                        )
+                                    );
                                 });
                                 res.json({ success: true });
                             }

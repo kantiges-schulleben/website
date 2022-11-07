@@ -5,7 +5,6 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
 }
 
 .kontaktformular {
@@ -14,7 +13,7 @@
     background: #323232;
     background-position: center;
     background-size: cover;
-    position: absolute;
+    /* position: absolute; */
 }
 
 * {
@@ -40,7 +39,7 @@
 
 .button-box {
     /*Lehrer u. Schüler Button*/
-    width: 220px;
+    width: 260px;
     margin: 35px auto;
     position: relative;
     box-shadow: 0 0 20px 9px whitesmoke;
@@ -69,12 +68,12 @@
     top: 0;
     left: 0;
     position: absolute;
-    width: 110px;
+    width: 130px;
     height: 100%;
     background: linear-gradient(to right, #16cc68, #16cc68);
     /*background: linear-gradient(to right, #ff105f, #ffad06);*/
     border-radius: 30px;
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .oben-abstand {
@@ -82,10 +81,10 @@
 }
 
 .input-group {
-    top: 180px;
+    /* top: 180px; */
     position: absolute;
     width: 280px;
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .input-field {
@@ -159,7 +158,7 @@
     border-right: 0;
     /*border-bottom: 4px solid red;*/
     background: transparent;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 15px;
 }
 
@@ -181,7 +180,7 @@
 }
 
 body {
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     background: #656565;
     /*#f7f6ff*/
     overflow-x: hidden;
@@ -226,7 +225,7 @@ h2 {
 }
 
 .selected::after {
-    content: "";
+    content: '';
     /*background: url("../../assets/Schülerrats-Logo\ querformat.JPG");*/
     background-size: contain;
     background-repeat: no-repeat;
@@ -245,7 +244,7 @@ h2 {
     margin-top: 54px;
 }
 
-.select-box .options-container.active+.selected::after {
+.select-box .options-container.active + .selected::after {
     transform: rotateX(180deg);
     top: -6px;
 }
@@ -279,13 +278,12 @@ h2 {
     display: none;
 }
 
-
 /* Searchbox */
 
 .search-box input {
     width: 70%;
     padding: 12px 16px;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
     position: absolute;
     border-radius: 8px 8px 0 0;
@@ -299,7 +297,7 @@ h2 {
     outline: none;
 }
 
-.select-box .options-container.active~.search-box input {
+.select-box .options-container.active ~ .search-box input {
     opacity: 1;
     pointer-events: auto;
 }
@@ -355,7 +353,6 @@ footer {
     background: #16cc68;
     /*red*/
     top: -10px;
-    ;
 }
 
 .left .content p {
@@ -480,7 +477,6 @@ footer {
 .bottom center a:hover {
     text-decoration: underline;
 }
-
 
 /* ================================= Standard ================================= */
 
@@ -623,7 +619,7 @@ nav {
     justify-content: space-around;
     align-items: center;
     min-height: 15vh;
-    font-family: 'Roboto'sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .menu-bar ul li {
@@ -720,7 +716,7 @@ footer {
     min-height: 150px;
     padding: 30px;
     font-family: Roboto;
-    line-height: 120%
+    line-height: 120%;
 }
 
 .footer ul {
@@ -733,7 +729,7 @@ footer {
     padding-right: 50px;
     color: #16cc68;
     font-size: 24px;
-    line-height: 50px
+    line-height: 50px;
 }
 
 .buttonsR {
@@ -743,7 +739,7 @@ footer {
 
 .buttonsR a {
     color: white;
-    line-height: 35px
+    line-height: 35px;
 }
 
 .buttonsR a:hover {
@@ -755,7 +751,7 @@ footer {
     padding-left: 50px;
     color: #16cc68;
     font-size: 24px;
-    line-height: 50px
+    line-height: 50px;
 }
 
 .buttonsS {
@@ -765,7 +761,7 @@ footer {
 
 .buttonsS a {
     color: white;
-    line-height: 35px
+    line-height: 35px;
 }
 
 .buttonsS a:hover {
@@ -912,5 +908,5 @@ a {
     }
 }
 
-
 /* ================================= Standard ================================= */
+

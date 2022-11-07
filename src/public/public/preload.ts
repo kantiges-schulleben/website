@@ -35,7 +35,7 @@ function preload() {
                             <li class='active'><a href='/'>Home</a>
                             </li>
                             <li>
-                                <a href='/shs'>ShS</a>
+                                <a href='/shs/blog'>ShS</a>
                                 <div class='sub-menu-1'>
                                     <ul>
                                         <li><a href='/shs/information'>Informationen</a></li>

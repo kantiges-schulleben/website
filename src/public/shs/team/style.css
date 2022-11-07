@@ -2,7 +2,7 @@
     min-height: initial !important;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +12,7 @@
 body,
 input,
 textarea {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .container {
@@ -48,8 +48,7 @@ textarea {
 
 .circle {
     border-radius: 50%;
-    background: linear-gradient(135deg, transparent 20%, /*#149279/#16cc68*/
-    );
+    background: linear-gradient(135deg, transparent 20%, /*#149279/#16cc68*/);
     position: absolute;
 }
 
@@ -68,7 +67,7 @@ textarea {
 }
 
 .contact-form:before {
-    content: "";
+    content: '';
     position: absolute;
     width: 26px;
     height: 26px;
@@ -176,7 +175,7 @@ textarea.input {
 
 .input-container span:before,
 .input-container span:after {
-    content: "";
+    content: '';
     position: absolute;
     width: 10%;
     opacity: 0;
@@ -214,8 +213,7 @@ textarea.input {
 }
 
 .contact-info .title {
-    color: /* #1abc9c*/
-    #16cc68;
+    color: /* #1abc9c*/ #16cc68;
 }
 
 .text {
@@ -254,9 +252,11 @@ textarea.input {
     width: 35px;
     height: 35px;
     border-radius: 5px;
-    background: linear-gradient(45deg, /*#1abc9c*/
-    #16cc68, /*#149279*/
-    #16cc68);
+    background: linear-gradient(
+        45deg,
+        /*#1abc9c*/ #16cc68,
+        /*#149279*/ #16cc68
+    );
     color: #fff;
     text-align: center;
     line-height: 35px;
@@ -269,7 +269,7 @@ textarea.input {
 }
 
 .contact-info:before {
-    content: "";
+    content: '';
     position: absolute;
     width: 110px;
     height: 100px;
@@ -286,16 +286,18 @@ textarea.input {
     width: 500px;
     height: 500px;
     border-radius: 50%;
-    background: linear-gradient(to bottom, /*#1cd4af*/
-    #16cc68, /*#159b80*/
-    #16cc68);
+    background: linear-gradient(
+        to bottom,
+        /*#1cd4af*/ #16cc68,
+        /*#159b80*/ #16cc68
+    );
     bottom: 50%;
     right: 50%;
     transform: translate(-40%, 38%);
 }
 
 .big-circle:after {
-    content: "";
+    content: '';
     position: absolute;
     width: 360px;
     height: 360px;
@@ -441,7 +443,6 @@ footer {
     width: 15%;
     background: #16cc68;
     top: -10px;
-    ;
 }
 
 .left .content p {
@@ -595,12 +596,11 @@ a {
 
 h2 {
     font-size: 4rem;
-    font-family: "Lobster", sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: lighter;
     color: cornsilk;
     position: relative;
 }
-
 
 /*article {
   font-size: 1.5em;
@@ -623,7 +623,7 @@ h2 {
 
 html {
     font-size: 10px;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -633,7 +633,6 @@ body {
 a {
     text-decoration: none;
     /*color: #fff*/
-    ;
 }
 
 section {
@@ -654,9 +653,9 @@ section {
 }
 
 .kopfrunter::after {
-    content: "";
+    content: '';
     width: 10rem;
-    height: .8rem;
+    height: 0.8rem;
     background-color: #45e19f;
     position: absolute;
     bottom: -2rem;
@@ -680,7 +679,7 @@ section {
     align-items: center;
     justify-content: center;
     margin: 2rem 0;
-    box-shadow: .5rem .5rem .3rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0.5rem 0.5rem 0.3rem rgba(0, 0, 0, 0.2);
 }
 
 .card .card-img {
@@ -725,19 +724,18 @@ section {
 
 .card .schrank {
     padding: 1rem 2.5rem;
-    background-color: #45e19f/*#445ae3*/
-    ;
+    background-color: #45e19f /*#445ae3*/;
     border-radius: 2rem;
     margin: 1rem 0;
     text-transform: uppercase;
     color: #eee;
     font-size: 1.4rem;
-    transition: all .5s;
+    transition: all 0.5s;
 }
 
 .card .schrank:hover {
     transform: translateY(-2px);
-    box-shadow: .5rem .5rem 2rem rgba(0, 0, 0, .2);
+    box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.2);
 }
 
 .card .schrank:active {
@@ -752,12 +750,12 @@ section {
     justify-content: space-evenly;
     padding: 2rem 0;
     margin-top: 1.5rem;
-    border-top: 1px solid rgba(0, 0, 0, .1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .sozialesleben i {
     font-size: 3rem;
-    transition: color .5s;
+    transition: color 0.5s;
 }
 
 .fa-facebook-square {
@@ -794,7 +792,7 @@ section {
     }
     .card {
         margin: 2rem;
-        transition: transform .5s;
+        transition: transform 0.5s;
     }
     @keyframes fadeIn {
         from {
@@ -805,16 +803,16 @@ section {
         }
     }
     .card:nth-child(1) {
-        animation: fadeIn .5s .5s backwards;
+        animation: fadeIn 0.5s 0.5s backwards;
     }
     .card:nth-child(2) {
-        animation: fadeIn .5s 1s backwards;
+        animation: fadeIn 0.5s 1s backwards;
     }
     .card:nth-child(3) {
-        animation: fadeIn .5s 1.5s backwards;
+        animation: fadeIn 0.5s 1.5s backwards;
     }
     .card:nth-child(4) {
-        animation: fadeIn .5s 2s backwards;
+        animation: fadeIn 0.5s 2s backwards;
     }
     .card:hover {
         transform: scale(1.05);
@@ -872,7 +870,6 @@ footer {
     background: #16cc68;
     /*red*/
     top: -10px;
-    ;
 }
 
 .left .content p {
@@ -1032,7 +1029,6 @@ a {
     color: #fff;
 }
 
-
 /* ================================= Standard ================================= */
 
 * {
@@ -1164,7 +1160,7 @@ nav {
     justify-content: space-around;
     align-items: center;
     min-height: 15vh;
-    font-family: 'Roboto'sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .menu-bar ul li {
@@ -1261,7 +1257,7 @@ footer {
     min-height: 150px;
     padding: 30px;
     font-family: Roboto;
-    line-height: 120%
+    line-height: 120%;
 }
 
 .footer ul {
@@ -1274,7 +1270,7 @@ footer {
     padding-right: 50px;
     color: #16cc68;
     font-size: 24px;
-    line-height: 50px
+    line-height: 50px;
 }
 
 .buttonsR {
@@ -1284,7 +1280,7 @@ footer {
 
 .buttonsR a {
     color: white;
-    line-height: 35px
+    line-height: 35px;
 }
 
 .buttonsR a:hover {
@@ -1296,7 +1292,7 @@ footer {
     padding-left: 50px;
     color: #16cc68;
     font-size: 24px;
-    line-height: 50px
+    line-height: 50px;
 }
 
 .buttonsS {
@@ -1306,7 +1302,7 @@ footer {
 
 .buttonsS a {
     color: white;
-    line-height: 35px
+    line-height: 35px;
 }
 
 .buttonsS a:hover {
@@ -1453,5 +1449,5 @@ a {
     }
 }
 
-
 /* ================================= Standard ================================= */
+
